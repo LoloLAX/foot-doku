@@ -567,19 +567,31 @@ function init() {
     }
   }
 
-  // Sinon, charger la grille du jour
-  const raw = localStorage.getItem('footdoku_grille');
-  if (!raw) {
-    showHome();
-    return;
-  }
-  grille = JSON.parse(raw);
-  document.getElementById('header-date').textContent =
-    'Grille du ' + (grille.publieLe || new Date().toLocaleDateString('fr-FR'));
-
-  renderPips();
-  buildGrid();
-  document.getElementById('game').style.display = 'block';
+  // Charger la grille du jour depuis grille-du-jour.json
+  fetch('grille-du-jour.json')
+    .then(r => r.json())
+    .then(data => {
+      grille = data;
+      document.getElementById('header-date').textContent =
+        'Grille du ' + (grille.publieLe || new Date().toLocaleDateString('fr-FR'));
+      renderPips();
+      buildGrid();
+      document.getElementById('game').style.display = 'block';
+    })
+    .catch(() => {
+      // Fallback : localStorage ou rien
+      const raw = localStorage.getItem('footdoku_grille');
+      if (!raw) {
+        showHome();
+        return;
+      }
+      grille = JSON.parse(raw);
+      document.getElementById('header-date').textContent =
+        'Grille du ' + (grille.publieLe || new Date().toLocaleDateString('fr-FR'));
+      renderPips();
+      buildGrid();
+      document.getElementById('game').style.display = 'block';
+    });
 }
 
 function showHome() {

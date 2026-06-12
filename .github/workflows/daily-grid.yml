@@ -1,0 +1,35 @@
+name: Generate Daily Grid
+
+on:
+  schedule:
+    # Tous les jours à 8h UTC (10h CEST en été, 9h CET en hiver)
+    - cron: '0 8 * * *'
+  # Permettre de lancer manuellement depuis GitHub
+  workflow_dispatch:
+
+jobs:
+  generate-grid:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Extract pools
+        run: node extract-pools.js
+
+      - name: Generate daily grid
+        run: node generate-daily-grid.js
+
+      - name: Commit and push
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add pools.json grille-du-jour.json
+          git commit -m "🎯 Generated daily grid" || echo "No changes to commit"
+          git push || echo "Nothing to push"
