@@ -58,7 +58,12 @@ const TRANSLATIONS = {
 };
 
 function translateConstraint(constraint) {
-    return TRANSLATIONS[constraint] || constraint;
+    let translated = TRANSLATIONS[constraint] || constraint;
+    // Reformater les naissances: "Né en France" → "Pays de naissance: France"
+    if (translated.startsWith('Né en ')) {
+        translated = 'Pays de naissance: ' + translated.slice(6);
+    }
+    return translated;
 }
 
 function getRandomElement(arr) {
