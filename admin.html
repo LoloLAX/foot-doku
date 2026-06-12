@@ -775,6 +775,12 @@ function publishGrid() {
   s.textContent = '✅ Grille publiée !';
   s.className = 'ok';
   setTimeout(() => updatePubStatus(), 3000);
+
+  // Générer et afficher le lien de partage
+  const gridJson = JSON.stringify(grille);
+  const encoded = btoa(gridJson);
+  const shareUrl = window.location.origin + '/?gridData=' + encodeURIComponent(encoded);
+  prompt('📤 Lien de partage (cliquez pour copier):', shareUrl);
 }
 
 function unpublish() {
@@ -1025,5 +1031,45 @@ buildGrid();
 renderConstraintList('');
 syncManualInputs();
 </script>
+
+<!-- Modale de partage -->
+<div id="share-modal" style="display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); align-items: center; justify-content: center; z-index: 1000;">
+  <div style="background: white; padding: 24px; border-radius: 8px; max-width: 500px; box-shadow: 0 10px 25px rgba(0,0,0,0.2);">
+    <h2 style="margin-bottom: 16px;">📤 Partager cette grille</h2>
+    <textarea id="share-link-text" readonly style="width: 100%; height: 100px; padding: 8px; border: 1px solid #e5e7eb; border-radius: 4px; font-family: monospace; font-size: 12px;"></textarea>
+    <div style="display: flex; gap: 8px; margin-top: 16px;">
+      <button onclick="copyShareLink()" style="flex: 1; padding: 8px; background: #4f46e5; color: white; border: none; border-radius: 4px; cursor: pointer;">📋 Copier le lien</button>
+      <button onclick="closeShareModal()" style="flex: 1; padding: 8px; background: #e5e7eb; border: none; border-radius: 4px; cursor: pointer;">Fermer</button>
+    </div>
+  </div>
+</div>
+
+<script>
+function showShareModal() {
+  const grille = {
+    lignes:    state.rows,
+    colonnes:  state.cols,
+    publieLe:  new Date().toLocaleDateString('fr-FR'),
+  };
+  const gridJson = JSON.stringify(grille);
+  const encoded = btoa(gridJson);
+  const url = window.location.origin.replace('/admin', '') + '/?gridData=' + encodeURIComponent(encoded);
+
+  document.getElementById('share-link-text').value = url;
+  document.getElementById('share-modal').style.display = 'flex';
+}
+
+function closeShareModal() {
+  document.getElementById('share-modal').style.display = 'none';
+}
+
+function copyShareLink() {
+  const textarea = document.getElementById('share-link-text');
+  textarea.select();
+  document.execCommand('copy');
+  alert('Lien copié dans le presse-papiers !');
+}
+</script>
+
 </body>
 </html>
