@@ -1,0 +1,1029 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Foot-Doku — Admin</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg:      #f8f9fb;
+      --panel:   #ffffff;
+      --border:  #e5e7eb;
+      --text:    #111827;
+      --muted:   #6b7280;
+      --accent:  #4f46e5;
+      --accent-bg: #eef2ff;
+      --radius:  8px;
+
+      /* solution count colours */
+      --c0: #f1f5f9; --c0t: #94a3b8;  /* 0 — vide */
+      --c1: #fef2f2; --c1t: #dc2626;  /* 1 — très dur */
+      --c2: #fff7ed; --c2t: #c2410c;  /* 2-3 — dur */
+      --c4: #f0fdf4; --c4t: #16a34a;  /* 4-15 — bon */
+      --c16: #eff6ff; --c16t: #1d4ed8; /* 16-30 — facile */
+      --c31: #faf5ff; --c31t: #7c3aed; /* >30 — trop facile */
+    }
+
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    /* ── Header ──────────────────────────────────────────────────────── */
+    header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 12px 20px;
+      background: var(--panel);
+      border-bottom: 1px solid var(--border);
+      flex-shrink: 0;
+    }
+    header h1 { font-size: 16px; font-weight: 700; white-space: nowrap; }
+
+    #active-info {
+      flex: 1;
+      font-size: 12px;
+      color: var(--muted);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    #active-info b { color: var(--accent); }
+
+    .header-btns { display: flex; gap: 8px; }
+    .btn {
+      padding: 7px 14px; border-radius: 6px; border: none;
+      font-size: 13px; font-weight: 500; cursor: pointer;
+      white-space: nowrap; transition: opacity .15s;
+    }
+    .btn:hover { opacity: .8; }
+    .btn-ghost   { background: var(--bg); color: var(--text); border: 1px solid var(--border); }
+    .btn-primary { background: var(--accent); color: #fff; }
+    .btn-danger  { background: #ef4444; color: #fff; }
+    .btn-fix     { background: #f59e0b; color: #fff; }
+
+    /* ── Layout ──────────────────────────────────────────────────────── */
+    .layout {
+      display: flex;
+      flex: 1;
+      overflow: hidden;
+    }
+
+    /* ── Left panel — constraint browser ────────────────────────────── */
+    .cpanel {
+      width: 280px;
+      flex-shrink: 0;
+      background: var(--panel);
+      border-right: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .search-wrap {
+      padding: 12px;
+      border-bottom: 1px solid var(--border);
+    }
+    #search {
+      width: 100%;
+      padding: 8px 10px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      font-size: 13px;
+      outline: none;
+      transition: border-color .15s;
+    }
+    #search:focus { border-color: var(--accent); }
+
+    #clist {
+      flex: 1;
+      overflow-y: auto;
+      padding-bottom: 8px;
+    }
+
+    .cgroup {
+      margin-bottom: 4px;
+    }
+
+    .cgroup-title {
+      position: sticky;
+      top: 0;
+      background: var(--bg);
+      padding: 8px 12px 4px;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      color: var(--muted);
+      cursor: pointer;
+      user-select: none;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: color .15s;
+    }
+
+    .cgroup-title:hover {
+      color: #4f46e5;
+    }
+
+    .cgroup-title::before {
+      content: '▼';
+      display: inline-block;
+      font-size: 9px;
+      transition: transform .15s;
+      width: 12px;
+    }
+
+    .cgroup.collapsed .cgroup-title::before {
+      transform: rotate(-90deg);
+    }
+
+    .cgroup.collapsed .cgroup-items {
+      max-height: 0;
+      overflow: hidden;
+    }
+
+    .cgroup-items {
+      max-height: 2000px;
+      overflow: hidden;
+      transition: max-height .2s ease;
+    }
+
+    .citem {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 7px 14px;
+      cursor: pointer;
+      font-size: 13px;
+      transition: background .1s;
+      gap: 8px;
+    }
+    .citem:hover { background: var(--accent-bg); }
+    .citem.in-use { opacity: .45; cursor: default; }
+    .citem .cname { flex: 1; }
+    .citem .cbadge {
+      font-size: 11px;
+      color: var(--muted);
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1px 7px;
+      white-space: nowrap;
+    }
+
+    /* ── Right area — grid builder ───────────────────────────────────── */
+    .builder {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 24px;
+      overflow-y: auto;
+      gap: 20px;
+    }
+
+    /* Grid container */
+    .grid-wrap {
+      display: grid;
+      grid-template-columns: 120px repeat(3, 1fr);
+      grid-template-rows: auto repeat(3, 1fr);
+      gap: 6px;
+      width: 100%;
+      max-width: 640px;
+    }
+
+    .corner { /* empty top-left */ }
+
+    /* Slots */
+    .slot {
+      border: 2px dashed var(--border);
+      border-radius: var(--radius);
+      padding: 10px 8px;
+      cursor: pointer;
+      text-align: center;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--muted);
+      background: var(--panel);
+      transition: border-color .15s, background .15s;
+      word-break: break-word;
+      line-height: 1.3;
+      min-height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .slot:hover { border-color: var(--accent); color: var(--accent); }
+    .slot.active {
+      border-color: var(--accent);
+      background: var(--accent-bg);
+      color: var(--accent);
+      border-style: solid;
+    }
+    .slot.filled {
+      border-style: solid;
+      border-color: #9ca3af;
+      color: var(--text);
+      background: var(--panel);
+    }
+    .slot.filled:hover { border-color: var(--accent); color: var(--accent); }
+    .slot .remove-btn {
+      margin-left: 6px;
+      color: #9ca3af;
+      font-size: 14px;
+      line-height: 1;
+    }
+    .slot .remove-btn:hover { color: #ef4444; }
+
+    /* Col slots */
+    .col-slot { min-height: 52px; font-size: 11px; }
+
+    /* Row slots */
+    .row-slot { text-align: right; justify-content: flex-end; font-size: 11px; }
+
+    /* Grid cells */
+    .gcell {
+      border-radius: var(--radius);
+      height: 72px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 22px;
+      font-weight: 700;
+      transition: opacity .15s, transform .1s;
+      position: relative;
+    }
+    .gcell:hover { opacity: .85; transform: scale(1.03); }
+    .gcell.active-cell { outline: 3px solid var(--accent); outline-offset: 2px; }
+    .gcell .cell-label {
+      font-size: 10px;
+      font-weight: 500;
+      margin-top: 2px;
+      opacity: .7;
+    }
+
+    .s0  { background: var(--c0);  color: var(--c0t);  }
+    .s1  { background: var(--c1);  color: var(--c1t);  }
+    .s23 { background: var(--c2);  color: var(--c2t);  }
+    .s4  { background: var(--c4);  color: var(--c4t);  }
+    .s16 { background: var(--c16); color: var(--c16t); }
+    .s31 { background: var(--c31); color: var(--c31t); }
+
+    /* ── Legend ──────────────────────────────────────────────────────── */
+    .legend {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      font-size: 11px;
+      color: var(--muted);
+      align-items: center;
+    }
+    .ldot {
+      display: inline-block;
+      width: 10px; height: 10px;
+      border-radius: 3px;
+      margin-right: 4px;
+      vertical-align: middle;
+    }
+
+    /* ── Solutions panel ─────────────────────────────────────────────── */
+    .spanel {
+      width: 100%;
+      max-width: 640px;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 14px 16px;
+      display: none;
+    }
+    .spanel.visible { display: block; }
+    .spanel h3 { font-size: 13px; color: var(--muted); margin-bottom: 10px; }
+    .slist { display: flex; flex-wrap: wrap; gap: 5px; }
+    .ptag {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 4px 9px;
+      font-size: 12px;
+    }
+    .ptag span { color: var(--muted); font-size: 11px; margin-left: 4px; }
+
+    /* ── Publish bar ─────────────────────────────────────────────────── */
+    .publish-bar {
+      width: 100%;
+      max-width: 640px;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    #pub-status { font-size: 13px; color: var(--muted); flex: 1; }
+    #pub-status.ok { color: #16a34a; font-weight: 600; }
+
+    /* Manual zone */
+    .manual-zone {
+      width: 100%; max-width: 640px;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 14px 16px;
+    }
+    .manual-title { font-size: 12px; font-weight: 600; color: var(--muted); margin-bottom: 10px; text-transform: uppercase; letter-spacing: .06em; }
+    .manual-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .manual-group label { display: block; font-size: 11px; font-weight: 600; color: var(--muted); margin-bottom: 6px; }
+    .manual-group input {
+      width: 100%; padding: 7px 9px;
+      border: 1px solid var(--border); border-radius: 6px;
+      font-size: 12px; outline: none; margin-bottom: 5px;
+      transition: border-color .15s;
+    }
+    .manual-group input:focus { border-color: var(--accent); }
+    .manual-group input.valid   { border-color: #16a34a; background: #f0fdf4; }
+    .manual-group input.invalid { border-color: #ef4444; background: #fef2f2; }
+    .manual-msg { font-size: 12px; color: var(--muted); margin-top: 6px; min-height: 16px; }
+  </style>
+</head>
+<body>
+
+<!-- ── Header ──────────────────────────────────────────────────────────────── -->
+<header>
+  <h1>⚙️ Foot-Doku Admin</h1>
+  <div id="active-info">Clique une case de la grille pour voir les solutions</div>
+  <div class="header-btns">
+    <button class="btn btn-ghost"  onclick="suggestVides()" id="btn-vides" title="Remplir uniquement les slots vides">🎲 Compléter</button>
+    <button class="btn btn-ghost"  onclick="suggestAll()"   title="Réinitialiser et générer une grille entière aléatoire">🔀 Tout aléatoire</button>
+    <button class="btn btn-fix"    onclick="fixMinFive()" id="btn-fix" title="Ajouter OU pour atteindre ≥5 solutions par case">⚡ Fix ≥5</button>
+    <button class="btn btn-ghost"  onclick="resetGrid()">↺ Réinitialiser</button>
+    <button class="btn btn-primary" onclick="publishGrid()">🚀 Publier</button>
+  </div>
+</header>
+
+<!-- ── Layout ──────────────────────────────────────────────────────────────── -->
+<div class="layout">
+
+  <!-- Left: constraint browser -->
+  <aside class="cpanel">
+    <div class="search-wrap">
+      <input id="search" type="text" placeholder="🔍 Rechercher une contrainte…" oninput="filterConstraints(this.value)">
+    </div>
+    <div id="clist"></div>
+  </aside>
+
+  <!-- Right: grid builder -->
+  <div class="builder">
+
+    <!-- Grid -->
+    <div class="grid-wrap" id="grid-wrap">
+      <div class="corner"></div>
+      <!-- Col slots (will be inserted by JS) -->
+    </div>
+
+    <!-- Legend -->
+    <div class="legend">
+      <span><span class="ldot" style="background:var(--c1)"></span>≤2 — interdit (min. 3)</span>
+      <span><span class="ldot" style="background:var(--c2)"></span>3-5 — dur</span>
+      <span><span class="ldot" style="background:var(--c4)"></span>6-20 — idéal</span>
+      <span><span class="ldot" style="background:var(--c16)"></span>21-40 — facile</span>
+      <span><span class="ldot" style="background:var(--c31)"></span>>40 — trop facile</span>
+    </div>
+
+    <!-- Solutions panel -->
+    <div class="spanel" id="spanel">
+      <h3 id="spanel-title"></h3>
+      <div class="slist" id="slist"></div>
+    </div>
+
+    <!-- Manual input zone -->
+    <div class="manual-zone" id="manual-zone">
+      <div class="manual-title">✏️ Saisie manuelle</div>
+      <div class="manual-grid">
+        <div class="manual-group">
+          <label>Lignes</label>
+          <input id="m-row0" type="text" placeholder="Ligne 1 (ex: Real Madrid)" oninput="applyManual()">
+          <input id="m-row1" type="text" placeholder="Ligne 2 (ex: Premier League)" oninput="applyManual()">
+          <input id="m-row2" type="text" placeholder="Ligne 3 (ex: Ex-Barcelona)" oninput="applyManual()">
+        </div>
+        <div class="manual-group">
+          <label>Colonnes</label>
+          <input id="m-col0" type="text" placeholder="Colonne 1 (ex: France)" oninput="applyManual()">
+          <input id="m-col1" type="text" placeholder="Colonne 2 (ex: Attaquant)" oninput="applyManual()">
+          <input id="m-col2" type="text" placeholder="Colonne 3 (ex: Né en Brazil)" oninput="applyManual()">
+        </div>
+      </div>
+      <div id="manual-msg" class="manual-msg"></div>
+    </div>
+
+    <!-- Publish bar -->
+    <div class="publish-bar">
+      <div id="pub-status">Aucune grille publiée</div>
+      <button class="btn btn-danger" onclick="unpublish()">🗑 Supprimer</button>
+    </div>
+
+  </div>
+</div>
+
+<script src="data_browser.js"></script>
+<script>
+// ── State ─────────────────────────────────────────────────────────────────────
+const state = {
+  rows: [null, null, null],
+  cols: [null, null, null],
+  activeSlot: null,   // { type: 'row'|'col', idx: 0-2 }
+  activeCell: null,   // { r, c }
+  removed: new Set(),  // contraintes enlevées pour éviter de les reproposer
+};
+
+// ── Constraint groups ─────────────────────────────────────────────────────────
+const GROUPS = [
+  { label: '🌍 Sélections',        items: SELECTIONS_V.map(v => ({ v, label: extractLabel(v, SELECTIONS) })) },
+  { label: '⚽ Clubs actuels',      items: CLUBS_V.map(v => ({ v, label: extractLabel(v, CLUBS) })) },
+  { label: '📅 Anciens clubs',      items: ANCIENS_CLUBS_V.map(v => ({ v, label: extractLabel(v, ANCIENS_CLUBS) })) },
+  { label: '🏆 Championnats',       items: CHAMPIONNATS_V.map(v => ({ v, label: extractLabel(v, CHAMPIONNATS) })) },
+  { label: '🎂 Pays de naissance',  items: NAISSANCES_V.map(v => ({ v, label: extractLabel(v, NAISSANCES) })) },
+  { label: '🔤 Lettre du nom',      items: (typeof LETTRES_V !== 'undefined' ? LETTRES_V : []).map(v => ({ v, label: extractLabel(v, LETTRES) })) },
+  { label: '📊 Stats',              items: (typeof STATS_V   !== 'undefined' ? STATS_V   : []).map(v => ({ v, label: v })) },
+  { label: '👕 Postes',             items: POSTES.map(p => ({ v: p.value, label: p.label })) },
+];
+
+function extractLabel(value, arr) {
+  const found = arr.find(x => x.value === value);
+  return found ? found.label : value;
+}
+
+// Parse count from label like "France (26)"
+function parseCount(label) {
+  const m = label.match(/\((\d+)\)$/);
+  return m ? parseInt(m[1]) : null;
+}
+
+function displayName(value, label) {
+  if (value && value.includes(' OU ')) {
+    return value.split(' OU ').map(p => displayName(p.trim(), getLabel(p.trim()))).join(' OU ');
+  }
+  return label.replace(/\s*\(\d+\)$/, '');
+}
+
+// ── Build grid DOM ────────────────────────────────────────────────────────────
+function buildGrid() {
+  const wrap = document.getElementById('grid-wrap');
+  wrap.innerHTML = '<div class="corner"></div>';
+
+  // Col slots
+  for (let c = 0; c < 3; c++) {
+    const div = document.createElement('div');
+    div.className = 'slot col-slot' + (state.activeSlot?.type === 'col' && state.activeSlot.idx === c ? ' active' : state.cols[c] ? ' filled' : '');
+    div.id = 'col-slot-' + c;
+    div.onclick = () => activateSlot('col', c);
+    div.innerHTML = state.cols[c]
+      ? `${displayName(state.cols[c], getLabel(state.cols[c]))}<span class="remove-btn" onclick="removeSlot(event,'col',${c})">×</span>`
+      : '+ Colonne ' + (c + 1);
+    wrap.appendChild(div);
+  }
+
+  // Rows
+  for (let r = 0; r < 3; r++) {
+    // Row slot
+    const rslot = document.createElement('div');
+    rslot.className = 'slot row-slot' + (state.activeSlot?.type === 'row' && state.activeSlot.idx === r ? ' active' : state.rows[r] ? ' filled' : '');
+    rslot.id = 'row-slot-' + r;
+    rslot.onclick = () => activateSlot('row', r);
+    rslot.innerHTML = state.rows[r]
+      ? `${displayName(state.rows[r], getLabel(state.rows[r]))}<span class="remove-btn" onclick="removeSlot(event,'row',${r})">×</span>`
+      : 'Ligne ' + (r + 1) + ' +';
+    wrap.appendChild(rslot);
+
+    // Cells
+    for (let c = 0; c < 3; c++) {
+      const cell = document.createElement('div');
+      cell.id = 'gcell-' + r + c;
+      const isActive = state.activeCell?.r === r && state.activeCell?.c === c;
+      const l = state.rows[r], col = state.cols[c];
+      if (!l || !col) {
+        cell.className = 'gcell s0';
+        cell.textContent = '—';
+      } else {
+        const sols = getSolutions(l, col);
+        const n = sols.length;
+        cell.className = 'gcell ' + solClass(n) + (isActive ? ' active-cell' : '');
+        if (n > 0 && n <= 3) {
+          // Affiche les noms directement pour les cases rares
+          const names = sols.sort((a,b) => (b.caps||0)-(a.caps||0)).map(p => p.name).join('\n');
+          cell.style.fontSize = '10px';
+          cell.style.fontWeight = '600';
+          cell.style.padding = '4px';
+          cell.style.whiteSpace = 'pre-line';
+          cell.style.lineHeight = '1.3';
+          cell.textContent = names;
+        } else {
+          cell.style.fontSize = '';
+          cell.style.fontWeight = '';
+          cell.style.padding = '';
+          cell.style.whiteSpace = '';
+          cell.style.lineHeight = '';
+          cell.innerHTML = `<span>${n}</span><span class="cell-label">${solLabel(n)}</span>`;
+        }
+      }
+      cell.onclick = () => showSolutions(r, c);
+      wrap.appendChild(cell);
+    }
+  }
+
+  // Disable Publish button if any cell < 3 or grid incomplete
+  const allFilled = state.rows.every(r => r) && state.cols.every(c => c);
+  const allMin3   = allFilled && state.rows.every(r => state.cols.every(c => nbSolutions(r, c) >= 3));
+  const pubBtn    = document.querySelector('.btn-primary');
+  if (pubBtn) {
+    pubBtn.disabled = !allMin3;
+    pubBtn.title    = allMin3 ? '' : allFilled ? '⚠️ Une case a moins de 3 solutions' : 'Remplis toutes les lignes et colonnes';
+    pubBtn.style.opacity = allMin3 ? '' : '0.4';
+  }
+
+  // Update constraint list highlight
+  renderConstraintList(document.getElementById('search').value);
+  updatePubStatus();
+}
+
+function solClass(n) {
+  if (n === 0)  return 's0';
+  if (n <= 2)   return 's1';   // rouge : interdit (< 3)
+  if (n <= 5)   return 's23';  // orange : dur
+  if (n <= 20)  return 's4';   // vert : idéal
+  if (n <= 40)  return 's16';  // bleu : facile
+  return 's31';                 // violet : trop facile
+}
+
+function solLabel(n) {
+  if (n === 0)  return 'aucun ❌';
+  if (n <= 2)   return `${n} — interdit`;
+  if (n <= 5)   return 'dur';
+  if (n <= 20)  return 'idéal';
+  if (n <= 40)  return 'facile';
+  return 'trop facile';
+}
+
+function getLabel(value) {
+  for (const g of GROUPS) {
+    const found = g.items.find(i => i.v === value);
+    if (found) return found.label;
+  }
+  return value;
+}
+
+// ── Slot activation ───────────────────────────────────────────────────────────
+function activateSlot(type, idx) {
+  state.activeSlot = { type, idx };
+  state.activeCell = null;
+  document.getElementById('spanel').classList.remove('visible');
+  buildGrid();
+  updateActiveInfo();
+}
+
+function removeSlot(e, type, idx) {
+  e.stopPropagation();
+  const removed = type === 'col' ? state.cols[idx] : state.rows[idx];
+  if (removed) state.removed.add(removed);  // tracker pour Compléter
+  if (type === 'col') state.cols[idx] = null;
+  else               state.rows[idx] = null;
+  state.activeSlot = null;
+  state.activeCell = null;
+  document.getElementById('spanel').classList.remove('visible');
+  buildGrid();
+  syncManualInputs();
+}
+
+function updateActiveInfo() {
+  const el = document.getElementById('active-info');
+  if (!state.activeSlot) {
+    el.innerHTML = 'Clique une case pour voir les solutions';
+    return;
+  }
+  const { type, idx } = state.activeSlot;
+  el.innerHTML = `Sélectionne une contrainte pour la <b>${type === 'col' ? 'colonne' : 'ligne'} ${idx + 1}</b>`;
+}
+
+// ── Assign constraint to active slot ─────────────────────────────────────────
+function assignConstraint(value) {
+  if (!state.activeSlot) return;
+  const { type, idx } = state.activeSlot;
+  if (type === 'col') state.cols[idx] = value;
+  else               state.rows[idx] = value;
+
+  // Auto-advance to next empty slot
+  const arr = type === 'col' ? state.cols : state.rows;
+  let next = null;
+  for (let i = 0; i < 3; i++) {
+    if (!arr[i]) { next = i; break; }
+  }
+  if (next !== null) {
+    state.activeSlot = { type, idx: next };
+  } else {
+    // Try the other axis
+    const otherType = type === 'col' ? 'row' : 'col';
+    const other = type === 'col' ? state.rows : state.cols;
+    for (let i = 0; i < 3; i++) {
+      if (!other[i]) { state.activeSlot = { type: otherType, idx: i }; break; }
+    }
+    if (!state.activeSlot || state.activeSlot.idx === idx) state.activeSlot = null;
+  }
+
+  state.activeCell = null;
+  buildGrid();
+  updateActiveInfo();
+}
+
+function inUse(value) {
+  return state.rows.includes(value) || state.cols.includes(value);
+}
+
+// ── Constraint list rendering ─────────────────────────────────────────────────
+function renderConstraintList(query) {
+  const q = (query || '').toLowerCase().trim();
+  const container = document.getElementById('clist');
+  container.innerHTML = '';
+
+  GROUPS.forEach(g => {
+    const filtered = g.items.filter(i =>
+      !q || displayName(i.v, i.label).toLowerCase().includes(q)
+    );
+    if (filtered.length === 0) return;
+
+    // Créer le groupe
+    const groupDiv = document.createElement('div');
+    groupDiv.className = 'cgroup';
+
+    // Titre cliquable
+    const title = document.createElement('div');
+    title.className = 'cgroup-title';
+    title.textContent = g.label;
+    title.onclick = (e) => {
+      groupDiv.classList.toggle('collapsed');
+      e.stopPropagation();
+    };
+    groupDiv.appendChild(title);
+
+    // Container pour les items
+    const itemsDiv = document.createElement('div');
+    itemsDiv.className = 'cgroup-items';
+
+    filtered.forEach(item => {
+      const div = document.createElement('div');
+      const used = inUse(item.v);
+      div.className = 'citem' + (used ? ' in-use' : '');
+      const cnt = parseCount(item.label);
+      div.innerHTML = `
+        <span class="cname">${displayName(item.v, item.label)}</span>
+        ${cnt !== null ? `<span class="cbadge">${cnt} j.</span>` : ''}
+      `;
+      if (!used) {
+        div.onclick = () => assignConstraint(item.v);
+      }
+      itemsDiv.appendChild(div);
+    });
+
+    groupDiv.appendChild(itemsDiv);
+    container.appendChild(groupDiv);
+  });
+}
+
+function filterConstraints(q) {
+  renderConstraintList(q);
+}
+
+// ── Solutions panel ───────────────────────────────────────────────────────────
+function showSolutions(r, c) {
+  const l   = state.rows[r];
+  const col = state.cols[c];
+  state.activeCell = { r, c };
+
+  const panel = document.getElementById('spanel');
+  const title = document.getElementById('spanel-title');
+  const list  = document.getElementById('slist');
+
+  if (!l || !col) {
+    panel.classList.remove('visible');
+    buildGrid();
+    return;
+  }
+
+  const joueurs = getSolutions(l, col)
+    .sort((a, b) => (b.caps || 0) - (a.caps || 0));
+
+  const dn = v => displayName(v, getLabel(v));
+  title.textContent = `${dn(l)} × ${dn(col)} — ${joueurs.length} solution(s)`;
+  list.innerHTML = joueurs.map(j => `
+    <div class="ptag">
+      ${j.name}
+      <span>${j.nationality_selection} · ${j.club_current || '?'}</span>
+    </div>
+  `).join('');
+
+  panel.classList.add('visible');
+  buildGrid();  // to show active cell highlight
+
+  const el = document.getElementById('active-info');
+  el.innerHTML = `<b>${dn(l)} × ${dn(col)}</b> — ${joueurs.length} solution${joueurs.length > 1 ? 's' : ''}`;
+}
+
+// ── Publish ───────────────────────────────────────────────────────────────────
+function gridValid() {
+  if (state.rows.some(r => !r) || state.cols.some(c => !c)) return false;
+  for (const r of state.rows)
+    for (const c of state.cols)
+      if (nbSolutions(r, c) < 1) return false;
+  return true;
+}
+
+function publishGrid() {
+  if (state.rows.some(r => !r) || state.cols.some(c => !c)) {
+    alert('Remplis les 3 lignes et les 3 colonnes avant de publier.');
+    return;
+  }
+  for (const r of state.rows) {
+    for (const c of state.cols) {
+      const n = nbSolutions(r, c);
+      if (n < 3) {
+        const dn = v => displayName(v, getLabel(v));
+        alert(`Case trop difficile : "${dn(r)}" × "${dn(c)}" n'a que ${n} solution(s). Minimum requis : 3.`);
+        return;
+      }
+    }
+  }
+  const grille = {
+    lignes:    state.rows,
+    colonnes:  state.cols,
+    publieLe:  new Date().toLocaleDateString('fr-FR'),
+  };
+  localStorage.setItem('footdoku_grille', JSON.stringify(grille));
+  updatePubStatus();
+  const s = document.getElementById('pub-status');
+  s.textContent = '✅ Grille publiée !';
+  s.className = 'ok';
+  setTimeout(() => updatePubStatus(), 3000);
+}
+
+function unpublish() {
+  if (!confirm('Supprimer la grille publiée ?')) return;
+  localStorage.removeItem('footdoku_grille');
+  updatePubStatus();
+}
+
+function updatePubStatus() {
+  const el = document.getElementById('pub-status');
+  const raw = localStorage.getItem('footdoku_grille');
+  if (!raw) { el.textContent = 'Aucune grille publiée'; el.className = ''; return; }
+  const g = JSON.parse(raw);
+  const dn = v => displayName(v, getLabel(v));
+  el.innerHTML = `Grille active : <b>${g.lignes.map(dn).join(' / ')}</b> × <b>${g.colonnes.map(dn).join(' / ')}</b> (${g.publieLe})`;
+  el.className = '';
+}
+
+function resetGrid() {
+  state.rows = [null, null, null];
+  state.cols = [null, null, null];
+  state.removed.clear();
+  state.activeSlot = null;
+  state.activeCell = null;
+  document.getElementById('search').value = '';
+  document.getElementById('spanel').classList.remove('visible');
+  buildGrid();
+  updateActiveInfo();
+}
+
+// ── Tout aléatoire : réinitialise et génère une grille complète ───────────────
+function suggestAll() {
+  state.rows = [null, null, null];
+  state.cols = [null, null, null];
+  state.removed.clear();
+  suggestVides();
+}
+
+// ── Compléter les vides : remplit uniquement les slots null ───────────────────
+function suggestVides() {
+  const shuffle = a => [...a].sort(() => Math.random() - 0.5);
+  const MIN = 3, MAX = 40;
+
+  const fixedRows = state.rows.slice();
+  const fixedCols = state.cols.slice();
+  const emptyRowIdx = fixedRows.map((r, i) => r ? -1 : i).filter(i => i >= 0);
+  const emptyColIdx = fixedCols.map((c, i) => c ? -1 : i).filter(i => i >= 0);
+
+  if (emptyRowIdx.length === 0 && emptyColIdx.length === 0) {
+    const el = document.getElementById('active-info');
+    el.innerHTML = '<span style="color:#16a34a">✅ Tous les slots sont déjà remplis</span>';
+    return;
+  }
+
+  const usedCols = new Set(fixedCols.filter(Boolean));
+  const usedRows = new Set(fixedRows.filter(Boolean));
+  const freeColPool = COLONNES_POOL.filter(c => !usedCols.has(c) && !state.removed.has(c));
+  const freeRowPool = LIGNES_POOL.filter(r => !usedRows.has(r) && !state.removed.has(r));
+
+  // Stratégie : tire des colonnes libres, puis cherche des lignes compatibles
+  for (let t = 0; t < 500; t++) {
+    const tryCols = fixedCols.slice();
+
+    // Tire emptyColIdx.length colonnes différentes (shufflées à chaque iter)
+    const candidateCols = shuffle(freeColPool);
+    let ci2 = 0;
+    for (const ci of emptyColIdx) {
+      if (ci2 >= candidateCols.length) break;
+      tryCols[ci] = candidateCols[ci2++];
+    }
+    if (tryCols.some(c => !c)) continue;
+
+    // Vérifie uniquement les NOUVELLES colonnes contre les lignes fixes
+    const newCols = emptyColIdx.map(ci => tryCols[ci]);
+    const newColsOK = fixedRows.every(r => !r || newCols.every(c =>
+      !c || (() => { const n = nbSolutions(r, c); return n >= MIN && n <= MAX; })()
+    ));
+    if (!newColsOK) continue;
+
+    // Cherche des lignes libres compatibles avec toutes les colonnes
+    const validFreeRows = shuffle(freeRowPool).filter(r =>
+      tryCols.every(c => { const n = nbSolutions(r, c); return n >= MIN && n <= MAX; })
+    );
+    if (validFreeRows.length < emptyRowIdx.length) continue;
+
+    const tryRows = fixedRows.slice();
+    emptyRowIdx.forEach((ri, k) => { tryRows[ri] = validFreeRows[k]; });
+    if (tryRows.some(r => !r)) continue;
+
+    // Vérifie uniquement les NOUVELLES lignes contre toutes les colonnes
+    const newRows = emptyRowIdx.map(ri => tryRows[ri]);
+    const newRowsOK = newRows.every(r => tryCols.every(c =>
+      !c || (() => { const n = nbSolutions(r, c); return n >= MIN && n <= MAX; })()
+    ));
+    if (!newRowsOK) continue;
+
+    // Pas 3 championnats
+    if (tryRows.filter(r => CHAMPIONNATS_V.includes(r)).length === 3) continue;
+
+    state.rows = tryRows;
+    state.cols = tryCols;
+    state.removed.clear();  // réinitialise après une suggestion réussie
+    state.activeSlot = null;
+    state.activeCell = null;
+    document.getElementById('spanel').classList.remove('visible');
+    buildGrid();
+    syncManualInputs();
+    updateActiveInfo();
+    return;
+  }
+  const nbVides = emptyRowIdx.length + emptyColIdx.length;
+  alert(`Impossible de compléter automatiquement (${nbVides} slot${nbVides>1?'s':''} vide${nbVides>1?'s':''}). Essaie de changer une contrainte fixée.`);
+}
+
+// ── Manual input ─────────────────────────────────────────────────────────────
+const ALL_CONSTRAINTS = new Set([
+    ...LIGNES_POOL, ...COLONNES_POOL,
+    ...(typeof LETTRES_V !== 'undefined' ? LETTRES_V : []),
+    ...(typeof STATS_V   !== 'undefined' ? STATS_V   : []),
+]);
+
+function applyManual() {
+  const rowIds = ['m-row0','m-row1','m-row2'];
+  const colIds = ['m-col0','m-col1','m-col2'];
+  const rows = rowIds.map(id => document.getElementById(id).value.trim());
+  const cols = colIds.map(id => document.getElementById(id).value.trim());
+
+  let anyValid = false;
+  let errors = [];
+
+  // Validate and color each input
+  rowIds.forEach((id, i) => {
+    const v = rows[i];
+    const el = document.getElementById(id);
+    if (!v) { el.className = ''; return; }
+    const ok = ALL_CONSTRAINTS.has(v);
+    el.className = ok ? 'valid' : 'invalid';
+    if (!ok) errors.push(`"${v}" non reconnue`);
+    else anyValid = true;
+  });
+  colIds.forEach((id, i) => {
+    const v = cols[i];
+    const el = document.getElementById(id);
+    if (!v) { el.className = ''; return; }
+    const ok = ALL_CONSTRAINTS.has(v);
+    el.className = ok ? 'valid' : 'invalid';
+    if (!ok) errors.push(`"${v}" non reconnue`);
+    else anyValid = true;
+  });
+
+  const msgEl = document.getElementById('manual-msg');
+  if (errors.length) { msgEl.textContent = '⚠️ ' + errors[0]; msgEl.style.color = '#ef4444'; }
+  else if (anyValid) { msgEl.textContent = ''; }
+
+  // Push valid values into the grid state
+  rows.forEach((v, i) => { if (v && ALL_CONSTRAINTS.has(v)) state.rows[i] = v; else if (!v) state.rows[i] = null; });
+  cols.forEach((v, i) => { if (v && ALL_CONSTRAINTS.has(v)) state.cols[i] = v; else if (!v) state.cols[i] = null; });
+
+  state.activeSlot = null;
+  state.activeCell = null;
+  buildGrid();
+}
+
+// Sync manual inputs when grid changes (from clicking or random)
+function syncManualInputs() {
+  ['row','col'].forEach(type => {
+    for (let i = 0; i < 3; i++) {
+      const el = document.getElementById(`m-${type}${i}`);
+      if (el) {
+        const v = type === 'row' ? state.rows[i] : state.cols[i];
+        el.value = v || '';
+        el.className = v ? 'valid' : '';
+      }
+    }
+  });
+}
+
+// ── Fix ≥5 : ajoute des OU automatiquement sur les cases < 5 solutions ────────
+function fixMinFive() {
+  const TARGET = 5, MAX = 40;
+  if (state.rows.some(r => !r) || state.cols.some(c => !c)) {
+    alert('Remplis toutes les lignes et colonnes avant de fixer.');
+    return;
+  }
+
+  let changed = false;
+
+  // Pour chaque colonne, si au moins une case a < TARGET solutions,
+  // cherche un X à ajouter en OU qui corrige TOUTES les cases de cette colonne
+  for (let ci = 0; ci < 3; ci++) {
+    const col = state.cols[ci];
+    const counts = state.rows.map(r => nbSolutions(r, col));
+    if (counts.every(n => n >= TARGET)) continue;
+
+    let bestX = null, bestScore = Infinity;
+    for (const X of COLONNES_POOL) {
+      if (col.split(' OU ').includes(X)) continue; // déjà dedans
+      const newCol = col + ' OU ' + X;
+      const newCounts = state.rows.map(r => nbSolutions(r, newCol));
+      if (newCounts.some(n => n < 3 || n > MAX)) continue;    // invalide
+      if (newCounts.some(n => n < TARGET)) continue;           // pas assez
+      const maxN = Math.max(...newCounts);
+      if (maxN < bestScore) { bestScore = maxN; bestX = X; }
+    }
+
+    if (bestX) {
+      state.cols[ci] = col + ' OU ' + bestX;
+      changed = true;
+    }
+  }
+
+  // Même chose pour les lignes
+  for (let ri = 0; ri < 3; ri++) {
+    const row = state.rows[ri];
+    const counts = state.cols.map(c => nbSolutions(row, c));
+    if (counts.every(n => n >= TARGET)) continue;
+
+    let bestX = null, bestScore = Infinity;
+    for (const X of LIGNES_POOL) {
+      if (row.split(' OU ').includes(X)) continue;
+      const newRow = row + ' OU ' + X;
+      const newCounts = state.cols.map(c => nbSolutions(newRow, c));
+      if (newCounts.some(n => n < 3 || n > MAX)) continue;
+      if (newCounts.some(n => n < TARGET)) continue;
+      const maxN = Math.max(...newCounts);
+      if (maxN < bestScore) { bestScore = maxN; bestX = X; }
+    }
+
+    if (bestX) {
+      state.rows[ri] = row + ' OU ' + bestX;
+      changed = true;
+    }
+  }
+
+  if (changed) {
+    buildGrid();
+    syncManualInputs();
+  } else {
+    // Vérifie si tout est déjà OK
+    const allOK = state.rows.every(r => state.cols.every(c => nbSolutions(r, c) >= TARGET));
+    if (allOK) alert('Toutes les cases ont déjà ≥5 solutions ✅');
+    else alert('Impossible de corriger automatiquement. Essaie de changer une contrainte.');
+  }
+}
+
+// ── Init ──────────────────────────────────────────────────────────────────────
+buildGrid();
+renderConstraintList('');
+syncManualInputs();
+</script>
+</body>
+</html>

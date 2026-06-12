@@ -1,0 +1,140 @@
+[
+  {
+    "id": null,
+    "name": "Kylian Mbappé",
+    "firstname": "Kylian",
+    "lastname": "Mbappé",
+    "birth_date": "1998-12-20",
+    "birth_country": "France",
+    "age": 27,
+    "position": "Attacker",
+    "foot": "Right",
+    "height": "178 cm",
+    "weight": "73 kg",
+    "national_team_id": null,
+    "national_team_name": "France",
+    "national_confederation": "UEFA",
+    "jersey_number_national": 10,
+    "national_caps": 96,
+    "national_goals": 56,
+    "current_club_id": null,
+    "current_club_name": "Real Madrid",
+    "current_club_league_id": null,
+    "current_club_league_name": "La Liga",
+    "career_history": [
+      { "season": "2015-2016", "club_id": null, "club_name": "Monaco", "league_id": null, "league_name": "Ligue 1", "league_country": "France" },
+      { "season": "2016-2017", "club_id": null, "club_name": "Monaco", "league_id": null, "league_name": "Ligue 1", "league_country": "France" },
+      { "season": "2017-2018", "club_id": null, "club_name": "Paris Saint-Germain", "league_id": null, "league_name": "Ligue 1", "league_country": "France" },
+      { "season": "2018-2019", "club_id": null, "club_name": "Paris Saint-Germain", "league_id": null, "league_name": "Ligue 1", "league_country": "France" },
+      { "season": "2019-2020", "club_id": null, "club_name": "Paris Saint-Germain", "league_id": null, "league_name": "Ligue 1", "league_country": "France" },
+      { "season": "2020-2021", "club_id": null, "club_name": "Paris Saint-Germain", "league_id": null, "league_name": "Ligue 1", "league_country": "France" },
+      { "season": "2021-2022", "club_id": null, "club_name": "Paris Saint-Germain", "league_id": null, "league_name": "Ligue 1", "league_country": "France" },
+      { "season": "2022-2023", "club_id": null, "club_name": "Paris Saint-Germain", "league_id": null, "league_name": "Ligue 1", "league_country": "France" },
+      { "season": "2023-2024", "club_id": null, "club_name": "Paris Saint-Germain", "league_id": null, "league_name": "Ligue 1", "league_country": "France" },
+      { "season": "2024-2025", "club_id": null, "club_name": "Real Madrid", "league_id": null, "league_name": "La Liga", "league_country": "Spain" },
+      { "season": "2025-2026", "club_id": null, "club_name": "Real Madrid", "league_id": null, "league_name": "La Liga", "league_country": "Spain" }
+    ],
+    "total_career_club_goals": null,
+    "seasonal_records": {
+      "has_scored_20_plus_one_season": true,
+      "highest_yellow_cards_season": null,
+      "total_red_cards_career": null
+    },
+    "shared_dressing_rooms": ["Lionel Messi", "Neymar", "Vinícius Júnior", "Jude Bellingham", "Antoine Griezmann", "Ousmane Dembélé", "Sergio Ramos"],
+    "_meta": {
+      "wc2026_role": "Captain, 3rd World Cup",
+      "confidence": "caps/buts sélection sourcés presse juin 2026; cartons non collectés; 41 buts toutes compétitions Real 2025-26"
+    }
+  },
+  {
+    "id": null,
+    "name": "Marcus Thuram",
+    "firstname": "Marcus",
+    "lastname": "Thuram-Ulien",
+    "birth_date": "1997-08-06",
+    "birth_country": "Italy",
+    "age": 28,
+    "position": "Attacker",
+    "foot": null,
+    "height": "192 cm",
+    "weight": null,
+    "national_team_id": null,
+    "national_team_name": "France",
+    "national_confederation": "UEFA",
+    "jersey_number_national": 9,
+    "national_caps": 33,
+    "national_goals": null,
+    "current_club_id": null,
+    "current_club_name": "Inter Milan",
+    "current_club_league_id": null,
+    "current_club_league_name": "Serie A",
+    "career_history": [
+      { "season": "2015-2016", "club_id": null, "club_name": "Sochaux", "league_id": null, "league_name": "Ligue 2", "league_country": "France" },
+      { "season": "2016-2017", "club_id": null, "club_name": "Sochaux", "league_id": null, "league_name": "Ligue 2", "league_country": "France" },
+      { "season": "2017-2018", "club_id": null, "club_name": "Guingamp", "league_id": null, "league_name": "Ligue 1", "league_country": "France" },
+      { "season": "2018-2019", "club_id": null, "club_name": "Guingamp", "league_id": null, "league_name": "Ligue 1", "league_country": "France" },
+      { "season": "2019-2020", "club_id": null, "club_name": "Borussia Mönchengladbach", "league_id": null, "league_name": "Bundesliga", "league_country": "Germany" },
+      { "season": "2020-2021", "club_id": null, "club_name": "Borussia Mönchengladbach", "league_id": null, "league_name": "Bundesliga", "league_country": "Germany" },
+      { "season": "2021-2022", "club_id": null, "club_name": "Borussia Mönchengladbach", "league_id": null, "league_name": "Bundesliga", "league_country": "Germany" },
+      { "season": "2022-2023", "club_id": null, "club_name": "Borussia Mönchengladbach", "league_id": null, "league_name": "Bundesliga", "league_country": "Germany" },
+      { "season": "2023-2024", "club_id": null, "club_name": "Inter Milan", "league_id": null, "league_name": "Serie A", "league_country": "Italy" },
+      { "season": "2024-2025", "club_id": null, "club_name": "Inter Milan", "league_id": null, "league_name": "Serie A", "league_country": "Italy" },
+      { "season": "2025-2026", "club_id": null, "club_name": "Inter Milan", "league_id": null, "league_name": "Serie A", "league_country": "Italy" }
+    ],
+    "total_career_club_goals": 94,
+    "seasonal_records": {
+      "has_scored_20_plus_one_season": false,
+      "highest_yellow_cards_season": null,
+      "total_red_cards_career": null
+    },
+    "shared_dressing_rooms": ["Kylian Mbappé", "Antoine Griezmann", "Ousmane Dembélé"],
+    "_meta": {
+      "binational_note": "Né à Parme (Italie) pendant la carrière de Lilian Thuram à Parma Calcio",
+      "confidence": "buts carrière = Guingamp 12 + Gladbach 34 + Inter 40 (mai 2026) + Sochaux ~8 estimé; caps snapshot Wikidata, à rafraîchir"
+    }
+  },
+  {
+    "id": null,
+    "name": "Maxence Lacroix",
+    "firstname": "Maxence",
+    "lastname": "Lacroix",
+    "birth_date": "2000-04-06",
+    "birth_country": "France",
+    "age": 26,
+    "position": "Defender",
+    "foot": "Right",
+    "height": "190 cm",
+    "weight": null,
+    "national_team_id": null,
+    "national_team_name": "France",
+    "national_confederation": "UEFA",
+    "jersey_number_national": 26,
+    "national_caps": 1,
+    "national_goals": 0,
+    "current_club_id": null,
+    "current_club_name": "Crystal Palace",
+    "current_club_league_id": null,
+    "current_club_league_name": "Premier League",
+    "career_history": [
+      { "season": "2018-2019", "club_id": null, "club_name": "Sochaux", "league_id": null, "league_name": "Ligue 2", "league_country": "France" },
+      { "season": "2019-2020", "club_id": null, "club_name": "Sochaux", "league_id": null, "league_name": "Ligue 2", "league_country": "France" },
+      { "season": "2020-2021", "club_id": null, "club_name": "VfL Wolfsburg", "league_id": null, "league_name": "Bundesliga", "league_country": "Germany" },
+      { "season": "2021-2022", "club_id": null, "club_name": "VfL Wolfsburg", "league_id": null, "league_name": "Bundesliga", "league_country": "Germany" },
+      { "season": "2022-2023", "club_id": null, "club_name": "VfL Wolfsburg", "league_id": null, "league_name": "Bundesliga", "league_country": "Germany" },
+      { "season": "2023-2024", "club_id": null, "club_name": "VfL Wolfsburg", "league_id": null, "league_name": "Bundesliga", "league_country": "Germany" },
+      { "season": "2024-2025", "club_id": null, "club_name": "Crystal Palace", "league_id": null, "league_name": "Premier League", "league_country": "England" },
+      { "season": "2025-2026", "club_id": null, "club_name": "Crystal Palace", "league_id": null, "league_name": "Premier League", "league_country": "England" }
+    ],
+    "total_career_club_goals": null,
+    "seasonal_records": {
+      "has_scored_20_plus_one_season": false,
+      "highest_yellow_cards_season": null,
+      "total_red_cards_career": null
+    },
+    "shared_dressing_rooms": ["Kylian Mbappé", "Antoine Griezmann", "Ousmane Dembélé"],
+    "_meta": {
+      "palmares_note": "FA Cup 2025, Community Shield 2025, Conference League 2026 avec Crystal Palace",
+      "confidence": "première sélection A en 2026, caps exacts à vérifier; buts Wolfsburg: sources divergentes (6 à 8)"
+    }
+  }
+]

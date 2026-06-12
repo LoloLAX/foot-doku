@@ -1,0 +1,186 @@
+{
+  "joueurs": [
+    {
+      "id": 1,
+      "nom": "Kylian Mbappé",
+      "nationalite": "FR",
+      "club_actuel": "Real Madrid",
+      "poste": "FWD",
+      "age": 25,
+      "buts_saison": 18,
+      "buts_carriere": 186,
+      "passes_decisives": 42,
+      "nombre_matchs": 347,
+      "matchs_coupe_monde": 12,
+      "selections_nationales": 79,
+      "buts_en_selection": 47,
+      "pied_dominant": "Droit",
+      "hauteur_cm": 178,
+      "poids_kg": 73,
+      "clubs_historique": [
+        {
+          "club": "AS Cannes",
+          "debut": 2015,
+          "fin": 2016,
+          "ordre": 1
+        },
+        {
+          "club": "AS Monaco",
+          "debut": 2016,
+          "fin": 2017,
+          "ordre": 2
+        },
+        {
+          "club": "Paris Saint-Germain",
+          "debut": 2017,
+          "fin": 2021,
+          "ordre": 3
+        },
+        {
+          "club": "Real Madrid",
+          "debut": 2021,
+          "fin": null,
+          "ordre": 4
+        }
+      ],
+      "palmares": [
+        {
+          "trophee": "Ligue des Champions",
+          "annee": 2024
+        },
+        {
+          "trophee": "Liga",
+          "annee": 2024
+        },
+        {
+          "trophee": "Coupe de France",
+          "annee": 2018
+        }
+      ],
+      "awards": [
+        {
+          "award": "Best FIFA Men's Player",
+          "annee": 2023
+        },
+        {
+          "award": "Ballon d'Or",
+          "annee": 2022
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "nom": "Vinícius Júnior",
+      "nationalite": "BR",
+      "club_actuel": "Real Madrid",
+      "poste": "FWD",
+      "age": 24,
+      "buts_saison": 15,
+      "buts_carriere": 87,
+      "passes_decisives": 28,
+      "nombre_matchs": 268,
+      "matchs_coupe_monde": 5,
+      "selections_nationales": 35,
+      "buts_en_selection": 8,
+      "pied_dominant": "Gauche",
+      "hauteur_cm": 176,
+      "poids_kg": 72,
+      "clubs_historique": [
+        {
+          "club": "Flamengo",
+          "debut": 2018,
+          "fin": 2020,
+          "ordre": 1
+        },
+        {
+          "club": "Real Madrid Castilla",
+          "debut": 2020,
+          "fin": 2021,
+          "ordre": 2
+        },
+        {
+          "club": "Real Madrid",
+          "debut": 2021,
+          "fin": null,
+          "ordre": 3
+        }
+      ],
+      "palmares": [
+        {
+          "trophee": "Ligue des Champions",
+          "annee": 2024
+        },
+        {
+          "trophee": "Liga",
+          "annee": 2024
+        }
+      ],
+      "awards": [
+        {
+          "award": "UEFA Team of the Year",
+          "annee": 2024
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "nom": "Erling Haaland",
+      "nationalite": "NO",
+      "club_actuel": "Manchester City",
+      "poste": "FWD",
+      "age": 24,
+      "buts_saison": 27,
+      "buts_carriere": 187,
+      "passes_decisives": 18,
+      "nombre_matchs": 286,
+      "matchs_coupe_monde": 1,
+      "selections_nationales": 34,
+      "buts_en_selection": 19,
+      "pied_dominant": "Droit",
+      "hauteur_cm": 194,
+      "poids_kg": 88,
+      "clubs_historique": [
+        {
+          "club": "Molde FK",
+          "debut": 2015,
+          "fin": 2018,
+          "ordre": 1
+        },
+        {
+          "club": "Red Bull Salzburg",
+          "debut": 2018,
+          "fin": 2019,
+          "ordre": 2
+        },
+        {
+          "club": "Borussia Dortmund",
+          "debut": 2019,
+          "fin": 2023,
+          "ordre": 3
+        },
+        {
+          "club": "Manchester City",
+          "debut": 2023,
+          "fin": null,
+          "ordre": 4
+        }
+      ],
+      "palmares": [
+        {
+          "trophee": "Premier League",
+          "annee": 2024
+        },
+        {
+          "trophee": "FA Cup",
+          "annee": 2023
+        }
+      ],
+      "awards": [
+        {
+          "award": "Premier League Player of the Year",
+          "annee": 2024
+        }
+      ]
+    }
+  ]
+}

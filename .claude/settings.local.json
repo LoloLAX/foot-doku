@@ -1,0 +1,27 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(Get-Content \"D:\\\\Documents\\\\Claude\\\\Projects\\\\Foot-Doku\\\\data_browser.js\" -TotalCount 60)",
+      "Bash(Select-Object -Skip 0)",
+      "PowerShell(\\(Get-Content \"D:\\\\Documents\\\\Claude\\\\Projects\\\\Foot-Doku\\\\data_browser.js\" -TotalCount 60\\)[-20..-1] -join \"`n\")",
+      "mcp__Claude_in_Chrome__list_connected_browsers",
+      "Bash(node -e ' *)",
+      "Bash(node wiki_scraper_wc2026.js)",
+      "Bash(node -e \"console.log\\('Progress reset'\\)\")",
+      "Bash(jobs)",
+      "Bash(node generer_browser_db.js)",
+      "Bash(node generer_contraintes.js)",
+      "Bash(node generateur.js)",
+      "Bash(node moteur.js)",
+      "mcp__Claude_Preview__preview_start",
+      "WebFetch(domain:www.metrodoku.fr)",
+      "mcp__Claude_in_Chrome__tabs_context_mcp",
+      "WebSearch",
+      "WebFetch(domain:metrodoku.fr)",
+      "Bash(grep -E '\\\\.\\(html|js|json\\)$')",
+      "PowerShell(Get-ChildItem \"D:\\\\Documents\\\\Claude\\\\Projects\\\\Foot-Doku\" -MaxDepth 1 | Where-Object { $_.Extension -in '.html', '.js', '.json' } | Select-Object Name)",
+      "Bash(node normalize_clubs.js)",
+      "Bash(node separate_al_ahly.js)"
+    ]
+  }
+}

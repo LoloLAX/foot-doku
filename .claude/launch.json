@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "foot-doku",
+      "runtimeExecutable": "node",
+      "runtimeArgs": ["-e", "const http=require('http'),fs=require('fs'),path=require('path');const mime={'.html':'text/html','.js':'application/javascript','.json':'application/json'};http.createServer((req,res)=>{let f=req.url==='/'?'/admin.html':req.url.split('?')[0];const fp=path.join('D:/Documents/Claude/Projects/Foot-Doku',f);if(!fs.existsSync(fp)){res.writeHead(404);res.end('not found');return;}res.writeHead(200,{'Content-Type':mime[path.extname(fp)]||'text/plain'});fs.createReadStream(fp).pipe(res);}).listen(5175,()=>console.log('ok'))"],
+      "port": 5175
+    }
+  ]
+}

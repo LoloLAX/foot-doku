@@ -1,0 +1,1081 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Foot-Doku</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --green:    #16a34a;
+      --green-bg: #dcfce7;
+      --red:      #dc2626;
+      --red-bg:   #fee2e2;
+      --gray:     #6b7280;
+      --gray-bg:  #f3f4f6;
+      --border:   #e5e7eb;
+      --radius:   8px;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      background: #f9fafb;
+      color: #111827;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 16px;
+    }
+
+    /* ── Header ─────────────────────────────────────────── */
+    header {
+      width: 100%;
+      max-width: 520px;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    header h1 { font-size: 22px; font-weight: 700; letter-spacing: -.5px; }
+    header .date { font-size: 12px; color: var(--gray); margin-top: 2px; }
+
+    .attempts-bar {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 12px;
+      font-size: 14px;
+      font-weight: 500;
+    }
+    .attempts-pips { display: flex; gap: 5px; }
+    .pip {
+      width: 12px; height: 12px;
+      border-radius: 50%;
+      background: #d1fae5;
+      border: 1.5px solid #a7f3d0;
+      transition: background .2s, border-color .2s;
+    }
+    .pip.used { background: #fca5a5; border-color: #f87171; }
+
+    /* ── No-grid message ─────────────────────────────────── */
+    #no-grid {
+      display: none;
+      margin-top: 60px;
+      text-align: center;
+      color: var(--gray);
+      font-size: 16px;
+    }
+    #no-grid span { font-size: 36px; display: block; margin-bottom: 10px; }
+
+    /* ── Grid ────────────────────────────────────────────── */
+    #game {
+      width: 100%;
+      max-width: 520px;
+      display: none;
+    }
+
+    .grid-table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 4px;
+      table-layout: fixed;
+    }
+
+    .grid-table th.corner { width: 110px; }
+
+    .grid-table th.col-header {
+      padding: 8px 4px;
+      font-size: 12px;
+      font-weight: 600;
+      color: #374151;
+      text-align: center;
+      vertical-align: bottom;
+      line-height: 1.3;
+      word-break: break-word;
+    }
+
+    .grid-table td.row-header {
+      padding: 8px 6px;
+      font-size: 12px;
+      font-weight: 600;
+      color: #374151;
+      text-align: right;
+      vertical-align: middle;
+      line-height: 1.3;
+      word-break: break-word;
+      background: #f9fafb;
+    }
+
+    .grid-table td.cell {
+      border: 2px solid var(--border);
+      border-radius: var(--radius);
+      height: 90px;
+      text-align: center;
+      vertical-align: middle;
+      cursor: pointer;
+      transition: background .15s, border-color .15s;
+      font-size: 13px;
+      font-weight: 500;
+      padding: 6px;
+      word-break: break-word;
+      line-height: 1.3;
+    }
+    .grid-table td.cell:hover:not(.locked) { border-color: #6366f1; background: #eef2ff; }
+    .grid-table td.cell.empty  { background: white; color: var(--gray); font-size: 22px; }
+    .grid-table td.cell.correct { background: var(--green-bg); border-color: var(--green); color: var(--green); cursor: default; }
+    .grid-table td.cell.wrong-attempt { background: #fff7ed; border-color: #f97316; color: #9a3412; }
+    .grid-table td.cell.locked { cursor: default; }
+
+    /* ── Modal ───────────────────────────────────────────── */
+    #modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.45);
+      z-index: 100;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+    #modal-overlay.open { display: flex; }
+
+    #modal {
+      background: white;
+      border-radius: 12px;
+      padding: 20px;
+      width: 100%;
+      max-width: 380px;
+      box-shadow: 0 20px 40px rgba(0,0,0,.2);
+    }
+    #modal h2 { font-size: 13px; font-weight: 600; color: var(--gray); margin-bottom: 2px; }
+    #modal .modal-constraint {
+      font-size: 15px; font-weight: 700; margin-bottom: 14px;
+      color: #1e1b4b;
+    }
+
+    #search-input {
+      width: 100%;
+      padding: 10px 12px;
+      border: 2px solid var(--border);
+      border-radius: var(--radius);
+      font-size: 15px;
+      outline: none;
+      transition: border-color .15s;
+    }
+    #search-input:focus { border-color: #6366f1; }
+
+    #autocomplete {
+      margin-top: 4px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      max-height: 220px;
+      overflow-y: auto;
+      background: white;
+      display: none;
+      box-shadow: 0 4px 12px rgba(0,0,0,.1);
+    }
+    .ac-item {
+      padding: 9px 12px;
+      cursor: pointer;
+      font-size: 13px;
+      border-bottom: 1px solid #f3f4f6;
+      transition: background .1s;
+    }
+    .ac-item:last-child { border-bottom: none; }
+    .ac-item:hover, .ac-item.selected { background: #eef2ff; }
+    .ac-item .ac-sub { font-size: 11px; color: var(--gray); margin-top: 1px; }
+    .ac-item.used-player { opacity: .6; cursor: not-allowed; color: #9ca3af; background: #f9fafb !important; }
+    .ac-item.used-player:hover { background: #f9fafb !important; }
+    .ac-item.used-player::after { content: ' · déjà utilisé'; color: var(--red); font-size: 11px; }
+
+    .modal-actions {
+      display: flex;
+      gap: 8px;
+      margin-top: 14px;
+    }
+    .btn {
+      padding: 9px 16px; border-radius: 6px; border: none; cursor: pointer;
+      font-size: 14px; font-weight: 500; transition: opacity .15s;
+    }
+    .btn:hover { opacity: .85; }
+    .btn:disabled { opacity: .4; cursor: default; }
+    .btn-primary { background: #4f46e5; color: white; flex: 1; }
+    .btn-cancel  { background: var(--gray-bg); color: #374151; }
+
+    #modal-error {
+      font-size: 12px;
+      color: var(--red);
+      margin-top: 8px;
+      min-height: 16px;
+    }
+
+    /* ── End game ────────────────────────────────────────── */
+    #endgame {
+      display: none;
+      width: 100%;
+      max-width: 520px;
+      margin-top: 24px;
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+    }
+    #endgame h2 { font-size: 20px; font-weight: 700; margin-bottom: 4px; }
+    #endgame .score-line { font-size: 14px; color: var(--gray); margin-bottom: 16px; }
+
+    .recap-grid {
+      display: grid;
+      grid-template-columns: auto repeat(3, 1fr);
+      gap: 4px;
+      margin-bottom: 16px;
+      font-size: 12px;
+    }
+    .recap-cell {
+      padding: 6px 4px; border-radius: 6px;
+      text-align: center; line-height: 1.3; word-break: break-word;
+    }
+    .recap-cell.header { font-weight: 600; color: var(--gray); font-size: 11px; background: #f9fafb; }
+    .recap-cell.row-h  { font-weight: 600; text-align: right; padding-right: 8px; background: #f9fafb; border-radius: 6px; }
+    .recap-cell.ok     { background: var(--green-bg); color: var(--green); font-weight: 500; }
+    .recap-cell.miss   { background: var(--red-bg); color: var(--red); font-size: 11px; }
+
+    #share-btn {
+      background: #111827; color: white;
+      border: none; border-radius: 8px;
+      padding: 11px 20px; font-size: 14px; font-weight: 500;
+      cursor: pointer; width: 100%; transition: opacity .15s;
+    }
+    #share-btn:hover { opacity: .85; }
+    #share-confirm { font-size: 12px; color: var(--green); margin-top: 6px; display: none; text-align: center; }
+
+    /* ── Home screen ────────────────────────────────────── */
+    #home-screen {
+      display: none;
+      width: 100%;
+      max-width: 520px;
+      text-align: center;
+      margin-top: 60px;
+    }
+    #home-screen h2 { font-size: 18px; font-weight: 600; margin-bottom: 24px; color: #374151; }
+    .home-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .home-btn {
+      padding: 14px 20px;
+      border: 2px solid var(--border);
+      border-radius: 8px;
+      background: white;
+      cursor: pointer;
+      font-size: 15px;
+      font-weight: 500;
+      transition: all .15s;
+    }
+    .home-btn:hover { border-color: #6366f1; background: #eef2ff; }
+    .home-btn span { display: block; font-size: 24px; margin-bottom: 4px; }
+
+    /* ── Creator mode ───────────────────────────────────── */
+    #creator {
+      display: none;
+      width: 100%;
+      max-width: 520px;
+    }
+    .creator-panel {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px;
+      margin-bottom: 16px;
+    }
+    .creator-panel h3 { font-size: 13px; font-weight: 600; color: var(--gray); margin-bottom: 12px; text-transform: uppercase; }
+    .constraint-selector {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+    .constraint-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+    }
+    .constraint-row label { min-width: 40px; font-weight: 500; color: #374151; }
+    .constraint-row select {
+      flex: 1;
+      padding: 6px 8px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      font-size: 13px;
+      background: white;
+      cursor: pointer;
+    }
+    .constraint-row select:focus { outline: none; border-color: #6366f1; }
+    .creator-actions {
+      display: flex;
+      gap: 8px;
+    }
+    .creator-actions button {
+      flex: 1;
+      padding: 9px 16px;
+      border: none;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: opacity .15s;
+    }
+    #btn-create-grid { background: #4f46e5; color: white; }
+    #btn-create-grid:hover { opacity: .85; }
+    #btn-cancel-creator { background: var(--gray-bg); color: #374151; }
+    #btn-cancel-creator:hover { opacity: .85; }
+    .creator-preview {
+      background: #f9fafb;
+      border-radius: 8px;
+      padding: 12px;
+      margin-top: 12px;
+      font-size: 13px;
+    }
+    .creator-preview-item { margin-bottom: 6px; }
+    .creator-preview-item span { font-weight: 600; color: #1e1b4b; }
+
+    /* ── Share link modal ───────────────────────────────── */
+    #share-link-modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.45);
+      z-index: 101;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+    #share-link-modal.open { display: flex; }
+    .share-link-box {
+      background: white;
+      border-radius: 12px;
+      padding: 20px;
+      width: 100%;
+      max-width: 380px;
+      box-shadow: 0 20px 40px rgba(0,0,0,.2);
+    }
+    .share-link-box h2 { font-size: 16px; font-weight: 600; margin-bottom: 12px; }
+    .share-link-input {
+      width: 100%;
+      padding: 10px 12px;
+      border: 2px solid var(--border);
+      border-radius: 6px;
+      font-size: 12px;
+      font-family: monospace;
+      word-break: break-all;
+      resize: none;
+      max-height: 120px;
+      overflow-y: auto;
+    }
+    .share-link-actions { display: flex; gap: 8px; margin-top: 12px; }
+    .share-link-actions button {
+      flex: 1;
+      padding: 9px 16px;
+      border: none;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: opacity .15s;
+    }
+    #btn-copy-link { background: #4f46e5; color: white; }
+    #btn-copy-link:hover { opacity: .85; }
+    #btn-close-link { background: var(--gray-bg); color: #374151; }
+    #btn-close-link:hover { opacity: .85; }
+    .share-link-msg { font-size: 12px; color: var(--green); margin-top: 8px; display: none; text-align: center; }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>⚽ Foot-Doku</h1>
+  <div class="date" id="header-date"></div>
+  <div style="text-align:center;margin-top:4px"><a href="admin.html" style="font-size:11px;color:#9ca3af;text-decoration:none">⚙️ Admin</a></div>
+  <div class="attempts-bar" id="attempts-bar">
+    <span>Essais :</span>
+    <div class="attempts-pips" id="pips"></div>
+    <span id="attempts-count">3 / 3</span>
+  </div>
+</header>
+
+<!-- Home screen -->
+<div id="home-screen">
+  <h2>Choisissez un mode</h2>
+  <div class="home-buttons">
+    <button class="home-btn" id="btn-play-daily">
+      <span>📅</span>
+      Jouer la grille du jour
+    </button>
+    <button class="home-btn" id="btn-create">
+      <span>✏️</span>
+      Créer une grille personnalisée
+    </button>
+  </div>
+</div>
+
+<!-- Creator mode -->
+<div id="creator">
+  <div class="creator-panel">
+    <h3>📋 Contraintes de colonne</h3>
+    <div class="constraint-selector">
+      <div class="constraint-row">
+        <label>Col 1</label>
+        <select id="col0-select"></select>
+      </div>
+      <div class="constraint-row">
+        <label>Col 2</label>
+        <select id="col1-select"></select>
+      </div>
+      <div class="constraint-row">
+        <label>Col 3</label>
+        <select id="col2-select"></select>
+      </div>
+    </div>
+  </div>
+
+  <div class="creator-panel">
+    <h3>📋 Contraintes de ligne</h3>
+    <div class="constraint-selector">
+      <div class="constraint-row">
+        <label>Lig 1</label>
+        <select id="row0-select"></select>
+      </div>
+      <div class="constraint-row">
+        <label>Lig 2</label>
+        <select id="row1-select"></select>
+      </div>
+      <div class="constraint-row">
+        <label>Lig 3</label>
+        <select id="row2-select"></select>
+      </div>
+    </div>
+  </div>
+
+  <div class="creator-panel creator-preview">
+    <h3 style="margin-bottom: 8px;">📊 Prévisualisation</h3>
+    <div class="creator-preview-item">Solutions pour chaque case : <span id="preview-solutions">0-0</span></div>
+    <div class="creator-preview-item">Difficulté : <span id="preview-difficulty">—</span></div>
+  </div>
+
+  <div class="creator-actions">
+    <button id="btn-cancel-creator">Annuler</button>
+    <button id="btn-create-grid">✓ Créer la grille</button>
+  </div>
+</div>
+
+<div id="no-grid">
+  <span>📭</span>
+  Aucune grille disponible aujourd'hui.
+</div>
+
+<div id="game">
+  <table class="grid-table" id="grid-table">
+    <thead>
+      <tr>
+        <th class="corner"></th>
+        <th class="col-header" id="th0"></th>
+        <th class="col-header" id="th1"></th>
+        <th class="col-header" id="th2"></th>
+      </tr>
+    </thead>
+    <tbody id="grid-body"></tbody>
+  </table>
+</div>
+
+<!-- Modal saisie -->
+<div id="modal-overlay">
+  <div id="modal">
+    <h2 id="modal-hint"></h2>
+    <div class="modal-constraint" id="modal-constraint"></div>
+    <input type="text" id="search-input" placeholder="Chercher un joueur…" autocomplete="off">
+    <div id="autocomplete"></div>
+    <div id="modal-error"></div>
+    <div class="modal-actions">
+      <button class="btn btn-cancel" id="btn-cancel">Annuler</button>
+      <button class="btn btn-primary" id="btn-confirm" disabled>Valider</button>
+    </div>
+  </div>
+</div>
+
+<!-- Fin de partie -->
+<div id="endgame">
+  <h2 id="eg-title"></h2>
+  <div class="score-line" id="eg-score"></div>
+  <div class="recap-grid" id="recap-grid"></div>
+  <button id="share-btn">📋 Copier le résultat</button>
+  <div id="share-confirm">Copié dans le presse-papiers !</div>
+</div>
+
+<!-- Share link modal -->
+<div id="share-link-modal">
+  <div class="share-link-box">
+    <h2>📤 Partager cette grille</h2>
+    <textarea class="share-link-input" id="share-link-input" readonly></textarea>
+    <div class="share-link-actions">
+      <button id="btn-copy-link">Copier le lien</button>
+      <button id="btn-test-grid" style="background: #059669; color: white;">Tester</button>
+      <button id="btn-close-link">Fermer</button>
+    </div>
+    <div class="share-link-msg" id="share-link-msg">Copié !</div>
+  </div>
+</div>
+
+<script src="data_browser.js"></script>
+<script>
+// ── État ─────────────────────────────────────────────────────────────────────
+
+const MAX_ATTEMPTS = 3;
+let grille = null;
+let attemptsLeft = MAX_ATTEMPTS;
+let usedPlayers = new Set();
+
+// cells[r][c] = { validated: bool, playerName: str|null, attempted: bool }
+let cells = Array.from({length: 3}, () =>
+  Array.from({length: 3}, () => ({ validated: false, playerName: null, attempted: false }))
+);
+
+let activeCell = null;
+let selectedPlayer = null;
+
+// ── Init ─────────────────────────────────────────────────────────────────────
+
+function init() {
+  // Vérifier si une grille personnalisée est dans l'URL
+  const params = new URLSearchParams(window.location.search);
+  const gridData = params.get('gridData');
+
+  if (gridData) {
+    try {
+      const decoded = JSON.parse(atob(gridData));
+      grille = decoded;
+      document.getElementById('header-date').textContent = 'Grille personnalisée';
+      renderPips();
+      buildGrid();
+      document.getElementById('game').style.display = 'block';
+      return;
+    } catch (e) {
+      console.error('Erreur décodage grille:', e);
+      showHome();
+      return;
+    }
+  }
+
+  // Sinon, charger la grille du jour
+  const raw = localStorage.getItem('footdoku_grille');
+  if (!raw) {
+    showHome();
+    return;
+  }
+  grille = JSON.parse(raw);
+  document.getElementById('header-date').textContent =
+    'Grille du ' + (grille.publieLe || new Date().toLocaleDateString('fr-FR'));
+
+  renderPips();
+  buildGrid();
+  document.getElementById('game').style.display = 'block';
+}
+
+function showHome() {
+  document.getElementById('home-screen').style.display = 'block';
+  document.getElementById('attempts-bar').style.display = 'none';
+}
+
+// ── Pips ─────────────────────────────────────────────────────────────────────
+
+function renderPips() {
+  const used = MAX_ATTEMPTS - attemptsLeft;
+  const container = document.getElementById('pips');
+  container.innerHTML = '';
+  for (let i = 0; i < MAX_ATTEMPTS; i++) {
+    const pip = document.createElement('div');
+    pip.className = 'pip' + (i < used ? ' used' : '');
+    container.appendChild(pip);
+  }
+  document.getElementById('attempts-count').textContent = attemptsLeft + ' / ' + MAX_ATTEMPTS;
+}
+
+// ── Grid ─────────────────────────────────────────────────────────────────────
+
+function buildGrid() {
+  grille.colonnes.forEach((c, i) => {
+    document.getElementById('th' + i).textContent = c;
+  });
+
+  const tbody = document.getElementById('grid-body');
+  tbody.innerHTML = '';
+
+  for (let r = 0; r < 3; r++) {
+    const tr = document.createElement('tr');
+
+    const th = document.createElement('td');
+    th.className = 'row-header';
+    th.textContent = grille.lignes[r];
+    tr.appendChild(th);
+
+    for (let c = 0; c < 3; c++) {
+      const td = document.createElement('td');
+      td.className = 'cell empty';
+      td.textContent = '+';
+      td.dataset.r = r;
+      td.dataset.c = c;
+      td.addEventListener('click', onCellClick);
+      tr.appendChild(td);
+    }
+
+    tbody.appendChild(tr);
+  }
+}
+
+function refreshCell(r, c) {
+  const td = document.querySelector(`td.cell[data-r="${r}"][data-c="${c}"]`);
+  if (!td) return;
+  const s = cells[r][c];
+  td.classList.remove('empty', 'correct', 'wrong-attempt', 'locked');
+
+  if (s.validated) {
+    td.classList.add('correct', 'locked');
+    td.textContent = s.playerName;
+  } else if (s.attempted) {
+    td.classList.add('wrong-attempt');
+    td.textContent = '✗';
+  } else {
+    td.classList.add('empty');
+    td.textContent = '+';
+  }
+}
+
+// ── Cell click ───────────────────────────────────────────────────────────────
+
+function onCellClick(e) {
+  const r = +e.currentTarget.dataset.r;
+  const c = +e.currentTarget.dataset.c;
+  if (cells[r][c].validated || attemptsLeft <= 0 || isGameOver()) return;
+  openModal(r, c);
+}
+
+// ── Modal ─────────────────────────────────────────────────────────────────────
+
+function openModal(r, c) {
+  activeCell = { r, c };
+  selectedPlayer = null;
+
+  document.getElementById('modal-hint').textContent = 'Ligne · Colonne';
+  document.getElementById('modal-constraint').textContent =
+    grille.lignes[r] + '  ×  ' + grille.colonnes[c];
+  document.getElementById('search-input').value = '';
+  document.getElementById('autocomplete').style.display = 'none';
+  document.getElementById('modal-error').textContent = '';
+  document.getElementById('btn-confirm').disabled = true;
+
+  document.getElementById('modal-overlay').classList.add('open');
+  setTimeout(() => document.getElementById('search-input').focus(), 50);
+}
+
+function closeModal() {
+  document.getElementById('modal-overlay').classList.remove('open');
+  activeCell = null;
+  selectedPlayer = null;
+}
+
+document.getElementById('btn-cancel').addEventListener('click', closeModal);
+document.getElementById('modal-overlay').addEventListener('click', e => {
+  if (e.target === e.currentTarget) closeModal();
+});
+
+// ── Autocomplete ──────────────────────────────────────────────────────────────
+
+let acHighlight = -1;
+
+document.getElementById('search-input').addEventListener('input', function() {
+  const q = this.value.trim().toLowerCase();
+  selectedPlayer = null;
+  document.getElementById('btn-confirm').disabled = true;
+  document.getElementById('modal-error').textContent = '';
+
+  if (q.length < 2) {
+    document.getElementById('autocomplete').style.display = 'none';
+    return;
+  }
+
+  const matches = PLAYERS_DB.filter(j => j.name.toLowerCase().includes(q)).slice(0, 30);
+  const ac = document.getElementById('autocomplete');
+
+  if (matches.length === 0) {
+    ac.style.display = 'none';
+    return;
+  }
+
+  acHighlight = -1;
+  ac.innerHTML = '';
+  matches.forEach(j => {
+    const div = document.createElement('div');
+    const isUsed = usedPlayers.has(j.name);
+    div.className = 'ac-item' + (isUsed ? ' used-player' : '');
+    div.textContent = j.name;
+    if (!isUsed) {
+      div.addEventListener('mousedown', e => { e.preventDefault(); selectPlayer(j); });
+    }
+    ac.appendChild(div);
+  });
+  ac.style.display = 'block';
+});
+
+document.getElementById('search-input').addEventListener('keydown', function(e) {
+  const items = document.querySelectorAll('#autocomplete .ac-item');
+  if (e.key === 'ArrowDown') {
+    e.preventDefault();
+    acHighlight = Math.min(acHighlight + 1, items.length - 1);
+    items.forEach((el, i) => el.classList.toggle('selected', i === acHighlight));
+  } else if (e.key === 'ArrowUp') {
+    e.preventDefault();
+    acHighlight = Math.max(acHighlight - 1, 0);
+    items.forEach((el, i) => el.classList.toggle('selected', i === acHighlight));
+  } else if (e.key === 'Enter') {
+    if (acHighlight >= 0 && items[acHighlight]) {
+      items[acHighlight].dispatchEvent(new Event('mousedown'));
+    } else if (selectedPlayer) {
+      confirmAnswer();
+    }
+  } else if (e.key === 'Escape') {
+    closeModal();
+  }
+});
+
+function selectPlayer(j) {
+  selectedPlayer = j;
+  document.getElementById('search-input').value = j.name;
+  document.getElementById('autocomplete').style.display = 'none';
+  document.getElementById('btn-confirm').disabled = false;
+  document.getElementById('modal-error').textContent = '';
+}
+
+// ── Validation ────────────────────────────────────────────────────────────────
+
+document.getElementById('btn-confirm').addEventListener('click', confirmAnswer);
+
+function matchesLigne(j, l)   { return matchesConstraint(j, l); }
+function matchesColonne(j, c) { return matchesConstraint(j, c); }
+
+function confirmAnswer() {
+  if (!selectedPlayer || !activeCell) return;
+  const { r, c } = activeCell;
+  const j = selectedPlayer;
+  const errEl = document.getElementById('modal-error');
+
+  if (usedPlayers.has(j.name)) {
+    // Joueur déjà placé — pas de pénalité, juste un message
+    errEl.textContent = '⚠️ Ce joueur est déjà utilisé dans une autre case.';
+    return;
+  }
+
+  const l = grille.lignes[r];
+  const col = grille.colonnes[c];
+
+  if (matchesLigne(j, l) && matchesColonne(j, col)) {
+    // Bonne réponse — ne coûte pas de vie
+    cells[r][c].validated = true;
+    cells[r][c].playerName = j.name;
+    usedPlayers.add(j.name);
+    refreshCell(r, c);
+    closeModal();
+    checkGameOver();
+  } else {
+    // Mauvaise réponse — coûte une vie
+    attemptsLeft--;
+    cells[r][c].attempted = true;
+    renderPips();
+    refreshCell(r, c);
+    errEl.textContent = '❌ Ce joueur ne satisfait pas les deux contraintes — vie perdue.';
+    checkGameOver();
+  }
+}
+
+// ── Solutions ────────────────────────────────────────────────────────────────
+
+// matchesContrainte et getSolutions sont fournis par data_browser.js
+function matchesConstraint(j, c) { return matchesContrainte(j, c); }
+
+// ── Game over ─────────────────────────────────────────────────────────────────
+
+function isGameOver() {
+  if (attemptsLeft <= 0) return true;
+  return cells.every(row => row.every(cell => cell.validated));
+}
+
+function checkGameOver() {
+  if (!isGameOver()) return;
+  closeModal();
+  setTimeout(showEndgame, 350);
+}
+
+function showEndgame() {
+  const validated = cells.flat().filter(s => s.validated).length;
+
+  const titles = ['😅 À refaire !', '😅 À refaire !', '😅 À refaire !',
+                  '👍 Pas mal !', '👍 Pas mal !', '👍 Pas mal !',
+                  '🎉 Bien joué !', '🎉 Bien joué !', '🎉 Bien joué !', '🏆 Parfait !',
+                  /* fallback */ '🏆 Parfait !'];
+  document.getElementById('eg-title').textContent = titles[validated];
+  document.getElementById('eg-score').textContent =
+    'Score : ' + validated + ' / 9 cases correctes';
+
+  const recap = document.getElementById('recap-grid');
+  recap.innerHTML = '';
+
+  // Corner vide
+  addRecapCell(recap, '', 'header');
+  grille.colonnes.forEach(c => addRecapCell(recap, c, 'header'));
+
+  for (let r = 0; r < 3; r++) {
+    addRecapCell(recap, grille.lignes[r], 'row-h');
+    for (let c = 0; c < 3; c++) {
+      const s = cells[r][c];
+      if (s.validated) {
+        addRecapCell(recap, s.playerName, 'ok');
+      } else {
+        const sols = getSolutions(grille.lignes[r], grille.colonnes[c]);
+        const hint = sols.length > 0
+          ? sols.sort((a, b) => (b.caps || 0) - (a.caps || 0))[0].name
+          : '—';
+        addRecapCell(recap, hint, 'miss');
+      }
+    }
+  }
+
+  document.getElementById('endgame').style.display = 'block';
+  document.getElementById('endgame').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function addRecapCell(parent, text, cls) {
+  const div = document.createElement('div');
+  div.className = 'recap-cell ' + cls;
+  div.textContent = text;
+  parent.appendChild(div);
+}
+
+// ── Share ─────────────────────────────────────────────────────────────────────
+
+document.getElementById('share-btn').addEventListener('click', () => {
+  const validated = cells.flat().filter(s => s.validated).length;
+  const lines = [
+    '⚽ Foot-Doku — ' + (grille.publieLe || ''),
+    'Score : ' + validated + '/9',
+    ''
+  ];
+  for (let r = 0; r < 3; r++) {
+    let row = '';
+    for (let c = 0; c < 3; c++) {
+      const s = cells[r][c];
+      row += s.validated ? '🟩' : s.attempted ? '🟥' : '⬜';
+    }
+    lines.push(row);
+  }
+  const text = lines.join('\n');
+
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(text).then(showShareConfirm);
+  } else {
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.cssText = 'position:fixed;opacity:0';
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+    showShareConfirm();
+  }
+});
+
+function showShareConfirm() {
+  const el = document.getElementById('share-confirm');
+  el.style.display = 'block';
+  setTimeout(() => { el.style.display = 'none'; }, 2500);
+}
+
+// ── Home screen handlers ──────────────────────────────────────────────────────
+
+document.getElementById('btn-play-daily').addEventListener('click', () => {
+  const raw = localStorage.getItem('footdoku_grille');
+  if (!raw) {
+    alert('Aucune grille du jour disponible.');
+    return;
+  }
+  grille = JSON.parse(raw);
+  document.getElementById('header-date').textContent =
+    'Grille du ' + (grille.publieLe || new Date().toLocaleDateString('fr-FR'));
+  document.getElementById('home-screen').style.display = 'none';
+  document.getElementById('attempts-bar').style.display = 'flex';
+  renderPips();
+  buildGrid();
+  document.getElementById('game').style.display = 'block';
+});
+
+document.getElementById('btn-create').addEventListener('click', showCreator);
+
+function showCreator() {
+  document.getElementById('home-screen').style.display = 'none';
+  document.getElementById('attempts-bar').style.display = 'none';
+  document.getElementById('creator').style.display = 'block';
+  populateConstraintSelects();
+}
+
+document.getElementById('btn-cancel-creator').addEventListener('click', () => {
+  document.getElementById('creator').style.display = 'none';
+  document.getElementById('home-screen').style.display = 'block';
+});
+
+// ── Creator mode ───────────────────────────────────────────────────────────────
+
+function populateConstraintSelects() {
+  const allConstraints = COLONNES_POOL.sort();
+  const selects = ['col0-select', 'col1-select', 'col2-select', 'row0-select', 'row1-select', 'row2-select'];
+
+  selects.forEach(id => {
+    const select = document.getElementById(id);
+    select.innerHTML = '';
+    const defaultOpt = document.createElement('option');
+    defaultOpt.value = '';
+    defaultOpt.textContent = '— Choisir une contrainte —';
+    select.appendChild(defaultOpt);
+
+    allConstraints.forEach(c => {
+      const opt = document.createElement('option');
+      opt.value = c;
+      opt.textContent = c;
+      select.appendChild(opt);
+    });
+
+    select.addEventListener('change', updateCreatorPreview);
+  });
+}
+
+let previewTimeout;
+function updateCreatorPreview() {
+  clearTimeout(previewTimeout);
+  previewTimeout = setTimeout(() => {
+    const cols = [
+      document.getElementById('col0-select').value,
+      document.getElementById('col1-select').value,
+      document.getElementById('col2-select').value
+    ];
+    const rows = [
+      document.getElementById('row0-select').value,
+      document.getElementById('row1-select').value,
+      document.getElementById('row2-select').value
+    ];
+
+    if (cols.some(c => !c) || rows.some(r => !r)) {
+      document.getElementById('preview-solutions').textContent = '—';
+      document.getElementById('preview-difficulty').textContent = '—';
+      return;
+    }
+
+    let minSol = Infinity, maxSol = 0;
+    for (let r = 0; r < 3; r++) {
+      for (let c = 0; c < 3; c++) {
+        const sols = getSolutions(rows[r], cols[c]).length;
+        minSol = Math.min(minSol, sols);
+        maxSol = Math.max(maxSol, sols);
+      }
+    }
+
+    document.getElementById('preview-solutions').textContent = minSol + '-' + maxSol;
+    const difficulty = minSol < 3 ? '🔴 Trop facile' : minSol < 5 ? '🟡 Moyen' : '🟢 Bon';
+    document.getElementById('preview-difficulty').textContent = difficulty;
+  }, 300);
+}
+
+document.getElementById('btn-create-grid').addEventListener('click', createCustomGrid);
+
+function createCustomGrid() {
+  const cols = [
+    document.getElementById('col0-select').value,
+    document.getElementById('col1-select').value,
+    document.getElementById('col2-select').value
+  ];
+  const rows = [
+    document.getElementById('row0-select').value,
+    document.getElementById('row1-select').value,
+    document.getElementById('row2-select').value
+  ];
+
+  if (cols.some(c => !c) || rows.some(r => !r)) {
+    alert('Veuillez remplir toutes les contraintes.');
+    return;
+  }
+
+  grille = {
+    colonnes: cols,
+    lignes: rows,
+    publieLe: new Date().toLocaleDateString('fr-FR')
+  };
+
+  showShareModal();
+}
+
+function showShareModal() {
+  const gridJson = JSON.stringify(grille);
+  const encoded = btoa(gridJson);
+  const url = window.location.origin + window.location.pathname + '?gridData=' + encodeURIComponent(encoded);
+
+  document.getElementById('share-link-input').value = url;
+  document.getElementById('share-link-modal').classList.add('open');
+}
+
+document.getElementById('btn-copy-link').addEventListener('click', () => {
+  const input = document.getElementById('share-link-input');
+  input.select();
+  document.execCommand('copy');
+
+  const msg = document.getElementById('share-link-msg');
+  msg.style.display = 'block';
+  setTimeout(() => { msg.style.display = 'none'; }, 2000);
+});
+
+document.getElementById('btn-test-grid').addEventListener('click', () => {
+  // Charger la grille et jouer
+  document.getElementById('share-link-modal').classList.remove('open');
+  document.getElementById('creator').style.display = 'none';
+  document.getElementById('attempts-bar').style.display = 'flex';
+  document.getElementById('header-date').textContent = 'Grille personnalisée (test)';
+  attemptsLeft = MAX_ATTEMPTS;
+  cells = Array.from({length: 3}, () =>
+    Array.from({length: 3}, () => ({ validated: false, playerName: null, attempted: false }))
+  );
+  usedPlayers.clear();
+  renderPips();
+  buildGrid();
+  document.getElementById('game').style.display = 'block';
+});
+
+document.getElementById('btn-close-link').addEventListener('click', () => {
+  document.getElementById('share-link-modal').classList.remove('open');
+  document.getElementById('creator').style.display = 'none';
+  document.getElementById('home-screen').style.display = 'block';
+
+  // Reset selects
+  ['col0-select', 'col1-select', 'col2-select', 'row0-select', 'row1-select', 'row2-select'].forEach(id => {
+    document.getElementById(id).value = '';
+  });
+  document.getElementById('preview-solutions').textContent = '—';
+  document.getElementById('preview-difficulty').textContent = '—';
+});
+
+document.getElementById('share-link-modal').addEventListener('click', e => {
+  if (e.target === e.currentTarget) {
+    document.getElementById('share-link-modal').classList.remove('open');
+  }
+});
+
+// ── Start ─────────────────────────────────────────────────────────────────────
+init();
+</script>
+</body>
+</html>
