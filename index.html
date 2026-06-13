@@ -313,6 +313,7 @@
     .constraint-row label { min-width: 40px; font-weight: 500; color: #374151; }
     .constraint-row select {
       flex: 1;
+      min-width: 0;
       padding: 6px 8px;
       border: 1px solid var(--border);
       border-radius: 6px;
@@ -320,6 +321,8 @@
       background: white;
       cursor: pointer;
     }
+    .constraint-row select.cat-select { flex: 0 0 38%; }
+    .constraint-row select:disabled { background: var(--gray-bg); cursor: not-allowed; }
     .constraint-row select:focus { outline: none; border-color: #6366f1; }
     .lock-checkbox { width: 18px; height: 18px; cursor: pointer; accent-color: #4f46e5; flex-shrink: 0; }
     .creator-actions {
@@ -459,16 +462,19 @@
     <div class="constraint-selector">
       <div class="constraint-row">
         <label>Col 1</label>
+        <select id="col0-cat" class="cat-select"></select>
         <select id="col0-select"></select>
         <input type="checkbox" id="col0-lock" class="lock-checkbox" title="Verrouiller cette contrainte">
       </div>
       <div class="constraint-row">
         <label>Col 2</label>
+        <select id="col1-cat" class="cat-select"></select>
         <select id="col1-select"></select>
         <input type="checkbox" id="col1-lock" class="lock-checkbox" title="Verrouiller cette contrainte">
       </div>
       <div class="constraint-row">
         <label>Col 3</label>
+        <select id="col2-cat" class="cat-select"></select>
         <select id="col2-select"></select>
         <input type="checkbox" id="col2-lock" class="lock-checkbox" title="Verrouiller cette contrainte">
       </div>
@@ -480,16 +486,19 @@
     <div class="constraint-selector">
       <div class="constraint-row">
         <label>Lig 1</label>
+        <select id="row0-cat" class="cat-select"></select>
         <select id="row0-select"></select>
         <input type="checkbox" id="row0-lock" class="lock-checkbox" title="Verrouiller cette contrainte">
       </div>
       <div class="constraint-row">
         <label>Lig 2</label>
+        <select id="row1-cat" class="cat-select"></select>
         <select id="row1-select"></select>
         <input type="checkbox" id="row1-lock" class="lock-checkbox" title="Verrouiller cette contrainte">
       </div>
       <div class="constraint-row">
         <label>Lig 3</label>
+        <select id="row2-cat" class="cat-select"></select>
         <select id="row2-select"></select>
         <input type="checkbox" id="row2-lock" class="lock-checkbox" title="Verrouiller cette contrainte">
       </div>
@@ -1053,35 +1062,65 @@ const ROW_CONSTRAINT_GROUPS = [
 // Pool de contraintes de colonne élargi (inclut clubs et championnats actuels)
 const COL_POOL_FULL = COL_CONSTRAINT_GROUPS.flatMap(g => g.items.map(i => i.value));
 
-function populateConstraintSelects() {
-  const colSelects = ['col0-select', 'col1-select', 'col2-select'];
-  const rowSelects = ['row0-select', 'row1-select', 'row2-select'];
+// Remplit le select de valeurs avec les éléments de la catégorie choisie
+function remplirValeurs(prefix, groupes, categorie) {
+  const select = document.getElementById(prefix + '-select');
+  select.innerHTML = '';
+  const defaultOpt = document.createElement('option');
+  defaultOpt.value = '';
+  defaultOpt.textContent = '— Choisir une valeur —';
+  select.appendChild(defaultOpt);
 
-  function remplir(id, groupes) {
-    const select = document.getElementById(id);
-    select.innerHTML = '';
+  const groupe = groupes.find(g => g.label === categorie);
+  if (groupe) {
+    groupe.items.forEach(item => {
+      const opt = document.createElement('option');
+      opt.value = item.value;
+      opt.textContent = item.label;
+      select.appendChild(opt);
+    });
+  }
+  select.disabled = !groupe;
+}
+
+// Sélectionne la catégorie correspondant à la valeur, puis la valeur elle-même
+function setConstraintValue(prefix, groupes, value) {
+  const groupe = groupes.find(g => g.items.some(i => i.value === value));
+  const catSelect = document.getElementById(prefix + '-cat');
+  catSelect.value = groupe ? groupe.label : '';
+  remplirValeurs(prefix, groupes, catSelect.value);
+  document.getElementById(prefix + '-select').value = value;
+}
+
+function populateConstraintSelects() {
+  const colIds = ['col0', 'col1', 'col2'];
+  const rowIds = ['row0', 'row1', 'row2'];
+
+  function remplirCategories(prefix, groupes) {
+    const catSelect = document.getElementById(prefix + '-cat');
+    catSelect.innerHTML = '';
     const defaultOpt = document.createElement('option');
     defaultOpt.value = '';
-    defaultOpt.textContent = '— Choisir une contrainte —';
-    select.appendChild(defaultOpt);
-
+    defaultOpt.textContent = '— Catégorie —';
+    catSelect.appendChild(defaultOpt);
     groupes.forEach(g => {
-      const optgroup = document.createElement('optgroup');
-      optgroup.label = g.label;
-      g.items.forEach(item => {
-        const opt = document.createElement('option');
-        opt.value = item.value;
-        opt.textContent = item.label;
-        optgroup.appendChild(opt);
-      });
-      select.appendChild(optgroup);
+      const opt = document.createElement('option');
+      opt.value = g.label;
+      opt.textContent = g.label;
+      catSelect.appendChild(opt);
     });
 
-    select.addEventListener('change', updateCreatorPreview);
+    remplirValeurs(prefix, groupes, '');
+
+    catSelect.addEventListener('change', () => {
+      remplirValeurs(prefix, groupes, catSelect.value);
+      updateCreatorPreview();
+    });
+    document.getElementById(prefix + '-select').addEventListener('change', updateCreatorPreview);
   }
 
-  colSelects.forEach(id => remplir(id, COL_CONSTRAINT_GROUPS));
-  rowSelects.forEach(id => remplir(id, ROW_CONSTRAINT_GROUPS));
+  colIds.forEach(id => remplirCategories(id, COL_CONSTRAINT_GROUPS));
+  rowIds.forEach(id => remplirCategories(id, ROW_CONSTRAINT_GROUPS));
 }
 
 let previewTimeout;
@@ -1161,9 +1200,8 @@ function completerGrille(cols, rows) {
 }
 
 function appliquerGrille(result) {
-  const ids = ['col0-select', 'col1-select', 'col2-select', 'row0-select', 'row1-select', 'row2-select'];
-  const values = [...result.cols, ...result.rows];
-  ids.forEach((id, i) => { document.getElementById(id).value = values[i]; });
+  ['col0', 'col1', 'col2'].forEach((id, i) => setConstraintValue(id, COL_CONSTRAINT_GROUPS, result.cols[i]));
+  ['row0', 'row1', 'row2'].forEach((id, i) => setConstraintValue(id, ROW_CONSTRAINT_GROUPS, result.rows[i]));
   updateCreatorPreview();
 }
 
@@ -1281,8 +1319,13 @@ document.getElementById('btn-close-link').addEventListener('click', () => {
     document.getElementById('home-screen').style.display = 'block';
 
     // Reset selects
-    ['col0-select', 'col1-select', 'col2-select', 'row0-select', 'row1-select', 'row2-select'].forEach(id => {
-      document.getElementById(id).value = '';
+    ['col0', 'col1', 'col2'].forEach(id => {
+      document.getElementById(id + '-cat').value = '';
+      remplirValeurs(id, COL_CONSTRAINT_GROUPS, '');
+    });
+    ['row0', 'row1', 'row2'].forEach(id => {
+      document.getElementById(id + '-cat').value = '';
+      remplirValeurs(id, ROW_CONSTRAINT_GROUPS, '');
     });
     document.getElementById('preview-solutions').textContent = '—';
     document.getElementById('preview-difficulty').textContent = '—';
