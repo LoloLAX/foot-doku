@@ -331,6 +331,8 @@
     #btn-create-grid:hover { opacity: .85; }
     #btn-cancel-creator { background: var(--gray-bg); color: #374151; }
     #btn-cancel-creator:hover { opacity: .85; }
+    #btn-random-grid, #btn-autocomplete-grid { background: var(--gray-bg); color: #374151; }
+    #btn-random-grid:hover, #btn-autocomplete-grid:hover { opacity: .85; }
     .creator-preview {
       background: #f9fafb;
       border-radius: 8px;
@@ -418,8 +420,6 @@
     <a href="#" id="btn-rules" style="font-size:11px;color:#9ca3af;text-decoration:none">📖 Règles</a>
     <span style="color:#d1d5db">·</span>
     <a href="#" id="btn-create-link" style="font-size:11px;color:#9ca3af;text-decoration:none">✏️ Créer une grille</a>
-    <span style="color:#d1d5db">·</span>
-    <a href="admin.html" style="font-size:11px;color:#9ca3af;text-decoration:none">⚙️ Admin</a>
   </div>
   <div class="attempts-bar" id="attempts-bar">
     <span>Essais :</span>
@@ -478,6 +478,13 @@
         <label>Lig 3</label>
         <select id="row2-select"></select>
       </div>
+    </div>
+  </div>
+
+  <div class="creator-panel">
+    <div class="creator-actions" style="margin:0;justify-content:center">
+      <button id="btn-random-grid">🎲 Grille aléatoire</button>
+      <button id="btn-autocomplete-grid">🤖 Compléter automatiquement</button>
     </div>
   </div>
 
@@ -1063,6 +1070,81 @@ function updateCreatorPreview() {
     document.getElementById('preview-difficulty').textContent = difficulty;
   }, 300);
 }
+
+// ── Remplissage aléatoire / automatique ─────────────────────────────────────
+
+const CREATOR_MIN_SOL = 3, CREATOR_MAX_SOL = 40;
+const shuffleCreator = arr => [...arr].sort(() => Math.random() - 0.5);
+
+// Tente de compléter les contraintes manquantes (chaînes vides) pour obtenir
+// une grille valide (3-40 solutions par case, pas de doublons).
+function completerGrille(cols, rows) {
+  for (let attempt = 0; attempt < 500; attempt++) {
+    const c = [...cols];
+    const r = [...rows];
+
+    for (let i = 0; i < 3; i++) {
+      if (c[i]) continue;
+      const candidats = shuffleCreator(COLONNES_POOL.filter(x => !c.includes(x)));
+      c[i] = candidats.find(cand =>
+        r.every(rr => !rr || (n => n >= CREATOR_MIN_SOL && n <= CREATOR_MAX_SOL)(nbSolutions(rr, cand)))
+      ) || candidats[0];
+    }
+
+    for (let i = 0; i < 3; i++) {
+      if (r[i]) continue;
+      const candidats = shuffleCreator(LIGNES_POOL.filter(x => !r.includes(x)));
+      r[i] = candidats.find(cand =>
+        c.every(cc => { const n = nbSolutions(cand, cc); return n >= CREATOR_MIN_SOL && n <= CREATOR_MAX_SOL; })
+      ) || candidats[0];
+    }
+
+    let ok = new Set(c).size === 3 && new Set(r).size === 3;
+    if (ok) {
+      for (const rr of r) for (const cc of c) {
+        const n = nbSolutions(rr, cc);
+        if (n < CREATOR_MIN_SOL || n > CREATOR_MAX_SOL) { ok = false; break; }
+      }
+    }
+    if (ok) return { cols: c, rows: r };
+  }
+  return null;
+}
+
+function appliquerGrille(result) {
+  const ids = ['col0-select', 'col1-select', 'col2-select', 'row0-select', 'row1-select', 'row2-select'];
+  const values = [...result.cols, ...result.rows];
+  ids.forEach((id, i) => { document.getElementById(id).value = values[i]; });
+  updateCreatorPreview();
+}
+
+document.getElementById('btn-random-grid').addEventListener('click', () => {
+  const result = completerGrille(['', '', ''], ['', '', '']);
+  if (!result) {
+    alert('Impossible de générer une grille aléatoire, réessayez.');
+    return;
+  }
+  appliquerGrille(result);
+});
+
+document.getElementById('btn-autocomplete-grid').addEventListener('click', () => {
+  const cols = [
+    document.getElementById('col0-select').value,
+    document.getElementById('col1-select').value,
+    document.getElementById('col2-select').value
+  ];
+  const rows = [
+    document.getElementById('row0-select').value,
+    document.getElementById('row1-select').value,
+    document.getElementById('row2-select').value
+  ];
+  const result = completerGrille(cols, rows);
+  if (!result) {
+    alert('Impossible de compléter la grille avec ces contraintes, essayez d\'en changer certaines.');
+    return;
+  }
+  appliquerGrille(result);
+});
 
 document.getElementById('btn-create-grid').addEventListener('click', createCustomGrid);
 
