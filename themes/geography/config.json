@@ -6,34 +6,145 @@
   "pools": {
     "CONTINENTS": [
       { "label": "Europe", "value": "Europe" },
-      { "label": "Asie", "value": "Asie" },
-      { "label": "Afrique", "value": "Afrique" }
+      { "label": "Asia", "value": "Asia" },
+      { "label": "Africa", "value": "Africa" },
+      { "label": "North America", "value": "North America" },
+      { "label": "South America", "value": "South America" },
+      { "label": "Oceania", "value": "Oceania" }
+    ],
+    "SUBREGIONS": [
+      { "label": "Western Europe", "value": "Western Europe" },
+      { "label": "Eastern Europe", "value": "Eastern Europe" },
+      { "label": "Northern Europe", "value": "Northern Europe" },
+      { "label": "Southern Europe", "value": "Southern Europe" },
+      { "label": "East Asia", "value": "East Asia" },
+      { "label": "Southeast Asia", "value": "Southeast Asia" },
+      { "label": "South Asia", "value": "South Asia" },
+      { "label": "Middle East", "value": "Middle East" },
+      { "label": "Northern Africa", "value": "Northern Africa" },
+      { "label": "Sub-Saharan Africa", "value": "Sub-Saharan Africa" },
+      { "label": "Northern America", "value": "Northern America" },
+      { "label": "Central America", "value": "Central America" },
+      { "label": "South America", "value": "South America" },
+      { "label": "Oceania", "value": "Oceania" }
+    ],
+    "GOVERNMENTS": [
+      { "label": "Monarchie", "value": "Monarchie" },
+      { "label": "République", "value": "République" },
+      { "label": "Autocratie", "value": "Autocratie" },
+      { "label": "Dictature", "value": "Dictature" }
     ],
     "TYPES": [
       { "label": "Union Européenne", "value": "Union Européenne" },
-      { "label": "G7", "value": "G7" }
+      { "label": "G7", "value": "G7" },
+      { "label": "BRICS", "value": "BRICS" },
+      { "label": "NATO", "value": "NATO" },
+      { "label": "ASEAN", "value": "ASEAN" },
+      { "label": "MERCOSUR", "value": "MERCOSUR" },
+      { "label": "Arab League", "value": "Arab League" },
+      { "label": "Commonwealth", "value": "Commonwealth" },
+      { "label": "Indépendant", "value": "Indépendant" }
     ],
-    "REGIONS": [
-      { "label": "Méditerranée", "value": "Méditerranée" },
-      { "label": "Centrale", "value": "Centrale" }
+    "POPULATIONS": [
+      { "label": "<1M", "value": "<1M" },
+      { "label": "1M-20M", "value": "1M-20M" },
+      { "label": "20M-60M", "value": "20M-60M" },
+      { "label": "60M-200M", "value": "60M-200M" },
+      { "label": "200M+", "value": "200M+" }
+    ],
+    "GDP_RANKS": [
+      { "label": "Top 10", "value": "Top 10" },
+      { "label": "Top 20", "value": "Top 20" },
+      { "label": "Top 50", "value": "Top 50" },
+      { "label": "Top 100", "value": "Top 100" },
+      { "label": "Autres", "value": "Autres" }
+    ],
+    "LANGUAGES": [
+      { "label": "Anglais", "value": "Anglais" },
+      { "label": "Français", "value": "Français" },
+      { "label": "Espagnol", "value": "Espagnol" },
+      { "label": "Allemand", "value": "Allemand" },
+      { "label": "Mandarin", "value": "Mandarin" },
+      { "label": "Arabe", "value": "Arabe" },
+      { "label": "Hindi", "value": "Hindi" },
+      { "label": "Portugais", "value": "Portugais" },
+      { "label": "Russe", "value": "Russe" },
+      { "label": "Autre", "value": "Autre" }
+    ],
+    "CAPITALS_LETTERS": [
+      { "label": "Lettre A", "value": "Lettre A" },
+      { "label": "Lettre B", "value": "Lettre B" },
+      { "label": "Lettre C", "value": "Lettre C" },
+      { "label": "Lettre D", "value": "Lettre D" },
+      { "label": "Lettre J", "value": "Lettre J" },
+      { "label": "Lettre K", "value": "Lettre K" },
+      { "label": "Lettre L", "value": "Lettre L" },
+      { "label": "Lettre M", "value": "Lettre M" },
+      { "label": "Lettre N", "value": "Lettre N" },
+      { "label": "Lettre O", "value": "Lettre O" },
+      { "label": "Lettre P", "value": "Lettre P" },
+      { "label": "Lettre S", "value": "Lettre S" },
+      { "label": "Lettre T", "value": "Lettre T" },
+      { "label": "Lettre V", "value": "Lettre V" },
+      { "label": "Lettre W", "value": "Lettre W" }
+    ],
+    "COASTLINES": [
+      { "label": "Côtier", "value": "Côtier" },
+      { "label": "Enclavé", "value": "Enclavé" }
+    ],
+    "BORDERS_COUNTS": [
+      { "label": "0-2 frontières", "value": "0-2" },
+      { "label": "3-6 frontières", "value": "3-6" },
+      { "label": "7+ frontières", "value": "7+" }
     ]
   },
 
-  "lignesPool": ["CONTINENTS"],
-  "colonnesPool": ["TYPES", "REGIONS"],
+  "lignesPool": ["CONTINENTS", "SUBREGIONS", "GOVERNMENTS", "TYPES", "POPULATIONS", "GDP_RANKS", "LANGUAGES", "CAPITALS_LETTERS", "COASTLINES", "BORDERS_COUNTS"],
+  "colonnesPool": ["CONTINENTS", "SUBREGIONS", "GOVERNMENTS", "TYPES", "POPULATIONS", "GDP_RANKS", "LANGUAGES", "CAPITALS_LETTERS", "COASTLINES", "BORDERS_COUNTS"],
+
+  "lignesGroupes": [
+    { "label": "Continent", "pool": "CONTINENTS" },
+    { "label": "Sous-région", "pool": "SUBREGIONS" },
+    { "label": "Régime politique", "pool": "GOVERNMENTS" },
+    { "label": "Type (Union, G7...)", "pool": "TYPES" },
+    { "label": "Population", "pool": "POPULATIONS" },
+    { "label": "Rang PIB", "pool": "GDP_RANKS" },
+    { "label": "Langue", "pool": "LANGUAGES" },
+    { "label": "Lettre capitale", "pool": "CAPITALS_LETTERS" },
+    { "label": "Côtier/Enclavé", "pool": "COASTLINES" },
+    { "label": "Nombre frontières", "pool": "BORDERS_COUNTS" }
+  ],
+  "colonnesGroupes": [
+    { "label": "Continent", "pool": "CONTINENTS" },
+    { "label": "Sous-région", "pool": "SUBREGIONS" },
+    { "label": "Régime politique", "pool": "GOVERNMENTS" },
+    { "label": "Type (Union, G7...)", "pool": "TYPES" },
+    { "label": "Population", "pool": "POPULATIONS" },
+    { "label": "Rang PIB", "pool": "GDP_RANKS" },
+    { "label": "Langue", "pool": "LANGUAGES" },
+    { "label": "Lettre capitale", "pool": "CAPITALS_LETTERS" },
+    { "label": "Côtier/Enclavé", "pool": "COASTLINES" },
+    { "label": "Nombre frontières", "pool": "BORDERS_COUNTS" }
+  ],
 
   "rulesSource": {
-    "": "(pays, contrainte) => pays.continent === contrainte || pays.type === contrainte || pays.region === contrainte"
+    "Lettre ": "(pays, contrainte) => { const letter = (pays.capital || '')[0].toUpperCase(); return letter === contrainte.slice(7); }"
   },
 
   "fieldMapping": {
     "continent": "Continent",
+    "subregion": "Sous-région",
+    "government": "Régime politique",
     "type": "Type",
-    "region": "Région"
+    "population_category": "Population",
+    "gdp_rank": "Rang PIB",
+    "language": "Langue",
+    "coastline": "Côtier/Enclavé",
+    "borders_count": "Nombre frontières"
   },
 
   "diversityRulesSource": {
-    "typeLigne": "(ligne) => 'continent'",
-    "typeColonne": "(colonne) => colonne.includes('Union') ? 'type' : 'region'"
+    "typeLigne": "(ligne, config) => 'generic'",
+    "typeColonne": "(colonne, config) => 'generic'"
   }
 }
