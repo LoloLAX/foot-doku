@@ -1257,5 +1257,7 @@
   "diversityRulesSource": {
     "typeLigne": "(ligne, config) => { if (ligne.startsWith('Ex-')) return 'ex'; if (config.pools.CHAMPIONNATS.some(p => p.value === ligne)) return 'ligue'; return 'club'; }",
     "typeColonne": "(colonne, config) => { if (colonne.startsWith('Né en ')) return 'naissance'; if (config.pools.POSTES.some(p => p.value === colonne)) return 'poste'; return 'selection'; }"
-  }
+  },
+
+  "rulesText": "<h2>⚽ Règles du Foot-Doku</h2><p>Vous devez compléter une grille 3×3 en trouvant des <strong>joueurs</strong> de la Coupe du Monde 2026.</p><p><strong>Règle :</strong> Chaque case doit contenir un joueur qui satisfait à la fois la contrainte de <strong>ligne</strong> (club, championnat, ancien club) et de <strong>colonne</strong> (sélection, poste, pays de naissance, statistique, etc.).</p><p>Exemple : si la ligne est « Club · Bayern Munich » et la colonne « Poste · Gardien », la case doit contenir un gardien qui joue au Bayern.</p>"
 }
