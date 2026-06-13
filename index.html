@@ -747,8 +747,12 @@ document.getElementById('modal-overlay').addEventListener('click', e => {
 
 let acHighlight = -1;
 
+function normaliserRecherche(s) {
+  return s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
+}
+
 document.getElementById('search-input').addEventListener('input', function() {
-  const q = this.value.trim().toLowerCase();
+  const q = normaliserRecherche(this.value.trim());
   selectedPlayer = null;
   document.getElementById('btn-confirm').disabled = true;
   document.getElementById('modal-error').textContent = '';
@@ -758,7 +762,7 @@ document.getElementById('search-input').addEventListener('input', function() {
     return;
   }
 
-  const matches = PLAYERS_DB.filter(j => j.name.toLowerCase().includes(q)).slice(0, 30);
+  const matches = PLAYERS_DB.filter(j => normaliserRecherche(j.name).includes(q)).slice(0, 30);
   const ac = document.getElementById('autocomplete');
 
   if (matches.length === 0) {
@@ -894,10 +898,14 @@ function showEndgame() {
       if (s.validated) {
         addRecapCell(recap, s.playerName, 'ok');
       } else {
-        const sols = getSolutions(grille.lignes[r], grille.colonnes[c]);
-        const hint = sols.length > 0
-          ? sols.sort((a, b) => (b.caps || 0) - (a.caps || 0))[0].name
-          : '—';
+        const sols = getSolutions(grille.lignes[r], grille.colonnes[c])
+          .sort((a, b) => (b.caps || 0) - (a.caps || 0));
+        const TOP = 3;
+        let hint = '—';
+        if (sols.length > 0) {
+          hint = sols.slice(0, TOP).map(j => j.name).join(', ');
+          if (sols.length > TOP) hint += ' (+' + (sols.length - TOP) + ' autres)';
+        }
         addRecapCell(recap, hint, 'miss');
       }
     }

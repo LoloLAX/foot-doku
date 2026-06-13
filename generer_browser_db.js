@@ -161,15 +161,15 @@ const NAISSANCES = Object.entries(naissanceCounts)
 const POSTES = ['Gardien', 'Défenseur', 'Milieu', 'Attaquant']
     .map(p => ({ label: p, value: p }));
 
-// ── Contraintes lettres (première lettre de n'importe quel mot du nom) ────────
+// ── Contraintes lettres (n'importe quelle lettre du nom) ──────────────────────
 
 function nameLetters(name) {
-    // Retourne l'ensemble des premières lettres de chaque mot (prénom, nom, etc.)
+    // Retourne l'ensemble des lettres présentes dans le nom (prénom + nom, accents ignorés)
     return new Set(
         name.normalize('NFD').replace(/[̀-ͯ]/g, '')
-            .split(' ').filter(Boolean)
-            .map(w => w[0]?.toUpperCase())
-            .filter(l => l && /[A-Z]/.test(l))
+            .toUpperCase()
+            .split('')
+            .filter(l => /[A-Z]/.test(l))
     );
 }
 
@@ -277,7 +277,7 @@ const COLONNES_POOL = [...SELECTIONS_V, ...POSTES_V, ...NAISSANCES_V, ...LETTRES
 
 function _nameLetters(name) {
     return name.normalize('NFD').replace(/[\\u0300-\\u036f]/g, '')
-        .split(' ').filter(Boolean).map(w => w[0]?.toUpperCase()).filter(Boolean);
+        .toUpperCase().split('').filter(l => /[A-Z]/.test(l));
 }
 
 function matchesContrainte(j, c) {

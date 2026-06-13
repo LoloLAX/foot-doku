@@ -1,4 +1,4 @@
-// generateur.js — généré automatiquement le 12/06/2026
+// generateur.js — généré automatiquement le 13/06/2026
 // Source : players_wc2026.json via generer_contraintes.js
 // Usage : node generateur.js [--all]
 
@@ -22,14 +22,14 @@ const ANCIENS_CLUBS = ["Ex-PSV","Ex-AC Milan","Ex-Jong PSV","Ex-Jong Ajax","Ex-B
 const CHAMPIONNATS  = ["Premier League","Bundesliga","Ligue 1","La Liga","Serie A","Championship","Saudi Pro League","MLS","Süper Lig","Primeira Liga","Série A","Eredivisie","First Division A","Qatar Stars League","Liga MX","Primera División","Persian Gulf Pro League","Czech First League","Scottish Premiership","Premier Soccer League","Egyptian Premier League","UAE Pro League","Iraq Stars League","Uzbekistan Super League","A-League Men","Superliga","Super League Greece","Russian Premier League","2. Bundesliga","Super League","First Division","Ligue Professionnelle 1","Jordan Premier League","Serie B","Segunda División","Eerste Divisie","K League 1","Austrian Football Bundesliga","Ligue 2"];
 const SELECTIONS    = ["Czech Republic","Mexico","South Africa","South Korea","Bosnia and Herzegovina","Canada","Qatar","Switzerland","Brazil","Haiti","Morocco","Scotland","Australia","Paraguay","Turkey","United States","Curaçao","Ecuador","Germany","Ivory Coast","Japan","Netherlands","Sweden","Tunisia","Belgium","Egypt","Iran","New Zealand","Cape Verde","Saudi Arabia","Spain","Uruguay","France","Iraq","Norway","Senegal","Algeria","Argentina","Austria","Jordan","Colombia","DR Congo","Portugal","Uzbekistan","Croatia","England","Ghana","Panama"];
 const NAISSANCES    = ["Né en France","Né en Netherlands","Né en England","Né en Germany","Né en Spain","Né en Belgium","Né en Sweden","Né en Austria","Né en Argentina","Né en Switzerland","Né en Brazil","Né en Portugal","Né en Colombia","Né en Saudi Arabia","Né en Panama","Né en South Africa","Né en South Korea","Né en Uruguay","Né en Uzbekistan","Né en Japan","Né en Norway","Né en Egypt","Né en Iran","Né en Czech Republic","Né en Canada","Né en Ecuador","Né en Jordan","Né en Mexico","Né en Scotland","Né en Paraguay","Né en Ghana","Né en Australia","Né en Ivory Coast","Né en New Zealand","Né en Iraq","Né en U.S.","Né en Senegal","Né en Turkey"];
-const LETTRES       = ["Lettre A","Lettre B","Lettre C","Lettre D","Lettre E","Lettre F","Lettre G","Lettre H","Lettre I","Lettre J","Lettre K","Lettre L","Lettre M","Lettre N","Lettre O","Lettre P","Lettre R","Lettre S","Lettre T","Lettre V","Lettre W","Lettre Y","Lettre Z"];
+const LETTRES       = ["Lettre A","Lettre B","Lettre C","Lettre D","Lettre E","Lettre F","Lettre G","Lettre H","Lettre I","Lettre J","Lettre K","Lettre L","Lettre M","Lettre N","Lettre O","Lettre P","Lettre Q","Lettre R","Lettre S","Lettre T","Lettre U","Lettre V","Lettre W","Lettre X","Lettre Y","Lettre Z"];
 const STATS         = ["50+ sélections","100+ sélections","10+ buts sélection","30+ buts sélection","Moins de 23 ans","30 ans ou plus"];
 const POSTES        = ['Gardien', 'Défenseur', 'Milieu', 'Attaquant'];
 
 const LIGNES_POOL   = [...CLUBS, ...ANCIENS_CLUBS, ...CHAMPIONNATS];
 const COLONNES_POOL = [...SELECTIONS, ...POSTES, ...NAISSANCES, ...LETTRES, ...STATS];
 
-function _nameLetters(name) { return name.normalize('NFD').replace(/[\u0300-\u036f]/g,'').split(' ').filter(Boolean).map(w=>w[0]?.toUpperCase()).filter(Boolean); }
+function _nameLetters(name) { return name.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toUpperCase().split('').filter(l => /[A-Z]/.test(l)); }
 
 function matchesContrainte(j, c) {
     if (!c) return false;

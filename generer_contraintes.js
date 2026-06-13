@@ -48,9 +48,9 @@ const SELECTIONS    = Object.entries(paysCounts).filter(([,n]) => n >= 10).sort(
 const NAISSANCES    = Object.entries(naissanceCounts).filter(([,n]) => n >= 15).sort((a,b) => b[1]-a[1]).map(([c]) => `Né en ${c}`);
 const POSTES        = ['Gardien', 'Défenseur', 'Milieu', 'Attaquant'];
 
-// Lettres — première lettre de n'importe quel mot du nom
+// Lettres — n'importe quelle lettre du nom (prénom + nom, accents ignorés)
 function nameLetters(name) {
-    return [...new Set(name.normalize('NFD').replace(/[̀-ͯ]/g,'').split(' ').filter(Boolean).map(w => w[0]?.toUpperCase()).filter(l => l && /[A-Z]/.test(l)))];
+    return [...new Set(name.normalize('NFD').replace(/[̀-ͯ]/g,'').toUpperCase().split('').filter(l => /[A-Z]/.test(l)))];
 }
 const letterCounts = {};
 for (const j of DB) { for (const l of nameLetters(j.name)) letterCounts[l] = (letterCounts[l]||0)+1; }
@@ -150,7 +150,7 @@ const POSTES        = ['Gardien', 'Défenseur', 'Milieu', 'Attaquant'];
 const LIGNES_POOL   = [...CLUBS, ...ANCIENS_CLUBS, ...CHAMPIONNATS];
 const COLONNES_POOL = [...SELECTIONS, ...POSTES, ...NAISSANCES, ...LETTRES, ...STATS];
 
-function _nameLetters(name) { return name.normalize('NFD').replace(/[\\u0300-\\u036f]/g,'').split(' ').filter(Boolean).map(w=>w[0]?.toUpperCase()).filter(Boolean); }
+function _nameLetters(name) { return name.normalize('NFD').replace(/[\\u0300-\\u036f]/g,'').toUpperCase().split('').filter(l => /[A-Z]/.test(l)); }
 
 function matchesContrainte(j, c) {
     if (!c) return false;
@@ -318,7 +318,7 @@ function trouverJoueur(nom) {
     });
 }
 
-function _nameLetters(name) { return name.normalize('NFD').replace(/[\\u0300-\\u036f]/g,'').split(' ').filter(Boolean).map(w=>w[0]?.toUpperCase()).filter(Boolean); }
+function _nameLetters(name) { return name.normalize('NFD').replace(/[\\u0300-\\u036f]/g,'').toUpperCase().split('').filter(l => /[A-Z]/.test(l)); }
 
 function matchesContrainte(j, c) {
     if (!c) return false;

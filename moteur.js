@@ -1,4 +1,4 @@
-// moteur.js — généré automatiquement le 12/06/2026
+// moteur.js — généré automatiquement le 13/06/2026
 // Validation des réponses joueur
 
 const fs = require('fs');
@@ -40,7 +40,7 @@ function trouverJoueur(nom) {
     });
 }
 
-function _nameLetters(name) { return name.normalize('NFD').replace(/[\u0300-\u036f]/g,'').split(' ').filter(Boolean).map(w=>w[0]?.toUpperCase()).filter(Boolean); }
+function _nameLetters(name) { return name.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toUpperCase().split('').filter(l => /[A-Z]/.test(l)); }
 
 function matchesContrainte(j, c) {
     if (!c) return false;
