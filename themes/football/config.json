@@ -1566,5 +1566,15 @@
       "Moins de 23 ans": "Moins de 23 ans",
       "30 ans ou plus": "30 ans ou plus"
     }
+  },
+  "constraintExplanations": {
+    "CLUBS": "Club actuel du joueur",
+    "ANCIENS_CLUBS": "Club dans lequel le joueur a evolue precedemment",
+    "CHAMPIONNATS": "Championnat dans lequel evolue le club actuel du joueur",
+    "SELECTIONS": "Equipe nationale representee par le joueur",
+    "NAISSANCES": "Pays de naissance du joueur",
+    "POSTES": "Poste de jeu du joueur (Gardien, Defenseur, Milieu, Attaquant)",
+    "LETTRES": "Lettre contenue dans le nom ou prenom du joueur",
+    "STATS": "Statistique de carriere du joueur (selections, buts...)"
   }
 }

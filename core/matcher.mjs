@@ -70,3 +70,24 @@ export function getDisplayLabel(contrainte, config) {
 
   return contrainte;
 }
+
+/**
+ * Retourne l'explication d'une contrainte (ex: "Frontieres: 7+" -> "Nombre de pays frontaliers").
+ * Cherche la contrainte dans les pools du theme pour determiner sa categorie,
+ * puis utilise config.constraintExplanations[pool] si defini.
+ */
+export function getConstraintExplanation(contrainte, config) {
+  if (!contrainte) return '';
+
+  if (contrainte.includes(' OU ')) {
+    return contrainte.split(' OU ').map(p => getConstraintExplanation(p.trim(), config)).join(' / ');
+  }
+
+  const explanations = config.constraintExplanations || {};
+  for (const [poolName, items] of Object.entries(config.pools || {})) {
+    const item = items.find(i => i.value === contrainte);
+    if (item) return explanations[poolName] || '';
+  }
+
+  return '';
+}

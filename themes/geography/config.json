@@ -902,5 +902,21 @@
       "Contient O": "Contient O",
       "Contient U": "Contient U"
     }
+  },
+  "constraintExplanations": {
+    "CONTINENTS": "Continent sur lequel se situe le pays",
+    "SUBREGIONS": "Sous-region geographique du pays",
+    "GOVERNMENTS": "Regime politique du pays",
+    "TYPES": "Organisation ou groupe international dont le pays est membre",
+    "POPULATIONS": "Tranche de population du pays",
+    "GDP_RANKS": "Rang du pays selon son PIB (Produit Interieur Brut)",
+    "LANGUAGES": "Langue officielle ou principale du pays",
+    "CAPITALS_LETTERS": "Lettre par laquelle commence le nom de la capitale",
+    "COASTLINES": "Acces a la mer (cotier) ou non (enclave)",
+    "BORDERS_COUNTS": "Nombre de pays frontaliers",
+    "NAME_FIRST_LETTERS": "Lettre par laquelle commence le nom du pays",
+    "NAME_LAST_LETTERS": "Lettre par laquelle se termine le nom du pays",
+    "NAME_COMPOSITION": "Nom du pays compose (tiret, apostrophe, plusieurs mots) ou simple",
+    "NAME_VOWELS": "Voyelle presente dans le nom du pays"
   }
 }

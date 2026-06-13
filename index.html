@@ -215,6 +215,59 @@
     .btn-primary { background: #4f46e5; color: white; flex: 1; }
     .btn-cancel  { background: var(--gray-bg); color: #374151; }
 
+    .label-with-help {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+    }
+    .grid-table td.row-header .label-with-help {
+      justify-content: flex-end;
+    }
+    .constraint-help {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: #ddd;
+      color: #374151;
+      font-size: 11px;
+      font-weight: bold;
+      line-height: 1;
+      cursor: help;
+      transition: background .15s, color .15s;
+    }
+    .constraint-help:hover { background: #6366f1; color: white; }
+
+    #constraint-popup-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.45);
+      z-index: 200;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+    #constraint-popup-overlay.open { display: flex; }
+    .constraint-popup {
+      background: white;
+      border-radius: 12px;
+      padding: 20px;
+      width: 100%;
+      max-width: 380px;
+      box-shadow: 0 20px 40px rgba(0,0,0,.2);
+    }
+    .constraint-popup h3 {
+      font-size: 15px; font-weight: 700; color: #1e1b4b; margin: 0 0 8px;
+    }
+    .constraint-popup p {
+      font-size: 14px; color: #374151; margin: 0 0 14px;
+    }
+
     #modal-error {
       font-size: 12px;
       color: var(--red);
@@ -604,6 +657,17 @@
   </div>
 </div>
 
+<!-- Popup explication contrainte -->
+<div id="constraint-popup-overlay">
+  <div class="constraint-popup">
+    <h3 id="constraint-popup-title"></h3>
+    <p id="constraint-popup-text"></p>
+    <div class="modal-actions">
+      <button class="btn btn-cancel" id="constraint-popup-close">Fermer</button>
+    </div>
+  </div>
+</div>
+
 <!-- Fin de partie -->
 <div id="endgame">
   <h2 id="eg-title"></h2>
@@ -800,9 +864,52 @@ function renderPips() {
 
 // ── Grid ─────────────────────────────────────────────────────────────────────
 
+// Construit le contenu d'un en-tête de contrainte (label + icône "?" d'aide)
+function buildConstraintLabel(contrainte) {
+  const container = document.createElement('div');
+  container.className = 'label-with-help';
+
+  const label = window.game.getDisplayLabel(contrainte);
+  const labelEl = document.createElement('span');
+  labelEl.textContent = label;
+  container.appendChild(labelEl);
+
+  const explanation = window.game.getConstraintExplanation(contrainte);
+  if (explanation) {
+    const help = document.createElement('span');
+    help.className = 'constraint-help';
+    help.textContent = '?';
+    help.title = explanation;
+    help.addEventListener('click', e => {
+      e.stopPropagation();
+      showConstraintPopup(label, explanation);
+    });
+    container.appendChild(help);
+  }
+
+  return container;
+}
+
+function showConstraintPopup(label, explanation) {
+  document.getElementById('constraint-popup-title').textContent = label;
+  document.getElementById('constraint-popup-text').textContent = explanation;
+  document.getElementById('constraint-popup-overlay').classList.add('open');
+}
+
+document.getElementById('constraint-popup-close').addEventListener('click', () => {
+  document.getElementById('constraint-popup-overlay').classList.remove('open');
+});
+document.getElementById('constraint-popup-overlay').addEventListener('click', e => {
+  if (e.target.id === 'constraint-popup-overlay') {
+    document.getElementById('constraint-popup-overlay').classList.remove('open');
+  }
+});
+
 function buildGrid() {
   grille.colonnes.forEach((c, i) => {
-    document.getElementById('th' + i).textContent = window.game.getDisplayLabel(c);
+    const th = document.getElementById('th' + i);
+    th.innerHTML = '';
+    th.appendChild(buildConstraintLabel(c));
   });
 
   const tbody = document.getElementById('grid-body');
@@ -813,7 +920,7 @@ function buildGrid() {
 
     const th = document.createElement('td');
     th.className = 'row-header';
-    th.textContent = window.game.getDisplayLabel(grille.lignes[r]);
+    th.appendChild(buildConstraintLabel(grille.lignes[r]));
     tr.appendChild(th);
 
     for (let c = 0; c < 3; c++) {

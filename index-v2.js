@@ -3,7 +3,7 @@
 // les fonctions du moteur générique (core/matcher.mjs, core/grid-engine.mjs)
 // sans toucher au jeu Foot-Doku existant.
 
-import { matchesContrainte, _nameLetters, getDisplayLabel } from './core/matcher.mjs';
+import { matchesContrainte, _nameLetters, getDisplayLabel, getConstraintExplanation } from './core/matcher.mjs';
 import {
   genererGrilleParfaite,
   getSolutions,
@@ -101,6 +101,7 @@ export function getGlobals() {
   return {
     matchesContrainte: (entite, contrainte) => matchesContrainte(entite, contrainte, currentConfig),
     getDisplayLabel: (contrainte) => getDisplayLabel(contrainte, currentConfig),
+    getConstraintExplanation: (contrainte) => getConstraintExplanation(contrainte, currentConfig),
     getSolutions: getSolutionsForConstraint,
     generateNewGrid,
     checkAnswer,
