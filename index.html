@@ -417,6 +417,8 @@
   <div style="text-align:center;margin-top:4px">
     <a href="#" id="btn-rules" style="font-size:11px;color:#9ca3af;text-decoration:none">📖 Règles</a>
     <span style="color:#d1d5db">·</span>
+    <a href="#" id="btn-create-link" style="font-size:11px;color:#9ca3af;text-decoration:none">✏️ Créer une grille</a>
+    <span style="color:#d1d5db">·</span>
     <a href="admin.html" style="font-size:11px;color:#9ca3af;text-decoration:none">⚙️ Admin</a>
   </div>
   <div class="attempts-bar" id="attempts-bar">
@@ -981,8 +983,16 @@ document.getElementById('btn-play-daily').addEventListener('click', () => {
 
 document.getElementById('btn-create').addEventListener('click', showCreator);
 
+document.getElementById('btn-create-link').addEventListener('click', e => {
+  e.preventDefault();
+  showCreator();
+});
+
 function showCreator() {
   document.getElementById('home-screen').style.display = 'none';
+  document.getElementById('no-grid').style.display = 'none';
+  document.getElementById('game').style.display = 'none';
+  document.getElementById('endgame').style.display = 'none';
   document.getElementById('attempts-bar').style.display = 'none';
   document.getElementById('creator').style.display = 'block';
   populateConstraintSelects();
