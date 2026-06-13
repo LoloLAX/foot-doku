@@ -466,7 +466,7 @@
 </div>
 
 <header>
-  <h1>⚽ Foot-Doku</h1>
+  <h1 id="header-title">⚽ Foot-Doku</h1>
   <div class="date" id="header-date"></div>
   <div style="text-align:center;margin-top:4px">
     <a href="#" id="btn-rules" style="font-size:11px;color:#9ca3af;text-decoration:none">📖 Règles</a>
@@ -654,15 +654,24 @@ window.PLAYERS_DB = PLAYERS_DB;
 <script type="module">
 import { loadTheme, getGlobals } from './index-v2.js';
 
+function updatePageTitle() {
+  const titleEl = document.getElementById('header-title');
+  if (titleEl && window.game && window.game.currentConfig) {
+    titleEl.textContent = window.game.currentConfig.label;
+  }
+}
+
 // Charger le thème par défaut (football) — n'affecte pas le jeu existant
 loadTheme('football').then(() => {
   window.game = getGlobals();
+  updatePageTitle();
 }).catch(err => console.error(err));
 
 window.switchTheme = async function switchTheme(themeName) {
   try {
     await loadTheme(themeName);
     window.game = getGlobals();
+    updatePageTitle();
     // Si le créateur est ouvert, régénérer les listes déroulantes pour le nouveau thème
     if (document.getElementById('creator').style.display !== 'none' && typeof populateConstraintSelects === 'function') {
       populateConstraintSelects();
@@ -1243,7 +1252,9 @@ function updateCreatorPreview() {
 
         const count = document.createElement('div');
         count.className = 'preview-count';
-        count.textContent = sols.length + ' joueur' + (sols.length > 1 ? 's' : '');
+        const entity = window.game?.currentConfig?.entity || 'entité';
+        const entityLabel = entity.endsWith('s') || sols.length <= 1 ? entity : entity + 's';
+        count.textContent = sols.length + ' ' + entityLabel;
         cell.appendChild(count);
 
         const names = document.createElement('div');
