@@ -1,0 +1,1261 @@
+{
+  "name": "football",
+  "label": "Foot-Doku",
+  "entity": "joueur",
+  "pools": {
+    "CLUBS": [
+      {
+        "label": "Manchester City (19)",
+        "value": "Manchester City"
+      },
+      {
+        "label": "Al Ahly (18)",
+        "value": "Al Ahly"
+      },
+      {
+        "label": "Bayern Munich (17)",
+        "value": "Bayern Munich"
+      },
+      {
+        "label": "Paris Saint-Germain (16)",
+        "value": "Paris Saint-Germain"
+      },
+      {
+        "label": "Arsenal (15)",
+        "value": "Arsenal"
+      },
+      {
+        "label": "Barcelona (14)",
+        "value": "Barcelona"
+      },
+      {
+        "label": "Atlético Madrid (12)",
+        "value": "Atlético Madrid"
+      },
+      {
+        "label": "Manchester United (12)",
+        "value": "Manchester United"
+      },
+      {
+        "label": "Al-Hilal (12)",
+        "value": "Al-Hilal"
+      },
+      {
+        "label": "Crystal Palace (12)",
+        "value": "Crystal Palace"
+      },
+      {
+        "label": "Borussia Dortmund (11)",
+        "value": "Borussia Dortmund"
+      },
+      {
+        "label": "Galatasaray (11)",
+        "value": "Galatasaray"
+      },
+      {
+        "label": "PSV Eindhoven (10)",
+        "value": "PSV Eindhoven"
+      },
+      {
+        "label": "Slavia Prague (10)",
+        "value": "Slavia Prague"
+      },
+      {
+        "label": "Fenerbahçe (10)",
+        "value": "Fenerbahçe"
+      },
+      {
+        "label": "Milan (10)",
+        "value": "Milan"
+      },
+      {
+        "label": "Sunderland (10)",
+        "value": "Sunderland"
+      },
+      {
+        "label": "Liverpool (10)",
+        "value": "Liverpool"
+      },
+      {
+        "label": "Real Madrid (10)",
+        "value": "Real Madrid"
+      },
+      {
+        "label": "Flamengo (9)",
+        "value": "Flamengo"
+      },
+      {
+        "label": "Aston Villa (9)",
+        "value": "Aston Villa"
+      },
+      {
+        "label": "Al-Nassr (9)",
+        "value": "Al-Nassr"
+      },
+      {
+        "label": "TSG Hoffenheim (8)",
+        "value": "TSG Hoffenheim"
+      },
+      {
+        "label": "Mamelodi Sundowns (8)",
+        "value": "Mamelodi Sundowns"
+      },
+      {
+        "label": "Orlando Pirates (8)",
+        "value": "Orlando Pirates"
+      },
+      {
+        "label": "Celtic (8)",
+        "value": "Celtic"
+      },
+      {
+        "label": "Atalanta (8)",
+        "value": "Atalanta"
+      },
+      {
+        "label": "Benfica (8)",
+        "value": "Benfica"
+      },
+      {
+        "label": "VfB Stuttgart (8)",
+        "value": "VfB Stuttgart"
+      },
+      {
+        "label": "Villarreal (8)",
+        "value": "Villarreal"
+      },
+      {
+        "label": "Nice (8)",
+        "value": "Nice"
+      },
+      {
+        "label": "Eintracht Frankfurt (8)",
+        "value": "Eintracht Frankfurt"
+      },
+      {
+        "label": "Newcastle United (8)",
+        "value": "Newcastle United"
+      },
+      {
+        "label": "Lille (8)",
+        "value": "Lille"
+      },
+      {
+        "label": "Brighton & Hove Albion (8)",
+        "value": "Brighton & Hove Albion"
+      },
+      {
+        "label": "Chelsea (8)",
+        "value": "Chelsea"
+      },
+      {
+        "label": "Tottenham Hotspur (8)",
+        "value": "Tottenham Hotspur"
+      },
+      {
+        "label": "Bayer Leverkusen (7)",
+        "value": "Bayer Leverkusen"
+      },
+      {
+        "label": "Viktoria Plzeň (7)",
+        "value": "Viktoria Plzeň"
+      },
+      {
+        "label": "Al-Duhail (7)",
+        "value": "Al-Duhail"
+      },
+      {
+        "label": "Inter Milan (7)",
+        "value": "Inter Milan"
+      },
+      {
+        "label": "Strasbourg (7)",
+        "value": "Strasbourg"
+      },
+      {
+        "label": "Palmeiras (7)",
+        "value": "Palmeiras"
+      },
+      {
+        "label": "Sporting CP (7)",
+        "value": "Sporting CP"
+      },
+      {
+        "label": "Al-Hussein (7)",
+        "value": "Al-Hussein"
+      },
+      {
+        "label": "Wolverhampton Wanderers (6)",
+        "value": "Wolverhampton Wanderers"
+      },
+      {
+        "label": "Real Betis (6)",
+        "value": "Real Betis"
+      },
+      {
+        "label": "Fulham (6)",
+        "value": "Fulham"
+      },
+      {
+        "label": "Al-Qadsiah (6)",
+        "value": "Al-Qadsiah"
+      },
+      {
+        "label": "Mainz 05 (6)",
+        "value": "Mainz 05"
+      },
+      {
+        "label": "Borussia Mönchengladbach (6)",
+        "value": "Borussia Mönchengladbach"
+      },
+      {
+        "label": "Young Boys (6)",
+        "value": "Young Boys"
+      },
+      {
+        "label": "Juventus (6)",
+        "value": "Juventus"
+      },
+      {
+        "label": "Monaco (6)",
+        "value": "Monaco"
+      },
+      {
+        "label": "Bournemouth (6)",
+        "value": "Bournemouth"
+      },
+      {
+        "label": "Esteghlal (6)",
+        "value": "Esteghlal"
+      },
+      {
+        "label": "RB Leipzig (6)",
+        "value": "RB Leipzig"
+      },
+      {
+        "label": "Persepolis (6)",
+        "value": "Persepolis"
+      },
+      {
+        "label": "Lyon (5)",
+        "value": "Lyon"
+      },
+      {
+        "label": "Guadalajara (5)",
+        "value": "Guadalajara"
+      },
+      {
+        "label": "Burnley (5)",
+        "value": "Burnley"
+      },
+      {
+        "label": "Feyenoord (5)",
+        "value": "Feyenoord"
+      },
+      {
+        "label": "Rangers (5)",
+        "value": "Rangers"
+      },
+      {
+        "label": "Norwich City (5)",
+        "value": "Norwich City"
+      },
+      {
+        "label": "Al-Sadd (5)",
+        "value": "Al-Sadd"
+      },
+      {
+        "label": "Bologna (5)",
+        "value": "Bologna"
+      },
+      {
+        "label": "Nottingham Forest (5)",
+        "value": "Nottingham Forest"
+      },
+      {
+        "label": "Roma (5)",
+        "value": "Roma"
+      },
+      {
+        "label": "Marseille (5)",
+        "value": "Marseille"
+      },
+      {
+        "label": "Club Brugge (5)",
+        "value": "Club Brugge"
+      },
+      {
+        "label": "River Plate (5)",
+        "value": "River Plate"
+      },
+      {
+        "label": "İstanbul Başakşehir (5)",
+        "value": "İstanbul Başakşehir"
+      },
+      {
+        "label": "Real Sociedad (5)",
+        "value": "Real Sociedad"
+      },
+      {
+        "label": "VfL Wolfsburg (5)",
+        "value": "VfL Wolfsburg"
+      },
+      {
+        "label": "Pyramids (5)",
+        "value": "Pyramids"
+      },
+      {
+        "label": "Tractor (5)",
+        "value": "Tractor"
+      },
+      {
+        "label": "Auckland FC (5)",
+        "value": "Auckland FC"
+      },
+      {
+        "label": "West Ham United (4)",
+        "value": "West Ham United"
+      },
+      {
+        "label": "Braga (4)",
+        "value": "Braga"
+      },
+      {
+        "label": "América (4)",
+        "value": "América"
+      },
+      {
+        "label": "Midtjylland (4)",
+        "value": "Midtjylland"
+      },
+      {
+        "label": "Los Angeles FC (4)",
+        "value": "Los Angeles FC"
+      },
+      {
+        "label": "Beşiktaş (4)",
+        "value": "Beşiktaş"
+      },
+      {
+        "label": "FC St. Pauli (4)",
+        "value": "FC St. Pauli"
+      },
+      {
+        "label": "Sassuolo (4)",
+        "value": "Sassuolo"
+      },
+      {
+        "label": "Al-Rayyan (4)",
+        "value": "Al-Rayyan"
+      },
+      {
+        "label": "Al-Wakrah (4)",
+        "value": "Al-Wakrah"
+      },
+      {
+        "label": "Rennes (4)",
+        "value": "Rennes"
+      },
+      {
+        "label": "SC Freiburg (4)",
+        "value": "SC Freiburg"
+      },
+      {
+        "label": "Leeds United (4)",
+        "value": "Leeds United"
+      },
+      {
+        "label": "FC Augsburg (4)",
+        "value": "FC Augsburg"
+      },
+      {
+        "label": "Al-Ittihad (4)",
+        "value": "Al-Ittihad"
+      },
+      {
+        "label": "Brentford (4)",
+        "value": "Brentford"
+      },
+      {
+        "label": "Auxerre (4)",
+        "value": "Auxerre"
+      },
+      {
+        "label": "Genk (4)",
+        "value": "Genk"
+      },
+      {
+        "label": "Napoli (4)",
+        "value": "Napoli"
+      },
+      {
+        "label": "Everton (4)",
+        "value": "Everton"
+      },
+      {
+        "label": "Atlético Mineiro (4)",
+        "value": "Atlético Mineiro"
+      },
+      {
+        "label": "Ajax (4)",
+        "value": "Ajax"
+      },
+      {
+        "label": "Athletic Bilbao (4)",
+        "value": "Athletic Bilbao"
+      },
+      {
+        "label": "Pakhtakor (4)",
+        "value": "Pakhtakor"
+      },
+      {
+        "label": "Al-Zawraa (4)",
+        "value": "Al-Zawraa"
+      },
+      {
+        "label": "Al-Karma (4)",
+        "value": "Al-Karma"
+      }
+    ],
+    "ANCIENS_CLUBS": [
+      {
+        "label": "Ex-PSV (28)",
+        "value": "Ex-PSV"
+      },
+      {
+        "label": "Ex-AC Milan (26)",
+        "value": "Ex-AC Milan"
+      },
+      {
+        "label": "Ex-Jong PSV (16)",
+        "value": "Ex-Jong PSV"
+      },
+      {
+        "label": "Ex-Jong Ajax (16)",
+        "value": "Ex-Jong Ajax"
+      },
+      {
+        "label": "Ex-Benfica B (15)",
+        "value": "Ex-Benfica B"
+      },
+      {
+        "label": "Ex-Basel (14)",
+        "value": "Ex-Basel"
+      },
+      {
+        "label": "Ex-Bayern Munich II (13)",
+        "value": "Ex-Bayern Munich II"
+      },
+      {
+        "label": "Ex-Groningen (12)",
+        "value": "Ex-Groningen"
+      },
+      {
+        "label": "Ex-Betis (11)",
+        "value": "Ex-Betis"
+      },
+      {
+        "label": "Ex-Wellington Phoenix Reserves (11)",
+        "value": "Ex-Wellington Phoenix Reserves"
+      },
+      {
+        "label": "Ex-Hertha BSC (10)",
+        "value": "Ex-Hertha BSC"
+      },
+      {
+        "label": "Ex-Real Madrid B (10)",
+        "value": "Ex-Real Madrid B"
+      },
+      {
+        "label": "Ex-SuperSport United (10)",
+        "value": "Ex-SuperSport United"
+      },
+      {
+        "label": "Ex-FC Liefering (10)",
+        "value": "Ex-FC Liefering"
+      },
+      {
+        "label": "Ex-Metz (10)",
+        "value": "Ex-Metz"
+      },
+      {
+        "label": "Ex-Sporting CP B (10)",
+        "value": "Ex-Sporting CP B"
+      },
+      {
+        "label": "Ex-Reading (10)",
+        "value": "Ex-Reading"
+      },
+      {
+        "label": "Ex-Porto B (10)",
+        "value": "Ex-Porto B"
+      },
+      {
+        "label": "Ex-Almería (9)",
+        "value": "Ex-Almería"
+      },
+      {
+        "label": "Ex-Schalke 04 II (9)",
+        "value": "Ex-Schalke 04 II"
+      },
+      {
+        "label": "Ex-Al-Jazeera (9)",
+        "value": "Ex-Al-Jazeera"
+      },
+      {
+        "label": "Ex-Bunyodkor (9)",
+        "value": "Ex-Bunyodkor"
+      },
+      {
+        "label": "Ex-Al Hilal (8)",
+        "value": "Ex-Al Hilal"
+      },
+      {
+        "label": "Ex-Vitesse (8)",
+        "value": "Ex-Vitesse"
+      },
+      {
+        "label": "Ex-Peñarol (8)",
+        "value": "Ex-Peñarol"
+      },
+      {
+        "label": "Ex-Heerenveen (8)",
+        "value": "Ex-Heerenveen"
+      }
+    ],
+    "CHAMPIONNATS": [
+      {
+        "label": "Premier League (145)",
+        "value": "Premier League"
+      },
+      {
+        "label": "Bundesliga (97)",
+        "value": "Bundesliga"
+      },
+      {
+        "label": "Ligue 1 (76)",
+        "value": "Ligue 1"
+      },
+      {
+        "label": "La Liga (75)",
+        "value": "La Liga"
+      },
+      {
+        "label": "Serie A (65)",
+        "value": "Serie A"
+      },
+      {
+        "label": "Championship (56)",
+        "value": "Championship"
+      },
+      {
+        "label": "Saudi Pro League (50)",
+        "value": "Saudi Pro League"
+      },
+      {
+        "label": "MLS (45)",
+        "value": "MLS"
+      },
+      {
+        "label": "Süper Lig (43)",
+        "value": "Süper Lig"
+      },
+      {
+        "label": "Primeira Liga (32)",
+        "value": "Primeira Liga"
+      },
+      {
+        "label": "Série A (31)",
+        "value": "Série A"
+      },
+      {
+        "label": "Eredivisie (29)",
+        "value": "Eredivisie"
+      },
+      {
+        "label": "First Division A (29)",
+        "value": "First Division A"
+      },
+      {
+        "label": "Qatar Stars League (29)",
+        "value": "Qatar Stars League"
+      },
+      {
+        "label": "Liga MX (26)",
+        "value": "Liga MX"
+      },
+      {
+        "label": "Primera División (24)",
+        "value": "Primera División"
+      },
+      {
+        "label": "Persian Gulf Pro League (23)",
+        "value": "Persian Gulf Pro League"
+      },
+      {
+        "label": "Czech First League (22)",
+        "value": "Czech First League"
+      },
+      {
+        "label": "Scottish Premiership (21)",
+        "value": "Scottish Premiership"
+      },
+      {
+        "label": "Premier Soccer League (19)",
+        "value": "Premier Soccer League"
+      },
+      {
+        "label": "Egyptian Premier League (18)",
+        "value": "Egyptian Premier League"
+      },
+      {
+        "label": "UAE Pro League (17)",
+        "value": "UAE Pro League"
+      },
+      {
+        "label": "Iraq Stars League (17)",
+        "value": "Iraq Stars League"
+      },
+      {
+        "label": "Uzbekistan Super League (16)",
+        "value": "Uzbekistan Super League"
+      },
+      {
+        "label": "A-League Men (15)",
+        "value": "A-League Men"
+      },
+      {
+        "label": "Superliga (14)",
+        "value": "Superliga"
+      },
+      {
+        "label": "Super League Greece (12)",
+        "value": "Super League Greece"
+      },
+      {
+        "label": "Russian Premier League (12)",
+        "value": "Russian Premier League"
+      },
+      {
+        "label": "2. Bundesliga (12)",
+        "value": "2. Bundesliga"
+      },
+      {
+        "label": "Super League (11)",
+        "value": "Super League"
+      },
+      {
+        "label": "First Division (10)",
+        "value": "First Division"
+      },
+      {
+        "label": "Ligue Professionnelle 1 (10)",
+        "value": "Ligue Professionnelle 1"
+      },
+      {
+        "label": "Jordan Premier League (10)",
+        "value": "Jordan Premier League"
+      },
+      {
+        "label": "Serie B (9)",
+        "value": "Serie B"
+      },
+      {
+        "label": "Segunda División (9)",
+        "value": "Segunda División"
+      },
+      {
+        "label": "Eerste Divisie (9)",
+        "value": "Eerste Divisie"
+      },
+      {
+        "label": "K League 1 (8)",
+        "value": "K League 1"
+      },
+      {
+        "label": "Austrian Football Bundesliga (8)",
+        "value": "Austrian Football Bundesliga"
+      },
+      {
+        "label": "Ligue 2 (8)",
+        "value": "Ligue 2"
+      }
+    ],
+    "SELECTIONS": [
+      {
+        "label": "Tchéquie (26)",
+        "value": "Tchéquie"
+      },
+      {
+        "label": "Mexique (26)",
+        "value": "Mexique"
+      },
+      {
+        "label": "Afrique du Sud (26)",
+        "value": "Afrique du Sud"
+      },
+      {
+        "label": "Corée du Sud (26)",
+        "value": "Corée du Sud"
+      },
+      {
+        "label": "Bosnie-Herzégovine (26)",
+        "value": "Bosnie-Herzégovine"
+      },
+      {
+        "label": "Canada (26)",
+        "value": "Canada"
+      },
+      {
+        "label": "Qatar (26)",
+        "value": "Qatar"
+      },
+      {
+        "label": "Suisse (26)",
+        "value": "Suisse"
+      },
+      {
+        "label": "Brésil (26)",
+        "value": "Brésil"
+      },
+      {
+        "label": "Haïti (26)",
+        "value": "Haïti"
+      },
+      {
+        "label": "Maroc (26)",
+        "value": "Maroc"
+      },
+      {
+        "label": "Écosse (26)",
+        "value": "Écosse"
+      },
+      {
+        "label": "Australie (26)",
+        "value": "Australie"
+      },
+      {
+        "label": "Paraguay (26)",
+        "value": "Paraguay"
+      },
+      {
+        "label": "Turquie (26)",
+        "value": "Turquie"
+      },
+      {
+        "label": "États-Unis (26)",
+        "value": "États-Unis"
+      },
+      {
+        "label": "Curaçao (26)",
+        "value": "Curaçao"
+      },
+      {
+        "label": "Équateur (26)",
+        "value": "Équateur"
+      },
+      {
+        "label": "Allemagne (26)",
+        "value": "Allemagne"
+      },
+      {
+        "label": "Côte d'Ivoire (26)",
+        "value": "Côte d'Ivoire"
+      },
+      {
+        "label": "Japon (26)",
+        "value": "Japon"
+      },
+      {
+        "label": "Pays-Bas (26)",
+        "value": "Pays-Bas"
+      },
+      {
+        "label": "Suède (26)",
+        "value": "Suède"
+      },
+      {
+        "label": "Tunisie (26)",
+        "value": "Tunisie"
+      },
+      {
+        "label": "Belgique (26)",
+        "value": "Belgique"
+      },
+      {
+        "label": "Égypte (26)",
+        "value": "Égypte"
+      },
+      {
+        "label": "Iran (26)",
+        "value": "Iran"
+      },
+      {
+        "label": "Nouvelle-Zélande (26)",
+        "value": "Nouvelle-Zélande"
+      },
+      {
+        "label": "Cap-Vert (26)",
+        "value": "Cap-Vert"
+      },
+      {
+        "label": "Arabie Saoudite (26)",
+        "value": "Arabie Saoudite"
+      },
+      {
+        "label": "Espagne (26)",
+        "value": "Espagne"
+      },
+      {
+        "label": "Uruguay (26)",
+        "value": "Uruguay"
+      },
+      {
+        "label": "France (26)",
+        "value": "France"
+      },
+      {
+        "label": "Irak (26)",
+        "value": "Irak"
+      },
+      {
+        "label": "Norvège (26)",
+        "value": "Norvège"
+      },
+      {
+        "label": "Sénégal (26)",
+        "value": "Sénégal"
+      },
+      {
+        "label": "Algérie (26)",
+        "value": "Algérie"
+      },
+      {
+        "label": "Argentine (26)",
+        "value": "Argentine"
+      },
+      {
+        "label": "Autriche (26)",
+        "value": "Autriche"
+      },
+      {
+        "label": "Jordanie (26)",
+        "value": "Jordanie"
+      },
+      {
+        "label": "Colombie (26)",
+        "value": "Colombie"
+      },
+      {
+        "label": "DR Congo (26)",
+        "value": "DR Congo"
+      },
+      {
+        "label": "Portugal (26)",
+        "value": "Portugal"
+      },
+      {
+        "label": "Ouzbékistan (26)",
+        "value": "Ouzbékistan"
+      },
+      {
+        "label": "Croatie (26)",
+        "value": "Croatie"
+      },
+      {
+        "label": "Angleterre (26)",
+        "value": "Angleterre"
+      },
+      {
+        "label": "Ghana (26)",
+        "value": "Ghana"
+      },
+      {
+        "label": "Panama (26)",
+        "value": "Panama"
+      }
+    ],
+    "NAISSANCES": [
+      {
+        "label": "Né en France (99)",
+        "value": "Né en France"
+      },
+      {
+        "label": "Né en Pays-Bas (67)",
+        "value": "Né en Pays-Bas"
+      },
+      {
+        "label": "Né en Angleterre (49)",
+        "value": "Né en Angleterre"
+      },
+      {
+        "label": "Né en Allemagne (48)",
+        "value": "Né en Allemagne"
+      },
+      {
+        "label": "Né en Espagne (36)",
+        "value": "Né en Espagne"
+      },
+      {
+        "label": "Né en Belgique (36)",
+        "value": "Né en Belgique"
+      },
+      {
+        "label": "Né en Suède (34)",
+        "value": "Né en Suède"
+      },
+      {
+        "label": "Né en Autriche (31)",
+        "value": "Né en Autriche"
+      },
+      {
+        "label": "Né en Argentine (30)",
+        "value": "Né en Argentine"
+      },
+      {
+        "label": "Né en Suisse (30)",
+        "value": "Né en Suisse"
+      },
+      {
+        "label": "Né en Brésil (29)",
+        "value": "Né en Brésil"
+      },
+      {
+        "label": "Né en Portugal (28)",
+        "value": "Né en Portugal"
+      },
+      {
+        "label": "Né en Colombie (27)",
+        "value": "Né en Colombie"
+      },
+      {
+        "label": "Né en Arabie Saoudite (27)",
+        "value": "Né en Arabie Saoudite"
+      },
+      {
+        "label": "Né en Panama (26)",
+        "value": "Né en Panama"
+      },
+      {
+        "label": "Né en Afrique du Sud (25)",
+        "value": "Né en Afrique du Sud"
+      },
+      {
+        "label": "Né en Corée du Sud (25)",
+        "value": "Né en Corée du Sud"
+      },
+      {
+        "label": "Né en Uruguay (25)",
+        "value": "Né en Uruguay"
+      },
+      {
+        "label": "Né en Ouzbékistan (25)",
+        "value": "Né en Ouzbékistan"
+      },
+      {
+        "label": "Né en Japon (25)",
+        "value": "Né en Japon"
+      },
+      {
+        "label": "Né en Norvège (25)",
+        "value": "Né en Norvège"
+      },
+      {
+        "label": "Né en Égypte (24)",
+        "value": "Né en Égypte"
+      },
+      {
+        "label": "Né en Iran (24)",
+        "value": "Né en Iran"
+      },
+      {
+        "label": "Né en Tchéquie (23)",
+        "value": "Né en Tchéquie"
+      },
+      {
+        "label": "Né en Canada (23)",
+        "value": "Né en Canada"
+      },
+      {
+        "label": "Né en Équateur (23)",
+        "value": "Né en Équateur"
+      },
+      {
+        "label": "Né en Jordanie (23)",
+        "value": "Né en Jordanie"
+      },
+      {
+        "label": "Né en Mexique (22)",
+        "value": "Né en Mexique"
+      },
+      {
+        "label": "Né en Écosse (22)",
+        "value": "Né en Écosse"
+      },
+      {
+        "label": "Né en Paraguay (21)",
+        "value": "Né en Paraguay"
+      },
+      {
+        "label": "Né en Ghana (20)",
+        "value": "Né en Ghana"
+      },
+      {
+        "label": "Né en Australie (20)",
+        "value": "Né en Australie"
+      },
+      {
+        "label": "Né en Côte d'Ivoire (19)",
+        "value": "Né en Côte d'Ivoire"
+      },
+      {
+        "label": "Né en Nouvelle-Zélande (18)",
+        "value": "Né en Nouvelle-Zélande"
+      },
+      {
+        "label": "Né en Irak (18)",
+        "value": "Né en Irak"
+      },
+      {
+        "label": "Né en U.S. (16)",
+        "value": "Né en U.S."
+      },
+      {
+        "label": "Né en Sénégal (16)",
+        "value": "Né en Sénégal"
+      },
+      {
+        "label": "Né en Turquie (16)",
+        "value": "Né en Turquie"
+      }
+    ],
+    "POSTES": [
+      {
+        "label": "Gardien",
+        "value": "Gardien"
+      },
+      {
+        "label": "Défenseur",
+        "value": "Défenseur"
+      },
+      {
+        "label": "Milieu",
+        "value": "Milieu"
+      },
+      {
+        "label": "Attaquant",
+        "value": "Attaquant"
+      }
+    ],
+    "LETTRES": [
+      {
+        "label": "Lettre A (1092)",
+        "value": "Lettre A"
+      },
+      {
+        "label": "Lettre B (309)",
+        "value": "Lettre B"
+      },
+      {
+        "label": "Lettre C (360)",
+        "value": "Lettre C"
+      },
+      {
+        "label": "Lettre D (522)",
+        "value": "Lettre D"
+      },
+      {
+        "label": "Lettre E (891)",
+        "value": "Lettre E"
+      },
+      {
+        "label": "Lettre F (131)",
+        "value": "Lettre F"
+      },
+      {
+        "label": "Lettre G (265)",
+        "value": "Lettre G"
+      },
+      {
+        "label": "Lettre H (430)",
+        "value": "Lettre H"
+      },
+      {
+        "label": "Lettre I (846)",
+        "value": "Lettre I"
+      },
+      {
+        "label": "Lettre J (213)",
+        "value": "Lettre J"
+      },
+      {
+        "label": "Lettre K (312)",
+        "value": "Lettre K"
+      },
+      {
+        "label": "Lettre L (597)",
+        "value": "Lettre L"
+      },
+      {
+        "label": "Lettre M (558)",
+        "value": "Lettre M"
+      },
+      {
+        "label": "Lettre N (789)",
+        "value": "Lettre N"
+      },
+      {
+        "label": "Lettre O (773)",
+        "value": "Lettre O"
+      },
+      {
+        "label": "Lettre P (140)",
+        "value": "Lettre P"
+      },
+      {
+        "label": "Lettre Q (24)",
+        "value": "Lettre Q"
+      },
+      {
+        "label": "Lettre R (744)",
+        "value": "Lettre R"
+      },
+      {
+        "label": "Lettre S (642)",
+        "value": "Lettre S"
+      },
+      {
+        "label": "Lettre T (416)",
+        "value": "Lettre T"
+      },
+      {
+        "label": "Lettre U (456)",
+        "value": "Lettre U"
+      },
+      {
+        "label": "Lettre V (184)",
+        "value": "Lettre V"
+      },
+      {
+        "label": "Lettre W (92)",
+        "value": "Lettre W"
+      },
+      {
+        "label": "Lettre X (38)",
+        "value": "Lettre X"
+      },
+      {
+        "label": "Lettre Y (233)",
+        "value": "Lettre Y"
+      },
+      {
+        "label": "Lettre Z (165)",
+        "value": "Lettre Z"
+      }
+    ],
+    "STATS": [
+      {
+        "label": "50+ sélections (309)",
+        "value": "50+ sélections"
+      },
+      {
+        "label": "100+ sélections (58)",
+        "value": "100+ sélections"
+      },
+      {
+        "label": "10+ buts sélection (150)",
+        "value": "10+ buts sélection"
+      },
+      {
+        "label": "30+ buts sélection (35)",
+        "value": "30+ buts sélection"
+      },
+      {
+        "label": "Moins de 23 ans (154)",
+        "value": "Moins de 23 ans"
+      },
+      {
+        "label": "30 ans ou plus (373)",
+        "value": "30 ans ou plus"
+      }
+    ]
+  },
+  "lignesPool": [
+    "CLUBS",
+    "ANCIENS_CLUBS",
+    "CHAMPIONNATS"
+  ],
+  "colonnesPool": [
+    "SELECTIONS",
+    "POSTES",
+    "NAISSANCES",
+    "LETTRES",
+    "STATS"
+  ],
+  "lignesGroupes": [
+    {
+      "label": "Club actuel",
+      "pool": "CLUBS"
+    },
+    {
+      "label": "Ancien club",
+      "pool": "ANCIENS_CLUBS"
+    },
+    {
+      "label": "Championnat actuel",
+      "pool": "CHAMPIONNATS"
+    }
+  ],
+  "colonnesGroupes": [
+    {
+      "label": "Sélection nationale",
+      "pool": "SELECTIONS"
+    },
+    {
+      "label": "Poste",
+      "pool": "POSTES"
+    },
+    {
+      "label": "Pays de naissance",
+      "pool": "NAISSANCES"
+    },
+    {
+      "label": "Lettre du nom",
+      "pool": "LETTRES"
+    },
+    {
+      "label": "Statistique",
+      "pool": "STATS"
+    },
+    {
+      "label": "Club actuel",
+      "pool": "CLUBS"
+    },
+    {
+      "label": "Championnat actuel",
+      "pool": "CHAMPIONNATS"
+    }
+  ],
+  "rulesSource": {
+    "Ex-": "(joueur, contrainte) => Array.isArray(joueur.clubs_historique) && joueur.clubs_historique.includes(contrainte.slice(3))",
+    "Né en ": "(joueur, contrainte) => joueur.birth_country === contrainte.slice(6)",
+    "Lettre ": "(joueur, contrainte) => _nameLetters(joueur.name).includes(contrainte.slice(7))",
+    "50+ sélections": "(joueur) => (joueur.caps || 0) >= 50",
+    "100+ sélections": "(joueur) => (joueur.caps || 0) >= 100",
+    "10+ buts sélection": "(joueur) => (joueur.goals_selection || 0) >= 10",
+    "30+ buts sélection": "(joueur) => (joueur.goals_selection || 0) >= 30",
+    "Moins de 23 ans": "(joueur) => joueur.age !== null && joueur.age < 23",
+    "30 ans ou plus": "(joueur) => joueur.age !== null && joueur.age >= 30"
+  },
+  "fieldMapping": {
+    "club_current": "Club actuel",
+    "league_current": "Championnat actuel",
+    "nationality_selection": "Sélection nationale",
+    "position": "Poste",
+    "birth_country": "Pays de naissance"
+  },
+  "diversityRulesSource": {
+    "typeLigne": "(ligne, config) => { if (ligne.startsWith('Ex-')) return 'ex'; if (config.pools.CHAMPIONNATS.some(p => p.value === ligne)) return 'ligue'; return 'club'; }",
+    "typeColonne": "(colonne, config) => { if (colonne.startsWith('Né en ')) return 'naissance'; if (config.pools.POSTES.some(p => p.value === colonne)) return 'poste'; return 'selection'; }"
+  }
+}
