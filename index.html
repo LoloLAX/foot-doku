@@ -122,10 +122,19 @@
       line-height: 1.3;
     }
     .grid-table td.cell:hover:not(.locked) { border-color: #6366f1; background: #eef2ff; }
-    .grid-table td.cell.empty  { background: white; color: var(--gray); font-size: 22px; }
+    .grid-table td.cell.empty  { background: white; color: var(--gray); font-size: 22px; position: relative; }
     .grid-table td.cell.correct { background: var(--green-bg); border-color: var(--green); color: var(--green); cursor: default; }
     .grid-table td.cell.wrong-attempt { background: #fff7ed; border-color: #f97316; color: #9a3412; }
     .grid-table td.cell.locked { cursor: default; }
+    .cell-sol-count {
+      position: absolute;
+      bottom: 4px;
+      right: 6px;
+      font-size: 10px;
+      font-weight: 600;
+      color: var(--gray);
+      line-height: 1;
+    }
 
     /* ── Modal ───────────────────────────────────────────── */
     #modal-overlay {
@@ -712,10 +721,10 @@ function buildGrid() {
     for (let c = 0; c < 3; c++) {
       const td = document.createElement('td');
       td.className = 'cell empty';
-      td.textContent = '+';
       td.dataset.r = r;
       td.dataset.c = c;
       td.addEventListener('click', onCellClick);
+      setEmptyCellContent(td, r, c);
       tr.appendChild(td);
     }
 
@@ -737,8 +746,17 @@ function refreshCell(r, c) {
     td.textContent = '✗';
   } else {
     td.classList.add('empty');
-    td.textContent = '+';
+    setEmptyCellContent(td, r, c);
   }
+}
+
+// Affiche le "+" et, en petit, le nombre de joueurs possibles pour cette case
+function setEmptyCellContent(td, r, c) {
+  td.textContent = '+';
+  const badge = document.createElement('span');
+  badge.className = 'cell-sol-count';
+  badge.textContent = getSolutions(grille.lignes[r], grille.colonnes[c]).length;
+  td.appendChild(badge);
 }
 
 // ── Cell click ───────────────────────────────────────────────────────────────
