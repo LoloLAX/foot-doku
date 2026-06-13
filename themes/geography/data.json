@@ -12,7 +12,17 @@
     "government": "Autocratie",
     "type": "Indépendant",
     "coastline": "Enclavé",
-    "borders_count": "3-6"
+    "borders_count": "3-6",
+    "name_first_letter": "a",
+    "name_last_letter": "n",
+    "name_is_compound": false,
+    "name_vowels": [
+      "a",
+      "i"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 11,
+    "name_composition": "Nom simple"
   },
   {
     "name": "Albania",
@@ -27,7 +37,18 @@
     "government": "République",
     "type": "NATO",
     "coastline": "Côtier",
-    "borders_count": "3-6"
+    "borders_count": "3-6",
+    "name_first_letter": "a",
+    "name_last_letter": "e",
+    "name_is_compound": false,
+    "name_vowels": [
+      "a",
+      "e",
+      "i"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 7,
+    "name_composition": "Nom simple"
   },
   {
     "name": "Algeria",
@@ -42,7 +63,18 @@
     "government": "République",
     "type": "Arab League",
     "coastline": "Côtier",
-    "borders_count": "7+"
+    "borders_count": "7+",
+    "name_first_letter": "a",
+    "name_last_letter": "e",
+    "name_is_compound": false,
+    "name_vowels": [
+      "a",
+      "e",
+      "i"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 7,
+    "name_composition": "Nom simple"
   },
   {
     "name": "Andorra",
@@ -57,7 +89,18 @@
     "government": "Monarchie",
     "type": "Indépendant",
     "coastline": "Enclavé",
-    "borders_count": "0-2"
+    "borders_count": "0-2",
+    "name_first_letter": "a",
+    "name_last_letter": "e",
+    "name_is_compound": false,
+    "name_vowels": [
+      "a",
+      "e",
+      "o"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 7,
+    "name_composition": "Nom simple"
   },
   {
     "name": "Angola",
@@ -72,7 +115,17 @@
     "government": "République",
     "type": "Indépendant",
     "coastline": "Côtier",
-    "borders_count": "3-6"
+    "borders_count": "3-6",
+    "name_first_letter": "a",
+    "name_last_letter": "a",
+    "name_is_compound": false,
+    "name_vowels": [
+      "a",
+      "o"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 6,
+    "name_composition": "Nom simple"
   },
   {
     "name": "Antigua and Barbuda",
@@ -87,7 +140,19 @@
     "government": "Monarchie",
     "type": "Commonwealth",
     "coastline": "Côtier",
-    "borders_count": "0-2"
+    "borders_count": "0-2",
+    "name_first_letter": "a",
+    "name_last_letter": "a",
+    "name_is_compound": true,
+    "name_vowels": [
+      "a",
+      "e",
+      "i",
+      "u"
+    ],
+    "name_contains_hyphen": true,
+    "name_length": 16,
+    "name_composition": "Nom composé"
   },
   {
     "name": "Argentina",
@@ -102,7 +167,18 @@
     "government": "République",
     "type": "MERCOSUR",
     "coastline": "Côtier",
-    "borders_count": "3-6"
+    "borders_count": "3-6",
+    "name_first_letter": "a",
+    "name_last_letter": "e",
+    "name_is_compound": false,
+    "name_vowels": [
+      "a",
+      "e",
+      "i"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 9,
+    "name_composition": "Nom simple"
   },
   {
     "name": "Armenia",
@@ -117,7 +193,18 @@
     "government": "République",
     "type": "Indépendant",
     "coastline": "Enclavé",
-    "borders_count": "3-6"
+    "borders_count": "3-6",
+    "name_first_letter": "a",
+    "name_last_letter": "e",
+    "name_is_compound": false,
+    "name_vowels": [
+      "a",
+      "e",
+      "i"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 7,
+    "name_composition": "Nom simple"
   },
   {
     "name": "Australia",
@@ -132,7 +219,19 @@
     "government": "Monarchie",
     "type": "Commonwealth",
     "coastline": "Côtier",
-    "borders_count": "0-2"
+    "borders_count": "0-2",
+    "name_first_letter": "a",
+    "name_last_letter": "e",
+    "name_is_compound": false,
+    "name_vowels": [
+      "a",
+      "e",
+      "i",
+      "u"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 9,
+    "name_composition": "Nom simple"
   },
   {
     "name": "Austria",
@@ -147,7 +246,19 @@
     "government": "République",
     "type": "Union Européenne",
     "coastline": "Enclavé",
-    "borders_count": "7+"
+    "borders_count": "7+",
+    "name_first_letter": "a",
+    "name_last_letter": "e",
+    "name_is_compound": false,
+    "name_vowels": [
+      "a",
+      "e",
+      "i",
+      "u"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 8,
+    "name_composition": "Nom simple"
   },
   {
     "name": "Azerbaijan",
@@ -162,7 +273,18 @@
     "government": "Autocratie",
     "type": "Indépendant",
     "coastline": "Enclavé",
-    "borders_count": "3-6"
+    "borders_count": "3-6",
+    "name_first_letter": "a",
+    "name_last_letter": "n",
+    "name_is_compound": false,
+    "name_vowels": [
+      "a",
+      "e",
+      "i"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 11,
+    "name_composition": "Nom simple"
   },
   {
     "name": "Bahamas",
@@ -177,7 +299,16 @@
     "government": "Monarchie",
     "type": "Commonwealth",
     "coastline": "Côtier",
-    "borders_count": "0-2"
+    "borders_count": "0-2",
+    "name_first_letter": "b",
+    "name_last_letter": "s",
+    "name_is_compound": false,
+    "name_vowels": [
+      "a"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 7,
+    "name_composition": "Nom simple"
   },
   {
     "name": "Bahrain",
@@ -192,7 +323,18 @@
     "government": "Monarchie",
     "type": "Arab League",
     "coastline": "Côtier",
-    "borders_count": "0-2"
+    "borders_count": "0-2",
+    "name_first_letter": "b",
+    "name_last_letter": "n",
+    "name_is_compound": false,
+    "name_vowels": [
+      "a",
+      "e",
+      "i"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 7,
+    "name_composition": "Nom simple"
   },
   {
     "name": "Bangladesh",
@@ -207,7 +349,17 @@
     "government": "République",
     "type": "Commonwealth",
     "coastline": "Côtier",
-    "borders_count": "0-2"
+    "borders_count": "0-2",
+    "name_first_letter": "b",
+    "name_last_letter": "h",
+    "name_is_compound": false,
+    "name_vowels": [
+      "a",
+      "e"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 10,
+    "name_composition": "Nom simple"
   },
   {
     "name": "Barbados",
@@ -222,7 +374,17 @@
     "government": "République",
     "type": "Commonwealth",
     "coastline": "Côtier",
-    "borders_count": "0-2"
+    "borders_count": "0-2",
+    "name_first_letter": "b",
+    "name_last_letter": "e",
+    "name_is_compound": false,
+    "name_vowels": [
+      "a",
+      "e"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 7,
+    "name_composition": "Nom simple"
   },
   {
     "name": "Belarus",
@@ -237,7 +399,19 @@
     "government": "Autocratie",
     "type": "Indépendant",
     "coastline": "Enclavé",
-    "borders_count": "3-6"
+    "borders_count": "3-6",
+    "name_first_letter": "b",
+    "name_last_letter": "e",
+    "name_is_compound": false,
+    "name_vowels": [
+      "e",
+      "i",
+      "o",
+      "u"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 11,
+    "name_composition": "Nom simple"
   },
   {
     "name": "Belgium",
@@ -252,7 +426,18 @@
     "government": "Monarchie",
     "type": "Union Européenne",
     "coastline": "Côtier",
-    "borders_count": "3-6"
+    "borders_count": "3-6",
+    "name_first_letter": "b",
+    "name_last_letter": "e",
+    "name_is_compound": false,
+    "name_vowels": [
+      "e",
+      "i",
+      "u"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 8,
+    "name_composition": "Nom simple"
   },
   {
     "name": "Belize",
@@ -267,7 +452,17 @@
     "government": "Monarchie",
     "type": "Commonwealth",
     "coastline": "Côtier",
-    "borders_count": "0-2"
+    "borders_count": "0-2",
+    "name_first_letter": "b",
+    "name_last_letter": "e",
+    "name_is_compound": false,
+    "name_vowels": [
+      "e",
+      "i"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 6,
+    "name_composition": "Nom simple"
   },
   {
     "name": "Benin",
@@ -282,7 +477,17 @@
     "government": "République",
     "type": "Indépendant",
     "coastline": "Côtier",
-    "borders_count": "3-6"
+    "borders_count": "3-6",
+    "name_first_letter": "b",
+    "name_last_letter": "n",
+    "name_is_compound": false,
+    "name_vowels": [
+      "e",
+      "i"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 5,
+    "name_composition": "Nom simple"
   },
   {
     "name": "Bhutan",
@@ -297,7 +502,18 @@
     "government": "Monarchie",
     "type": "Indépendant",
     "coastline": "Enclavé",
-    "borders_count": "0-2"
+    "borders_count": "0-2",
+    "name_first_letter": "b",
+    "name_last_letter": "n",
+    "name_is_compound": false,
+    "name_vowels": [
+      "a",
+      "o",
+      "u"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 7,
+    "name_composition": "Nom simple"
   },
   {
     "name": "Bolivia",
@@ -312,7 +528,18 @@
     "government": "République",
     "type": "Indépendant",
     "coastline": "Enclavé",
-    "borders_count": "3-6"
+    "borders_count": "3-6",
+    "name_first_letter": "b",
+    "name_last_letter": "e",
+    "name_is_compound": false,
+    "name_vowels": [
+      "e",
+      "i",
+      "o"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 7,
+    "name_composition": "Nom simple"
   },
   {
     "name": "Bosnia and Herzegovina",
@@ -327,7 +554,18 @@
     "government": "République",
     "type": "Indépendant",
     "coastline": "Côtier",
-    "borders_count": "3-6"
+    "borders_count": "3-6",
+    "name_first_letter": "b",
+    "name_last_letter": "e",
+    "name_is_compound": true,
+    "name_vowels": [
+      "e",
+      "i",
+      "o"
+    ],
+    "name_contains_hyphen": true,
+    "name_length": 17,
+    "name_composition": "Nom composé"
   },
   {
     "name": "Botswana",
@@ -342,7 +580,17 @@
     "government": "République",
     "type": "Commonwealth",
     "coastline": "Enclavé",
-    "borders_count": "3-6"
+    "borders_count": "3-6",
+    "name_first_letter": "b",
+    "name_last_letter": "a",
+    "name_is_compound": false,
+    "name_vowels": [
+      "a",
+      "o"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 8,
+    "name_composition": "Nom simple"
   },
   {
     "name": "Brazil",
@@ -357,7 +605,17 @@
     "government": "République",
     "type": "BRICS",
     "coastline": "Côtier",
-    "borders_count": "7+"
+    "borders_count": "7+",
+    "name_first_letter": "b",
+    "name_last_letter": "l",
+    "name_is_compound": false,
+    "name_vowels": [
+      "e",
+      "i"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 6,
+    "name_composition": "Nom simple"
   },
   {
     "name": "Brunei",
@@ -372,7 +630,18 @@
     "government": "Monarchie",
     "type": "Commonwealth",
     "coastline": "Côtier",
-    "borders_count": "0-2"
+    "borders_count": "0-2",
+    "name_first_letter": "b",
+    "name_last_letter": "i",
+    "name_is_compound": false,
+    "name_vowels": [
+      "e",
+      "i",
+      "u"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 6,
+    "name_composition": "Nom simple"
   },
   {
     "name": "Bulgaria",
@@ -387,7 +656,19 @@
     "government": "République",
     "type": "Union Européenne",
     "coastline": "Côtier",
-    "borders_count": "3-6"
+    "borders_count": "3-6",
+    "name_first_letter": "b",
+    "name_last_letter": "e",
+    "name_is_compound": false,
+    "name_vowels": [
+      "a",
+      "e",
+      "i",
+      "u"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 8,
+    "name_composition": "Nom simple"
   },
   {
     "name": "Burkina Faso",
@@ -402,7 +683,19 @@
     "government": "République",
     "type": "Indépendant",
     "coastline": "Enclavé",
-    "borders_count": "3-6"
+    "borders_count": "3-6",
+    "name_first_letter": "b",
+    "name_last_letter": "o",
+    "name_is_compound": false,
+    "name_vowels": [
+      "a",
+      "i",
+      "o",
+      "u"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 11,
+    "name_composition": "Nom simple"
   },
   {
     "name": "Burundi",
@@ -417,7 +710,17 @@
     "government": "République",
     "type": "Indépendant",
     "coastline": "Enclavé",
-    "borders_count": "3-6"
+    "borders_count": "3-6",
+    "name_first_letter": "b",
+    "name_last_letter": "i",
+    "name_is_compound": false,
+    "name_vowels": [
+      "i",
+      "u"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 7,
+    "name_composition": "Nom simple"
   },
   {
     "name": "Cambodia",
@@ -432,7 +735,18 @@
     "government": "Monarchie",
     "type": "ASEAN",
     "coastline": "Côtier",
-    "borders_count": "3-6"
+    "borders_count": "3-6",
+    "name_first_letter": "c",
+    "name_last_letter": "e",
+    "name_is_compound": false,
+    "name_vowels": [
+      "a",
+      "e",
+      "o"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 8,
+    "name_composition": "Nom simple"
   },
   {
     "name": "Cameroon",
@@ -447,7 +761,19 @@
     "government": "Autocratie",
     "type": "Commonwealth",
     "coastline": "Côtier",
-    "borders_count": "3-6"
+    "borders_count": "3-6",
+    "name_first_letter": "c",
+    "name_last_letter": "n",
+    "name_is_compound": false,
+    "name_vowels": [
+      "a",
+      "e",
+      "o",
+      "u"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 8,
+    "name_composition": "Nom simple"
   },
   {
     "name": "Canada",
@@ -462,7 +788,16 @@
     "government": "Monarchie",
     "type": "Commonwealth",
     "coastline": "Côtier",
-    "borders_count": "0-2"
+    "borders_count": "0-2",
+    "name_first_letter": "c",
+    "name_last_letter": "a",
+    "name_is_compound": false,
+    "name_vowels": [
+      "a"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 6,
+    "name_composition": "Nom simple"
   },
   {
     "name": "Cape Verde",
@@ -477,7 +812,19 @@
     "government": "République",
     "type": "Indépendant",
     "coastline": "Côtier",
-    "borders_count": "0-2"
+    "borders_count": "0-2",
+    "name_first_letter": "i",
+    "name_last_letter": "t",
+    "name_is_compound": true,
+    "name_vowels": [
+      "a",
+      "e",
+      "i",
+      "u"
+    ],
+    "name_contains_hyphen": true,
+    "name_length": 13,
+    "name_composition": "Nom composé"
   },
   {
     "name": "Central African Republic",
@@ -492,7 +839,19 @@
     "government": "République",
     "type": "Indépendant",
     "coastline": "Enclavé",
-    "borders_count": "3-6"
+    "borders_count": "3-6",
+    "name_first_letter": "r",
+    "name_last_letter": "e",
+    "name_is_compound": false,
+    "name_vowels": [
+      "a",
+      "e",
+      "i",
+      "u"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 24,
+    "name_composition": "Nom simple"
   },
   {
     "name": "Chad",
@@ -507,7 +866,16 @@
     "government": "Autocratie",
     "type": "Indépendant",
     "coastline": "Enclavé",
-    "borders_count": "3-6"
+    "borders_count": "3-6",
+    "name_first_letter": "t",
+    "name_last_letter": "d",
+    "name_is_compound": false,
+    "name_vowels": [
+      "a"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 5,
+    "name_composition": "Nom simple"
   },
   {
     "name": "Chile",
@@ -522,7 +890,16 @@
     "government": "République",
     "type": "Indépendant",
     "coastline": "Côtier",
-    "borders_count": "3-6"
+    "borders_count": "3-6",
+    "name_first_letter": "c",
+    "name_last_letter": "i",
+    "name_is_compound": false,
+    "name_vowels": [
+      "i"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 5,
+    "name_composition": "Nom simple"
   },
   {
     "name": "China",
@@ -537,7 +914,17 @@
     "government": "Autocratie",
     "type": "BRICS",
     "coastline": "Côtier",
-    "borders_count": "7+"
+    "borders_count": "7+",
+    "name_first_letter": "c",
+    "name_last_letter": "e",
+    "name_is_compound": false,
+    "name_vowels": [
+      "e",
+      "i"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 5,
+    "name_composition": "Nom simple"
   },
   {
     "name": "Colombia",
@@ -552,7 +939,18 @@
     "government": "République",
     "type": "Indépendant",
     "coastline": "Côtier",
-    "borders_count": "3-6"
+    "borders_count": "3-6",
+    "name_first_letter": "c",
+    "name_last_letter": "e",
+    "name_is_compound": false,
+    "name_vowels": [
+      "e",
+      "i",
+      "o"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 8,
+    "name_composition": "Nom simple"
   },
   {
     "name": "Comoros",
@@ -567,7 +965,17 @@
     "government": "République",
     "type": "Arab League",
     "coastline": "Côtier",
-    "borders_count": "0-2"
+    "borders_count": "0-2",
+    "name_first_letter": "c",
+    "name_last_letter": "s",
+    "name_is_compound": false,
+    "name_vowels": [
+      "e",
+      "o"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 7,
+    "name_composition": "Nom simple"
   },
   {
     "name": "Congo",
@@ -582,7 +990,16 @@
     "government": "République",
     "type": "Indépendant",
     "coastline": "Côtier",
-    "borders_count": "3-6"
+    "borders_count": "3-6",
+    "name_first_letter": "c",
+    "name_last_letter": "o",
+    "name_is_compound": false,
+    "name_vowels": [
+      "o"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 5,
+    "name_composition": "Nom simple"
   },
   {
     "name": "Costa Rica",
@@ -597,7 +1014,18 @@
     "government": "République",
     "type": "Indépendant",
     "coastline": "Côtier",
-    "borders_count": "0-2"
+    "borders_count": "0-2",
+    "name_first_letter": "c",
+    "name_last_letter": "a",
+    "name_is_compound": false,
+    "name_vowels": [
+      "a",
+      "i",
+      "o"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 9,
+    "name_composition": "Nom simple"
   },
   {
     "name": "Croatia",
@@ -612,7 +1040,19 @@
     "government": "République",
     "type": "Union Européenne",
     "coastline": "Côtier",
-    "borders_count": "3-6"
+    "borders_count": "3-6",
+    "name_first_letter": "c",
+    "name_last_letter": "e",
+    "name_is_compound": false,
+    "name_vowels": [
+      "a",
+      "e",
+      "i",
+      "o"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 7,
+    "name_composition": "Nom simple"
   },
   {
     "name": "Cuba",
@@ -627,7 +1067,17 @@
     "government": "Autocratie",
     "type": "Indépendant",
     "coastline": "Côtier",
-    "borders_count": "0-2"
+    "borders_count": "0-2",
+    "name_first_letter": "c",
+    "name_last_letter": "a",
+    "name_is_compound": false,
+    "name_vowels": [
+      "a",
+      "u"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 4,
+    "name_composition": "Nom simple"
   },
   {
     "name": "Cyprus",
@@ -642,7 +1092,16 @@
     "government": "République",
     "type": "Commonwealth",
     "coastline": "Côtier",
-    "borders_count": "0-2"
+    "borders_count": "0-2",
+    "name_first_letter": "c",
+    "name_last_letter": "e",
+    "name_is_compound": false,
+    "name_vowels": [
+      "e"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 6,
+    "name_composition": "Nom simple"
   },
   {
     "name": "Czechia",
@@ -657,11 +1116,22 @@
     "government": "République",
     "type": "Indépendant",
     "coastline": "Enclavé",
-    "borders_count": "3-6"
+    "borders_count": "3-6",
+    "name_first_letter": "t",
+    "name_last_letter": "e",
+    "name_is_compound": false,
+    "name_vowels": [
+      "e",
+      "i",
+      "u"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 8,
+    "name_composition": "Nom simple"
   },
   {
     "name": "DR Congo",
-    "name_fr": "Congo (Rép. dém.)",
+    "name_fr": "République démocratique du Congo",
     "continent": "Africa",
     "subregion": "Sub-Saharan Africa",
     "capital": "Kinshasa",
@@ -672,7 +1142,20 @@
     "government": "République",
     "type": "Indépendant",
     "coastline": "Côtier",
-    "borders_count": "7+"
+    "borders_count": "7+",
+    "name_first_letter": "r",
+    "name_last_letter": "o",
+    "name_is_compound": true,
+    "name_vowels": [
+      "a",
+      "e",
+      "i",
+      "o",
+      "u"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 29,
+    "name_composition": "Nom composé"
   },
   {
     "name": "Denmark",
@@ -687,7 +1170,17 @@
     "government": "Monarchie",
     "type": "Union Européenne",
     "coastline": "Côtier",
-    "borders_count": "0-2"
+    "borders_count": "0-2",
+    "name_first_letter": "d",
+    "name_last_letter": "k",
+    "name_is_compound": false,
+    "name_vowels": [
+      "a",
+      "e"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 8,
+    "name_composition": "Nom simple"
   },
   {
     "name": "Djibouti",
@@ -702,7 +1195,18 @@
     "government": "République",
     "type": "Arab League",
     "coastline": "Côtier",
-    "borders_count": "3-6"
+    "borders_count": "3-6",
+    "name_first_letter": "d",
+    "name_last_letter": "i",
+    "name_is_compound": false,
+    "name_vowels": [
+      "i",
+      "o",
+      "u"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 8,
+    "name_composition": "Nom simple"
   },
   {
     "name": "Dominica",
@@ -717,7 +1221,19 @@
     "government": "République",
     "type": "Commonwealth",
     "coastline": "Côtier",
-    "borders_count": "0-2"
+    "borders_count": "0-2",
+    "name_first_letter": "d",
+    "name_last_letter": "e",
+    "name_is_compound": false,
+    "name_vowels": [
+      "e",
+      "i",
+      "o",
+      "u"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 9,
+    "name_composition": "Nom simple"
   },
   {
     "name": "Dominican Republic",
@@ -732,7 +1248,20 @@
     "government": "République",
     "type": "Indépendant",
     "coastline": "Côtier",
-    "borders_count": "0-2"
+    "borders_count": "0-2",
+    "name_first_letter": "r",
+    "name_last_letter": "e",
+    "name_is_compound": false,
+    "name_vowels": [
+      "a",
+      "e",
+      "i",
+      "o",
+      "u"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 21,
+    "name_composition": "Nom simple"
   },
   {
     "name": "Ecuador",
@@ -747,7 +1276,18 @@
     "government": "République",
     "type": "Indépendant",
     "coastline": "Côtier",
-    "borders_count": "0-2"
+    "borders_count": "0-2",
+    "name_first_letter": "e",
+    "name_last_letter": "r",
+    "name_is_compound": false,
+    "name_vowels": [
+      "a",
+      "e",
+      "u"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 8,
+    "name_composition": "Nom simple"
   },
   {
     "name": "Egypt",
@@ -762,7 +1302,16 @@
     "government": "Autocratie",
     "type": "Arab League",
     "coastline": "Côtier",
-    "borders_count": "3-6"
+    "borders_count": "3-6",
+    "name_first_letter": "e",
+    "name_last_letter": "e",
+    "name_is_compound": false,
+    "name_vowels": [
+      "e"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 6,
+    "name_composition": "Nom simple"
   },
   {
     "name": "El Salvador",
@@ -777,7 +1326,17 @@
     "government": "République",
     "type": "Indépendant",
     "coastline": "Côtier",
-    "borders_count": "0-2"
+    "borders_count": "0-2",
+    "name_first_letter": "s",
+    "name_last_letter": "r",
+    "name_is_compound": false,
+    "name_vowels": [
+      "a",
+      "o"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 8,
+    "name_composition": "Nom simple"
   },
   {
     "name": "Equatorial Guinea",
@@ -792,7 +1351,20 @@
     "government": "Dictature",
     "type": "Indépendant",
     "coastline": "Côtier",
-    "borders_count": "0-2"
+    "borders_count": "0-2",
+    "name_first_letter": "g",
+    "name_last_letter": "e",
+    "name_is_compound": false,
+    "name_vowels": [
+      "a",
+      "e",
+      "i",
+      "o",
+      "u"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 17,
+    "name_composition": "Nom simple"
   },
   {
     "name": "Eritrea",
@@ -807,7 +1379,16 @@
     "government": "Dictature",
     "type": "Indépendant",
     "coastline": "Côtier",
-    "borders_count": "3-6"
+    "borders_count": "3-6",
+    "name_first_letter": "e",
+    "name_last_letter": "e",
+    "name_is_compound": false,
+    "name_vowels": [
+      "e"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 8,
+    "name_composition": "Nom simple"
   },
   {
     "name": "Estonia",
@@ -822,7 +1403,18 @@
     "government": "République",
     "type": "Union Européenne",
     "coastline": "Côtier",
-    "borders_count": "0-2"
+    "borders_count": "0-2",
+    "name_first_letter": "e",
+    "name_last_letter": "e",
+    "name_is_compound": false,
+    "name_vowels": [
+      "e",
+      "i",
+      "o"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 7,
+    "name_composition": "Nom simple"
   },
   {
     "name": "Eswatini",
@@ -837,7 +1429,18 @@
     "government": "Monarchie",
     "type": "Commonwealth",
     "coastline": "Enclavé",
-    "borders_count": "0-2"
+    "borders_count": "0-2",
+    "name_first_letter": "e",
+    "name_last_letter": "i",
+    "name_is_compound": false,
+    "name_vowels": [
+      "a",
+      "e",
+      "i"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 8,
+    "name_composition": "Nom simple"
   },
   {
     "name": "Ethiopia",
@@ -852,7 +1455,18 @@
     "government": "République",
     "type": "Indépendant",
     "coastline": "Enclavé",
-    "borders_count": "3-6"
+    "borders_count": "3-6",
+    "name_first_letter": "e",
+    "name_last_letter": "e",
+    "name_is_compound": false,
+    "name_vowels": [
+      "e",
+      "i",
+      "o"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 8,
+    "name_composition": "Nom simple"
   },
   {
     "name": "Fiji",
@@ -867,7 +1481,16 @@
     "government": "République",
     "type": "Commonwealth",
     "coastline": "Côtier",
-    "borders_count": "0-2"
+    "borders_count": "0-2",
+    "name_first_letter": "f",
+    "name_last_letter": "i",
+    "name_is_compound": false,
+    "name_vowels": [
+      "i"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 5,
+    "name_composition": "Nom simple"
   },
   {
     "name": "Finland",
@@ -882,7 +1505,18 @@
     "government": "République",
     "type": "Union Européenne",
     "coastline": "Côtier",
-    "borders_count": "3-6"
+    "borders_count": "3-6",
+    "name_first_letter": "f",
+    "name_last_letter": "e",
+    "name_is_compound": false,
+    "name_vowels": [
+      "a",
+      "e",
+      "i"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 8,
+    "name_composition": "Nom simple"
   },
   {
     "name": "France",
@@ -897,7 +1531,17 @@
     "government": "République",
     "type": "Union Européenne",
     "coastline": "Côtier",
-    "borders_count": "7+"
+    "borders_count": "7+",
+    "name_first_letter": "f",
+    "name_last_letter": "e",
+    "name_is_compound": false,
+    "name_vowels": [
+      "a",
+      "e"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 6,
+    "name_composition": "Nom simple"
   },
   {
     "name": "Gabon",
@@ -912,7 +1556,17 @@
     "government": "République",
     "type": "Commonwealth",
     "coastline": "Côtier",
-    "borders_count": "3-6"
+    "borders_count": "3-6",
+    "name_first_letter": "g",
+    "name_last_letter": "n",
+    "name_is_compound": false,
+    "name_vowels": [
+      "a",
+      "o"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 5,
+    "name_composition": "Nom simple"
   },
   {
     "name": "Gambia",
@@ -927,7 +1581,18 @@
     "government": "République",
     "type": "Commonwealth",
     "coastline": "Côtier",
-    "borders_count": "0-2"
+    "borders_count": "0-2",
+    "name_first_letter": "g",
+    "name_last_letter": "e",
+    "name_is_compound": false,
+    "name_vowels": [
+      "a",
+      "e",
+      "i"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 6,
+    "name_composition": "Nom simple"
   },
   {
     "name": "Georgia",
@@ -942,7 +1607,18 @@
     "government": "République",
     "type": "Indépendant",
     "coastline": "Côtier",
-    "borders_count": "3-6"
+    "borders_count": "3-6",
+    "name_first_letter": "g",
+    "name_last_letter": "e",
+    "name_is_compound": false,
+    "name_vowels": [
+      "e",
+      "i",
+      "o"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 7,
+    "name_composition": "Nom simple"
   },
   {
     "name": "Germany",
@@ -957,7 +1633,17 @@
     "government": "République",
     "type": "Union Européenne",
     "coastline": "Côtier",
-    "borders_count": "7+"
+    "borders_count": "7+",
+    "name_first_letter": "a",
+    "name_last_letter": "e",
+    "name_is_compound": false,
+    "name_vowels": [
+      "a",
+      "e"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 9,
+    "name_composition": "Nom simple"
   },
   {
     "name": "Ghana",
@@ -972,7 +1658,16 @@
     "government": "République",
     "type": "Commonwealth",
     "coastline": "Côtier",
-    "borders_count": "3-6"
+    "borders_count": "3-6",
+    "name_first_letter": "g",
+    "name_last_letter": "a",
+    "name_is_compound": false,
+    "name_vowels": [
+      "a"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 5,
+    "name_composition": "Nom simple"
   },
   {
     "name": "Greece",
@@ -987,7 +1682,16 @@
     "government": "République",
     "type": "Union Européenne",
     "coastline": "Côtier",
-    "borders_count": "3-6"
+    "borders_count": "3-6",
+    "name_first_letter": "g",
+    "name_last_letter": "e",
+    "name_is_compound": false,
+    "name_vowels": [
+      "e"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 5,
+    "name_composition": "Nom simple"
   },
   {
     "name": "Grenada",
@@ -1002,7 +1706,17 @@
     "government": "Monarchie",
     "type": "Commonwealth",
     "coastline": "Côtier",
-    "borders_count": "0-2"
+    "borders_count": "0-2",
+    "name_first_letter": "g",
+    "name_last_letter": "e",
+    "name_is_compound": false,
+    "name_vowels": [
+      "a",
+      "e"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 7,
+    "name_composition": "Nom simple"
   },
   {
     "name": "Guatemala",
@@ -1017,7 +1731,18 @@
     "government": "République",
     "type": "Indépendant",
     "coastline": "Côtier",
-    "borders_count": "3-6"
+    "borders_count": "3-6",
+    "name_first_letter": "g",
+    "name_last_letter": "a",
+    "name_is_compound": false,
+    "name_vowels": [
+      "a",
+      "e",
+      "u"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 9,
+    "name_composition": "Nom simple"
   },
   {
     "name": "Guinea",
@@ -1032,7 +1757,18 @@
     "government": "République",
     "type": "Indépendant",
     "coastline": "Côtier",
-    "borders_count": "3-6"
+    "borders_count": "3-6",
+    "name_first_letter": "g",
+    "name_last_letter": "e",
+    "name_is_compound": false,
+    "name_vowels": [
+      "e",
+      "i",
+      "u"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 6,
+    "name_composition": "Nom simple"
   },
   {
     "name": "Guinea-Bissau",
@@ -1047,7 +1783,19 @@
     "government": "République",
     "type": "Indépendant",
     "coastline": "Côtier",
-    "borders_count": "0-2"
+    "borders_count": "0-2",
+    "name_first_letter": "g",
+    "name_last_letter": "u",
+    "name_is_compound": true,
+    "name_vowels": [
+      "a",
+      "e",
+      "i",
+      "u"
+    ],
+    "name_contains_hyphen": true,
+    "name_length": 12,
+    "name_composition": "Nom composé"
   },
   {
     "name": "Guyana",
@@ -1062,7 +1810,17 @@
     "government": "République",
     "type": "Commonwealth",
     "coastline": "Côtier",
-    "borders_count": "3-6"
+    "borders_count": "3-6",
+    "name_first_letter": "g",
+    "name_last_letter": "a",
+    "name_is_compound": false,
+    "name_vowels": [
+      "a",
+      "u"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 6,
+    "name_composition": "Nom simple"
   },
   {
     "name": "Haiti",
@@ -1077,7 +1835,17 @@
     "government": "République",
     "type": "Indépendant",
     "coastline": "Côtier",
-    "borders_count": "0-2"
+    "borders_count": "0-2",
+    "name_first_letter": "h",
+    "name_last_letter": "i",
+    "name_is_compound": false,
+    "name_vowels": [
+      "a",
+      "i"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 5,
+    "name_composition": "Nom simple"
   },
   {
     "name": "Honduras",
@@ -1092,7 +1860,18 @@
     "government": "République",
     "type": "Indépendant",
     "coastline": "Côtier",
-    "borders_count": "3-6"
+    "borders_count": "3-6",
+    "name_first_letter": "h",
+    "name_last_letter": "s",
+    "name_is_compound": false,
+    "name_vowels": [
+      "a",
+      "o",
+      "u"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 8,
+    "name_composition": "Nom simple"
   },
   {
     "name": "Hungary",
@@ -1107,7 +1886,18 @@
     "government": "République",
     "type": "Union Européenne",
     "coastline": "Enclavé",
-    "borders_count": "7+"
+    "borders_count": "7+",
+    "name_first_letter": "h",
+    "name_last_letter": "e",
+    "name_is_compound": false,
+    "name_vowels": [
+      "e",
+      "i",
+      "o"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 7,
+    "name_composition": "Nom simple"
   },
   {
     "name": "Iceland",
@@ -1122,7 +1912,18 @@
     "government": "République",
     "type": "NATO",
     "coastline": "Côtier",
-    "borders_count": "0-2"
+    "borders_count": "0-2",
+    "name_first_letter": "i",
+    "name_last_letter": "e",
+    "name_is_compound": false,
+    "name_vowels": [
+      "a",
+      "e",
+      "i"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 7,
+    "name_composition": "Nom simple"
   },
   {
     "name": "India",
@@ -1137,7 +1938,17 @@
     "government": "République",
     "type": "BRICS",
     "coastline": "Côtier",
-    "borders_count": "3-6"
+    "borders_count": "3-6",
+    "name_first_letter": "i",
+    "name_last_letter": "e",
+    "name_is_compound": false,
+    "name_vowels": [
+      "e",
+      "i"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 4,
+    "name_composition": "Nom simple"
   },
   {
     "name": "Indonesia",
@@ -1152,7 +1963,18 @@
     "government": "République",
     "type": "ASEAN",
     "coastline": "Côtier",
-    "borders_count": "3-6"
+    "borders_count": "3-6",
+    "name_first_letter": "i",
+    "name_last_letter": "e",
+    "name_is_compound": false,
+    "name_vowels": [
+      "e",
+      "i",
+      "o"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 9,
+    "name_composition": "Nom simple"
   },
   {
     "name": "Iran",
@@ -1167,7 +1989,17 @@
     "government": "Autocratie",
     "type": "Indépendant",
     "coastline": "Côtier",
-    "borders_count": "7+"
+    "borders_count": "7+",
+    "name_first_letter": "i",
+    "name_last_letter": "n",
+    "name_is_compound": false,
+    "name_vowels": [
+      "a",
+      "i"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 4,
+    "name_composition": "Nom simple"
   },
   {
     "name": "Iraq",
@@ -1182,7 +2014,17 @@
     "government": "République",
     "type": "Arab League",
     "coastline": "Côtier",
-    "borders_count": "3-6"
+    "borders_count": "3-6",
+    "name_first_letter": "i",
+    "name_last_letter": "k",
+    "name_is_compound": false,
+    "name_vowels": [
+      "a",
+      "i"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 4,
+    "name_composition": "Nom simple"
   },
   {
     "name": "Ireland",
@@ -1197,7 +2039,18 @@
     "government": "République",
     "type": "Union Européenne",
     "coastline": "Côtier",
-    "borders_count": "0-2"
+    "borders_count": "0-2",
+    "name_first_letter": "i",
+    "name_last_letter": "e",
+    "name_is_compound": false,
+    "name_vowels": [
+      "a",
+      "e",
+      "i"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 7,
+    "name_composition": "Nom simple"
   },
   {
     "name": "Israel",
@@ -1212,7 +2065,18 @@
     "government": "République",
     "type": "Indépendant",
     "coastline": "Côtier",
-    "borders_count": "3-6"
+    "borders_count": "3-6",
+    "name_first_letter": "i",
+    "name_last_letter": "l",
+    "name_is_compound": false,
+    "name_vowels": [
+      "a",
+      "e",
+      "i"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 6,
+    "name_composition": "Nom simple"
   },
   {
     "name": "Italy",
@@ -1227,7 +2091,18 @@
     "government": "République",
     "type": "Union Européenne",
     "coastline": "Côtier",
-    "borders_count": "3-6"
+    "borders_count": "3-6",
+    "name_first_letter": "i",
+    "name_last_letter": "e",
+    "name_is_compound": false,
+    "name_vowels": [
+      "a",
+      "e",
+      "i"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 6,
+    "name_composition": "Nom simple"
   },
   {
     "name": "Ivory Coast",
@@ -1242,7 +2117,18 @@
     "government": "République",
     "type": "Indépendant",
     "coastline": "Côtier",
-    "borders_count": "3-6"
+    "borders_count": "3-6",
+    "name_first_letter": "c",
+    "name_last_letter": "e",
+    "name_is_compound": true,
+    "name_vowels": [
+      "e",
+      "i",
+      "o"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 11,
+    "name_composition": "Nom composé"
   },
   {
     "name": "Jamaica",
@@ -1257,7 +2143,19 @@
     "government": "Monarchie",
     "type": "Commonwealth",
     "coastline": "Côtier",
-    "borders_count": "0-2"
+    "borders_count": "0-2",
+    "name_first_letter": "j",
+    "name_last_letter": "e",
+    "name_is_compound": false,
+    "name_vowels": [
+      "a",
+      "e",
+      "i",
+      "u"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 8,
+    "name_composition": "Nom simple"
   },
   {
     "name": "Japan",
@@ -1272,7 +2170,17 @@
     "government": "Monarchie",
     "type": "G7",
     "coastline": "Côtier",
-    "borders_count": "0-2"
+    "borders_count": "0-2",
+    "name_first_letter": "j",
+    "name_last_letter": "n",
+    "name_is_compound": false,
+    "name_vowels": [
+      "a",
+      "o"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 5,
+    "name_composition": "Nom simple"
   },
   {
     "name": "Jordan",
@@ -1287,7 +2195,19 @@
     "government": "Monarchie",
     "type": "Arab League",
     "coastline": "Côtier",
-    "borders_count": "3-6"
+    "borders_count": "3-6",
+    "name_first_letter": "j",
+    "name_last_letter": "e",
+    "name_is_compound": false,
+    "name_vowels": [
+      "a",
+      "e",
+      "i",
+      "o"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 8,
+    "name_composition": "Nom simple"
   },
   {
     "name": "Kazakhstan",
@@ -1302,7 +2222,16 @@
     "government": "République",
     "type": "Indépendant",
     "coastline": "Enclavé",
-    "borders_count": "3-6"
+    "borders_count": "3-6",
+    "name_first_letter": "k",
+    "name_last_letter": "n",
+    "name_is_compound": false,
+    "name_vowels": [
+      "a"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 10,
+    "name_composition": "Nom simple"
   },
   {
     "name": "Kenya",
@@ -1317,7 +2246,17 @@
     "government": "République",
     "type": "Commonwealth",
     "coastline": "Côtier",
-    "borders_count": "3-6"
+    "borders_count": "3-6",
+    "name_first_letter": "k",
+    "name_last_letter": "a",
+    "name_is_compound": false,
+    "name_vowels": [
+      "a",
+      "e"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 5,
+    "name_composition": "Nom simple"
   },
   {
     "name": "Kiribati",
@@ -1332,7 +2271,17 @@
     "government": "République",
     "type": "Commonwealth",
     "coastline": "Côtier",
-    "borders_count": "0-2"
+    "borders_count": "0-2",
+    "name_first_letter": "k",
+    "name_last_letter": "i",
+    "name_is_compound": false,
+    "name_vowels": [
+      "a",
+      "i"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 8,
+    "name_composition": "Nom simple"
   },
   {
     "name": "Kuwait",
@@ -1347,7 +2296,18 @@
     "government": "Monarchie",
     "type": "Arab League",
     "coastline": "Côtier",
-    "borders_count": "0-2"
+    "borders_count": "0-2",
+    "name_first_letter": "k",
+    "name_last_letter": "t",
+    "name_is_compound": false,
+    "name_vowels": [
+      "e",
+      "i",
+      "o"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 6,
+    "name_composition": "Nom simple"
   },
   {
     "name": "Kyrgyzstan",
@@ -1362,7 +2322,17 @@
     "government": "République",
     "type": "Indépendant",
     "coastline": "Enclavé",
-    "borders_count": "3-6"
+    "borders_count": "3-6",
+    "name_first_letter": "k",
+    "name_last_letter": "n",
+    "name_is_compound": false,
+    "name_vowels": [
+      "a",
+      "i"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 12,
+    "name_composition": "Nom simple"
   },
   {
     "name": "Laos",
@@ -1377,7 +2347,17 @@
     "government": "Autocratie",
     "type": "ASEAN",
     "coastline": "Enclavé",
-    "borders_count": "3-6"
+    "borders_count": "3-6",
+    "name_first_letter": "l",
+    "name_last_letter": "s",
+    "name_is_compound": false,
+    "name_vowels": [
+      "a",
+      "o"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 4,
+    "name_composition": "Nom simple"
   },
   {
     "name": "Latvia",
@@ -1392,7 +2372,18 @@
     "government": "République",
     "type": "Union Européenne",
     "coastline": "Côtier",
-    "borders_count": "3-6"
+    "borders_count": "3-6",
+    "name_first_letter": "l",
+    "name_last_letter": "e",
+    "name_is_compound": false,
+    "name_vowels": [
+      "e",
+      "i",
+      "o"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 8,
+    "name_composition": "Nom simple"
   },
   {
     "name": "Lebanon",
@@ -1407,7 +2398,17 @@
     "government": "République",
     "type": "Arab League",
     "coastline": "Côtier",
-    "borders_count": "0-2"
+    "borders_count": "0-2",
+    "name_first_letter": "l",
+    "name_last_letter": "n",
+    "name_is_compound": false,
+    "name_vowels": [
+      "a",
+      "i"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 5,
+    "name_composition": "Nom simple"
   },
   {
     "name": "Lesotho",
@@ -1422,7 +2423,17 @@
     "government": "Monarchie",
     "type": "Commonwealth",
     "coastline": "Enclavé",
-    "borders_count": "0-2"
+    "borders_count": "0-2",
+    "name_first_letter": "l",
+    "name_last_letter": "o",
+    "name_is_compound": false,
+    "name_vowels": [
+      "e",
+      "o"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 7,
+    "name_composition": "Nom simple"
   },
   {
     "name": "Liberia",
@@ -1437,7 +2448,18 @@
     "government": "République",
     "type": "Indépendant",
     "coastline": "Côtier",
-    "borders_count": "3-6"
+    "borders_count": "3-6",
+    "name_first_letter": "l",
+    "name_last_letter": "a",
+    "name_is_compound": false,
+    "name_vowels": [
+      "a",
+      "e",
+      "i"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 7,
+    "name_composition": "Nom simple"
   },
   {
     "name": "Libya",
@@ -1452,7 +2474,17 @@
     "government": "République",
     "type": "Arab League",
     "coastline": "Côtier",
-    "borders_count": "3-6"
+    "borders_count": "3-6",
+    "name_first_letter": "l",
+    "name_last_letter": "e",
+    "name_is_compound": false,
+    "name_vowels": [
+      "e",
+      "i"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 5,
+    "name_composition": "Nom simple"
   },
   {
     "name": "Liechtenstein",
@@ -1467,7 +2499,17 @@
     "government": "Monarchie",
     "type": "Indépendant",
     "coastline": "Enclavé",
-    "borders_count": "0-2"
+    "borders_count": "0-2",
+    "name_first_letter": "l",
+    "name_last_letter": "n",
+    "name_is_compound": false,
+    "name_vowels": [
+      "e",
+      "i"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 13,
+    "name_composition": "Nom simple"
   },
   {
     "name": "Lithuania",
@@ -1482,7 +2524,19 @@
     "government": "République",
     "type": "Union Européenne",
     "coastline": "Côtier",
-    "borders_count": "3-6"
+    "borders_count": "3-6",
+    "name_first_letter": "l",
+    "name_last_letter": "e",
+    "name_is_compound": false,
+    "name_vowels": [
+      "a",
+      "e",
+      "i",
+      "u"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 8,
+    "name_composition": "Nom simple"
   },
   {
     "name": "Luxembourg",
@@ -1497,7 +2551,18 @@
     "government": "Monarchie",
     "type": "Union Européenne",
     "coastline": "Enclavé",
-    "borders_count": "3-6"
+    "borders_count": "3-6",
+    "name_first_letter": "l",
+    "name_last_letter": "g",
+    "name_is_compound": false,
+    "name_vowels": [
+      "e",
+      "o",
+      "u"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 10,
+    "name_composition": "Nom simple"
   },
   {
     "name": "Madagascar",
@@ -1512,7 +2577,16 @@
     "government": "République",
     "type": "Indépendant",
     "coastline": "Côtier",
-    "borders_count": "0-2"
+    "borders_count": "0-2",
+    "name_first_letter": "m",
+    "name_last_letter": "r",
+    "name_is_compound": false,
+    "name_vowels": [
+      "a"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 10,
+    "name_composition": "Nom simple"
   },
   {
     "name": "Malawi",
@@ -1527,7 +2601,17 @@
     "government": "République",
     "type": "Commonwealth",
     "coastline": "Enclavé",
-    "borders_count": "3-6"
+    "borders_count": "3-6",
+    "name_first_letter": "m",
+    "name_last_letter": "i",
+    "name_is_compound": false,
+    "name_vowels": [
+      "a",
+      "i"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 6,
+    "name_composition": "Nom simple"
   },
   {
     "name": "Malaysia",
@@ -1542,7 +2626,18 @@
     "government": "Monarchie",
     "type": "Commonwealth",
     "coastline": "Côtier",
-    "borders_count": "3-6"
+    "borders_count": "3-6",
+    "name_first_letter": "m",
+    "name_last_letter": "e",
+    "name_is_compound": false,
+    "name_vowels": [
+      "a",
+      "e",
+      "i"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 8,
+    "name_composition": "Nom simple"
   },
   {
     "name": "Maldives",
@@ -1557,7 +2652,18 @@
     "government": "République",
     "type": "Indépendant",
     "coastline": "Côtier",
-    "borders_count": "0-2"
+    "borders_count": "0-2",
+    "name_first_letter": "m",
+    "name_last_letter": "s",
+    "name_is_compound": false,
+    "name_vowels": [
+      "a",
+      "e",
+      "i"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 8,
+    "name_composition": "Nom simple"
   },
   {
     "name": "Mali",
@@ -1572,7 +2678,17 @@
     "government": "République",
     "type": "Indépendant",
     "coastline": "Enclavé",
-    "borders_count": "7+"
+    "borders_count": "7+",
+    "name_first_letter": "m",
+    "name_last_letter": "i",
+    "name_is_compound": false,
+    "name_vowels": [
+      "a",
+      "i"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 4,
+    "name_composition": "Nom simple"
   },
   {
     "name": "Malta",
@@ -1587,7 +2703,17 @@
     "government": "République",
     "type": "Commonwealth",
     "coastline": "Côtier",
-    "borders_count": "0-2"
+    "borders_count": "0-2",
+    "name_first_letter": "m",
+    "name_last_letter": "e",
+    "name_is_compound": false,
+    "name_vowels": [
+      "a",
+      "e"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 5,
+    "name_composition": "Nom simple"
   },
   {
     "name": "Marshall Islands",
@@ -1602,7 +2728,18 @@
     "government": "République",
     "type": "Indépendant",
     "coastline": "Côtier",
-    "borders_count": "0-2"
+    "borders_count": "0-2",
+    "name_first_letter": "i",
+    "name_last_letter": "l",
+    "name_is_compound": false,
+    "name_vowels": [
+      "a",
+      "e",
+      "i"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 12,
+    "name_composition": "Nom simple"
   },
   {
     "name": "Mauritania",
@@ -1617,7 +2754,19 @@
     "government": "République",
     "type": "Arab League",
     "coastline": "Côtier",
-    "borders_count": "3-6"
+    "borders_count": "3-6",
+    "name_first_letter": "m",
+    "name_last_letter": "e",
+    "name_is_compound": false,
+    "name_vowels": [
+      "a",
+      "e",
+      "i",
+      "u"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 10,
+    "name_composition": "Nom simple"
   },
   {
     "name": "Mauritius",
@@ -1632,7 +2781,19 @@
     "government": "République",
     "type": "Indépendant",
     "coastline": "Côtier",
-    "borders_count": "0-2"
+    "borders_count": "0-2",
+    "name_first_letter": "i",
+    "name_last_letter": "e",
+    "name_is_compound": false,
+    "name_vowels": [
+      "a",
+      "e",
+      "i",
+      "u"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 10,
+    "name_composition": "Nom simple"
   },
   {
     "name": "Mexico",
@@ -1647,7 +2808,18 @@
     "government": "République",
     "type": "Indépendant",
     "coastline": "Côtier",
-    "borders_count": "3-6"
+    "borders_count": "3-6",
+    "name_first_letter": "m",
+    "name_last_letter": "e",
+    "name_is_compound": false,
+    "name_vowels": [
+      "e",
+      "i",
+      "u"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 7,
+    "name_composition": "Nom simple"
   },
   {
     "name": "Micronesia",
@@ -1662,7 +2834,18 @@
     "government": "République",
     "type": "Indépendant",
     "coastline": "Côtier",
-    "borders_count": "0-2"
+    "borders_count": "0-2",
+    "name_first_letter": "m",
+    "name_last_letter": "e",
+    "name_is_compound": false,
+    "name_vowels": [
+      "e",
+      "i",
+      "o"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 10,
+    "name_composition": "Nom simple"
   },
   {
     "name": "Moldova",
@@ -1677,7 +2860,19 @@
     "government": "République",
     "type": "Indépendant",
     "coastline": "Enclavé",
-    "borders_count": "0-2"
+    "borders_count": "0-2",
+    "name_first_letter": "m",
+    "name_last_letter": "e",
+    "name_is_compound": false,
+    "name_vowels": [
+      "a",
+      "e",
+      "i",
+      "o"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 8,
+    "name_composition": "Nom simple"
   },
   {
     "name": "Monaco",
@@ -1692,7 +2887,17 @@
     "government": "Monarchie",
     "type": "Indépendant",
     "coastline": "Côtier",
-    "borders_count": "0-2"
+    "borders_count": "0-2",
+    "name_first_letter": "m",
+    "name_last_letter": "o",
+    "name_is_compound": false,
+    "name_vowels": [
+      "a",
+      "o"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 6,
+    "name_composition": "Nom simple"
   },
   {
     "name": "Mongolia",
@@ -1707,7 +2912,18 @@
     "government": "République",
     "type": "Indépendant",
     "coastline": "Enclavé",
-    "borders_count": "0-2"
+    "borders_count": "0-2",
+    "name_first_letter": "m",
+    "name_last_letter": "e",
+    "name_is_compound": false,
+    "name_vowels": [
+      "e",
+      "i",
+      "o"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 8,
+    "name_composition": "Nom simple"
   },
   {
     "name": "Montenegro",
@@ -1722,7 +2938,17 @@
     "government": "République",
     "type": "NATO",
     "coastline": "Côtier",
-    "borders_count": "3-6"
+    "borders_count": "3-6",
+    "name_first_letter": "m",
+    "name_last_letter": "o",
+    "name_is_compound": false,
+    "name_vowels": [
+      "e",
+      "o"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 10,
+    "name_composition": "Nom simple"
   },
   {
     "name": "Morocco",
@@ -1737,7 +2963,17 @@
     "government": "Monarchie",
     "type": "Arab League",
     "coastline": "Côtier",
-    "borders_count": "3-6"
+    "borders_count": "3-6",
+    "name_first_letter": "m",
+    "name_last_letter": "c",
+    "name_is_compound": false,
+    "name_vowels": [
+      "a",
+      "o"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 5,
+    "name_composition": "Nom simple"
   },
   {
     "name": "Mozambique",
@@ -1752,7 +2988,20 @@
     "government": "République",
     "type": "Commonwealth",
     "coastline": "Côtier",
-    "borders_count": "3-6"
+    "borders_count": "3-6",
+    "name_first_letter": "m",
+    "name_last_letter": "e",
+    "name_is_compound": false,
+    "name_vowels": [
+      "a",
+      "e",
+      "i",
+      "o",
+      "u"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 10,
+    "name_composition": "Nom simple"
   },
   {
     "name": "Myanmar",
@@ -1767,7 +3016,18 @@
     "government": "Autocratie",
     "type": "ASEAN",
     "coastline": "Côtier",
-    "borders_count": "3-6"
+    "borders_count": "3-6",
+    "name_first_letter": "b",
+    "name_last_letter": "e",
+    "name_is_compound": false,
+    "name_vowels": [
+      "a",
+      "e",
+      "i"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 8,
+    "name_composition": "Nom simple"
   },
   {
     "name": "Namibia",
@@ -1782,7 +3042,18 @@
     "government": "République",
     "type": "Commonwealth",
     "coastline": "Côtier",
-    "borders_count": "3-6"
+    "borders_count": "3-6",
+    "name_first_letter": "n",
+    "name_last_letter": "e",
+    "name_is_compound": false,
+    "name_vowels": [
+      "a",
+      "e",
+      "i"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 7,
+    "name_composition": "Nom simple"
   },
   {
     "name": "Nauru",
@@ -1797,7 +3068,17 @@
     "government": "République",
     "type": "Commonwealth",
     "coastline": "Côtier",
-    "borders_count": "0-2"
+    "borders_count": "0-2",
+    "name_first_letter": "n",
+    "name_last_letter": "u",
+    "name_is_compound": false,
+    "name_vowels": [
+      "a",
+      "u"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 5,
+    "name_composition": "Nom simple"
   },
   {
     "name": "Nepal",
@@ -1812,7 +3093,17 @@
     "government": "République",
     "type": "Indépendant",
     "coastline": "Enclavé",
-    "borders_count": "0-2"
+    "borders_count": "0-2",
+    "name_first_letter": "n",
+    "name_last_letter": "l",
+    "name_is_compound": false,
+    "name_vowels": [
+      "a",
+      "e"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 5,
+    "name_composition": "Nom simple"
   },
   {
     "name": "Netherlands",
@@ -1827,7 +3118,16 @@
     "government": "Monarchie",
     "type": "Union Européenne",
     "coastline": "Côtier",
-    "borders_count": "0-2"
+    "borders_count": "0-2",
+    "name_first_letter": "p",
+    "name_last_letter": "s",
+    "name_is_compound": true,
+    "name_vowels": [
+      "a"
+    ],
+    "name_contains_hyphen": true,
+    "name_length": 7,
+    "name_composition": "Nom composé"
   },
   {
     "name": "New Zealand",
@@ -1842,7 +3142,19 @@
     "government": "Monarchie",
     "type": "Commonwealth",
     "coastline": "Côtier",
-    "borders_count": "0-2"
+    "borders_count": "0-2",
+    "name_first_letter": "n",
+    "name_last_letter": "e",
+    "name_is_compound": true,
+    "name_vowels": [
+      "a",
+      "e",
+      "o",
+      "u"
+    ],
+    "name_contains_hyphen": true,
+    "name_length": 15,
+    "name_composition": "Nom composé"
   },
   {
     "name": "Nicaragua",
@@ -1857,7 +3169,18 @@
     "government": "Autocratie",
     "type": "Indépendant",
     "coastline": "Côtier",
-    "borders_count": "0-2"
+    "borders_count": "0-2",
+    "name_first_letter": "n",
+    "name_last_letter": "a",
+    "name_is_compound": false,
+    "name_vowels": [
+      "a",
+      "i",
+      "u"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 9,
+    "name_composition": "Nom simple"
   },
   {
     "name": "Niger",
@@ -1872,7 +3195,17 @@
     "government": "République",
     "type": "Indépendant",
     "coastline": "Enclavé",
-    "borders_count": "7+"
+    "borders_count": "7+",
+    "name_first_letter": "n",
+    "name_last_letter": "r",
+    "name_is_compound": false,
+    "name_vowels": [
+      "e",
+      "i"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 5,
+    "name_composition": "Nom simple"
   },
   {
     "name": "Nigeria",
@@ -1887,7 +3220,18 @@
     "government": "République",
     "type": "Commonwealth",
     "coastline": "Côtier",
-    "borders_count": "3-6"
+    "borders_count": "3-6",
+    "name_first_letter": "n",
+    "name_last_letter": "a",
+    "name_is_compound": false,
+    "name_vowels": [
+      "a",
+      "e",
+      "i"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 7,
+    "name_composition": "Nom simple"
   },
   {
     "name": "North Korea",
@@ -1902,7 +3246,18 @@
     "government": "Dictature",
     "type": "Indépendant",
     "coastline": "Côtier",
-    "borders_count": "3-6"
+    "borders_count": "3-6",
+    "name_first_letter": "c",
+    "name_last_letter": "d",
+    "name_is_compound": true,
+    "name_vowels": [
+      "e",
+      "o",
+      "u"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 11,
+    "name_composition": "Nom composé"
   },
   {
     "name": "North Macedonia",
@@ -1917,7 +3272,20 @@
     "government": "République",
     "type": "NATO",
     "coastline": "Enclavé",
-    "borders_count": "3-6"
+    "borders_count": "3-6",
+    "name_first_letter": "m",
+    "name_last_letter": "d",
+    "name_is_compound": true,
+    "name_vowels": [
+      "a",
+      "e",
+      "i",
+      "o",
+      "u"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 15,
+    "name_composition": "Nom composé"
   },
   {
     "name": "Norway",
@@ -1932,7 +3300,17 @@
     "government": "Monarchie",
     "type": "NATO",
     "coastline": "Côtier",
-    "borders_count": "3-6"
+    "borders_count": "3-6",
+    "name_first_letter": "n",
+    "name_last_letter": "e",
+    "name_is_compound": false,
+    "name_vowels": [
+      "e",
+      "o"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 7,
+    "name_composition": "Nom simple"
   },
   {
     "name": "Oman",
@@ -1947,7 +3325,17 @@
     "government": "Monarchie",
     "type": "Arab League",
     "coastline": "Côtier",
-    "borders_count": "3-6"
+    "borders_count": "3-6",
+    "name_first_letter": "o",
+    "name_last_letter": "n",
+    "name_is_compound": false,
+    "name_vowels": [
+      "a",
+      "o"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 4,
+    "name_composition": "Nom simple"
   },
   {
     "name": "Pakistan",
@@ -1962,11 +3350,21 @@
     "government": "République",
     "type": "Commonwealth",
     "coastline": "Côtier",
-    "borders_count": "3-6"
+    "borders_count": "3-6",
+    "name_first_letter": "p",
+    "name_last_letter": "n",
+    "name_is_compound": false,
+    "name_vowels": [
+      "a",
+      "i"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 8,
+    "name_composition": "Nom simple"
   },
   {
     "name": "Palau",
-    "name_fr": "Palaos (Palau)",
+    "name_fr": "Palaos",
     "continent": "Oceania",
     "subregion": "Oceania",
     "capital": "Ngerulmud",
@@ -1977,7 +3375,17 @@
     "government": "République",
     "type": "Indépendant",
     "coastline": "Côtier",
-    "borders_count": "0-2"
+    "borders_count": "0-2",
+    "name_first_letter": "p",
+    "name_last_letter": "s",
+    "name_is_compound": false,
+    "name_vowels": [
+      "a",
+      "o"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 6,
+    "name_composition": "Nom simple"
   },
   {
     "name": "Panama",
@@ -1992,7 +3400,16 @@
     "government": "République",
     "type": "Indépendant",
     "coastline": "Côtier",
-    "borders_count": "0-2"
+    "borders_count": "0-2",
+    "name_first_letter": "p",
+    "name_last_letter": "a",
+    "name_is_compound": false,
+    "name_vowels": [
+      "a"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 6,
+    "name_composition": "Nom simple"
   },
   {
     "name": "Papua New Guinea",
@@ -2007,7 +3424,20 @@
     "government": "Monarchie",
     "type": "Commonwealth",
     "coastline": "Côtier",
-    "borders_count": "0-2"
+    "borders_count": "0-2",
+    "name_first_letter": "p",
+    "name_last_letter": "e",
+    "name_is_compound": true,
+    "name_vowels": [
+      "a",
+      "e",
+      "i",
+      "o",
+      "u"
+    ],
+    "name_contains_hyphen": true,
+    "name_length": 23,
+    "name_composition": "Nom composé"
   },
   {
     "name": "Paraguay",
@@ -2022,7 +3452,17 @@
     "government": "République",
     "type": "MERCOSUR",
     "coastline": "Enclavé",
-    "borders_count": "3-6"
+    "borders_count": "3-6",
+    "name_first_letter": "p",
+    "name_last_letter": "y",
+    "name_is_compound": false,
+    "name_vowels": [
+      "a",
+      "u"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 8,
+    "name_composition": "Nom simple"
   },
   {
     "name": "Peru",
@@ -2037,7 +3477,18 @@
     "government": "République",
     "type": "Indépendant",
     "coastline": "Côtier",
-    "borders_count": "3-6"
+    "borders_count": "3-6",
+    "name_first_letter": "p",
+    "name_last_letter": "u",
+    "name_is_compound": false,
+    "name_vowels": [
+      "e",
+      "o",
+      "u"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 5,
+    "name_composition": "Nom simple"
   },
   {
     "name": "Philippines",
@@ -2052,7 +3503,17 @@
     "government": "République",
     "type": "ASEAN",
     "coastline": "Côtier",
-    "borders_count": "0-2"
+    "borders_count": "0-2",
+    "name_first_letter": "p",
+    "name_last_letter": "s",
+    "name_is_compound": false,
+    "name_vowels": [
+      "e",
+      "i"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 11,
+    "name_composition": "Nom simple"
   },
   {
     "name": "Poland",
@@ -2067,7 +3528,17 @@
     "government": "République",
     "type": "Union Européenne",
     "coastline": "Côtier",
-    "borders_count": "7+"
+    "borders_count": "7+",
+    "name_first_letter": "p",
+    "name_last_letter": "e",
+    "name_is_compound": false,
+    "name_vowels": [
+      "e",
+      "o"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 7,
+    "name_composition": "Nom simple"
   },
   {
     "name": "Portugal",
@@ -2082,7 +3553,18 @@
     "government": "République",
     "type": "Union Européenne",
     "coastline": "Côtier",
-    "borders_count": "0-2"
+    "borders_count": "0-2",
+    "name_first_letter": "p",
+    "name_last_letter": "l",
+    "name_is_compound": false,
+    "name_vowels": [
+      "a",
+      "o",
+      "u"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 8,
+    "name_composition": "Nom simple"
   },
   {
     "name": "Qatar",
@@ -2097,7 +3579,16 @@
     "government": "Monarchie",
     "type": "Arab League",
     "coastline": "Côtier",
-    "borders_count": "0-2"
+    "borders_count": "0-2",
+    "name_first_letter": "q",
+    "name_last_letter": "r",
+    "name_is_compound": false,
+    "name_vowels": [
+      "a"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 5,
+    "name_composition": "Nom simple"
   },
   {
     "name": "Romania",
@@ -2112,7 +3603,20 @@
     "government": "République",
     "type": "Union Européenne",
     "coastline": "Côtier",
-    "borders_count": "3-6"
+    "borders_count": "3-6",
+    "name_first_letter": "r",
+    "name_last_letter": "e",
+    "name_is_compound": false,
+    "name_vowels": [
+      "a",
+      "e",
+      "i",
+      "o",
+      "u"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 8,
+    "name_composition": "Nom simple"
   },
   {
     "name": "Russia",
@@ -2127,7 +3631,18 @@
     "government": "Autocratie",
     "type": "BRICS",
     "coastline": "Côtier",
-    "borders_count": "7+"
+    "borders_count": "7+",
+    "name_first_letter": "r",
+    "name_last_letter": "e",
+    "name_is_compound": false,
+    "name_vowels": [
+      "e",
+      "i",
+      "u"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 6,
+    "name_composition": "Nom simple"
   },
   {
     "name": "Rwanda",
@@ -2142,7 +3657,16 @@
     "government": "Autocratie",
     "type": "Commonwealth",
     "coastline": "Enclavé",
-    "borders_count": "3-6"
+    "borders_count": "3-6",
+    "name_first_letter": "r",
+    "name_last_letter": "a",
+    "name_is_compound": false,
+    "name_vowels": [
+      "a"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 6,
+    "name_composition": "Nom simple"
   },
   {
     "name": "Saint Kitts and Nevis",
@@ -2157,7 +3681,19 @@
     "government": "Monarchie",
     "type": "Commonwealth",
     "coastline": "Côtier",
-    "borders_count": "0-2"
+    "borders_count": "0-2",
+    "name_first_letter": "s",
+    "name_last_letter": "s",
+    "name_is_compound": true,
+    "name_vowels": [
+      "a",
+      "e",
+      "i",
+      "o"
+    ],
+    "name_contains_hyphen": true,
+    "name_length": 23,
+    "name_composition": "Nom composé"
   },
   {
     "name": "Saint Lucia",
@@ -2172,7 +3708,19 @@
     "government": "Monarchie",
     "type": "Commonwealth",
     "coastline": "Côtier",
-    "borders_count": "0-2"
+    "borders_count": "0-2",
+    "name_first_letter": "s",
+    "name_last_letter": "e",
+    "name_is_compound": true,
+    "name_vowels": [
+      "a",
+      "e",
+      "i",
+      "u"
+    ],
+    "name_contains_hyphen": true,
+    "name_length": 11,
+    "name_composition": "Nom composé"
   },
   {
     "name": "Saint Vincent and the Grenadines",
@@ -2187,7 +3735,18 @@
     "government": "Monarchie",
     "type": "Commonwealth",
     "coastline": "Côtier",
-    "borders_count": "0-2"
+    "borders_count": "0-2",
+    "name_first_letter": "s",
+    "name_last_letter": "s",
+    "name_is_compound": true,
+    "name_vowels": [
+      "a",
+      "e",
+      "i"
+    ],
+    "name_contains_hyphen": true,
+    "name_length": 27,
+    "name_composition": "Nom composé"
   },
   {
     "name": "Samoa",
@@ -2202,7 +3761,17 @@
     "government": "République",
     "type": "Commonwealth",
     "coastline": "Côtier",
-    "borders_count": "0-2"
+    "borders_count": "0-2",
+    "name_first_letter": "s",
+    "name_last_letter": "a",
+    "name_is_compound": false,
+    "name_vowels": [
+      "a",
+      "o"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 5,
+    "name_composition": "Nom simple"
   },
   {
     "name": "San Marino",
@@ -2217,7 +3786,17 @@
     "government": "République",
     "type": "Indépendant",
     "coastline": "Enclavé",
-    "borders_count": "0-2"
+    "borders_count": "0-2",
+    "name_first_letter": "s",
+    "name_last_letter": "n",
+    "name_is_compound": true,
+    "name_vowels": [
+      "a",
+      "i"
+    ],
+    "name_contains_hyphen": true,
+    "name_length": 10,
+    "name_composition": "Nom composé"
   },
   {
     "name": "Saudi Arabia",
@@ -2232,7 +3811,20 @@
     "government": "Monarchie",
     "type": "Arab League",
     "coastline": "Côtier",
-    "borders_count": "7+"
+    "borders_count": "7+",
+    "name_first_letter": "a",
+    "name_last_letter": "e",
+    "name_is_compound": false,
+    "name_vowels": [
+      "a",
+      "e",
+      "i",
+      "o",
+      "u"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 14,
+    "name_composition": "Nom simple"
   },
   {
     "name": "Senegal",
@@ -2247,7 +3839,17 @@
     "government": "République",
     "type": "Indépendant",
     "coastline": "Côtier",
-    "borders_count": "3-6"
+    "borders_count": "3-6",
+    "name_first_letter": "s",
+    "name_last_letter": "l",
+    "name_is_compound": false,
+    "name_vowels": [
+      "a",
+      "e"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 7,
+    "name_composition": "Nom simple"
   },
   {
     "name": "Serbia",
@@ -2262,7 +3864,17 @@
     "government": "République",
     "type": "Indépendant",
     "coastline": "Enclavé",
-    "borders_count": "7+"
+    "borders_count": "7+",
+    "name_first_letter": "s",
+    "name_last_letter": "e",
+    "name_is_compound": false,
+    "name_vowels": [
+      "e",
+      "i"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 6,
+    "name_composition": "Nom simple"
   },
   {
     "name": "Seychelles",
@@ -2277,7 +3889,16 @@
     "government": "République",
     "type": "Commonwealth",
     "coastline": "Côtier",
-    "borders_count": "0-2"
+    "borders_count": "0-2",
+    "name_first_letter": "s",
+    "name_last_letter": "s",
+    "name_is_compound": false,
+    "name_vowels": [
+      "e"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 10,
+    "name_composition": "Nom simple"
   },
   {
     "name": "Sierra Leone",
@@ -2292,7 +3913,19 @@
     "government": "République",
     "type": "Commonwealth",
     "coastline": "Côtier",
-    "borders_count": "0-2"
+    "borders_count": "0-2",
+    "name_first_letter": "s",
+    "name_last_letter": "e",
+    "name_is_compound": false,
+    "name_vowels": [
+      "a",
+      "e",
+      "i",
+      "o"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 11,
+    "name_composition": "Nom simple"
   },
   {
     "name": "Singapore",
@@ -2307,7 +3940,19 @@
     "government": "République",
     "type": "Commonwealth",
     "coastline": "Côtier",
-    "borders_count": "0-2"
+    "borders_count": "0-2",
+    "name_first_letter": "s",
+    "name_last_letter": "r",
+    "name_is_compound": false,
+    "name_vowels": [
+      "a",
+      "i",
+      "o",
+      "u"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 9,
+    "name_composition": "Nom simple"
   },
   {
     "name": "Slovakia",
@@ -2322,7 +3967,20 @@
     "government": "République",
     "type": "Union Européenne",
     "coastline": "Enclavé",
-    "borders_count": "3-6"
+    "borders_count": "3-6",
+    "name_first_letter": "s",
+    "name_last_letter": "e",
+    "name_is_compound": false,
+    "name_vowels": [
+      "a",
+      "e",
+      "i",
+      "o",
+      "u"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 9,
+    "name_composition": "Nom simple"
   },
   {
     "name": "Slovenia",
@@ -2337,7 +3995,18 @@
     "government": "République",
     "type": "Union Européenne",
     "coastline": "Côtier",
-    "borders_count": "3-6"
+    "borders_count": "3-6",
+    "name_first_letter": "s",
+    "name_last_letter": "e",
+    "name_is_compound": false,
+    "name_vowels": [
+      "e",
+      "i",
+      "o"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 8,
+    "name_composition": "Nom simple"
   },
   {
     "name": "Solomon Islands",
@@ -2352,7 +4021,19 @@
     "government": "Monarchie",
     "type": "Commonwealth",
     "coastline": "Côtier",
-    "borders_count": "0-2"
+    "borders_count": "0-2",
+    "name_first_letter": "i",
+    "name_last_letter": "n",
+    "name_is_compound": false,
+    "name_vowels": [
+      "a",
+      "e",
+      "i",
+      "o"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 11,
+    "name_composition": "Nom simple"
   },
   {
     "name": "Somalia",
@@ -2367,7 +4048,19 @@
     "government": "République",
     "type": "Arab League",
     "coastline": "Côtier",
-    "borders_count": "3-6"
+    "borders_count": "3-6",
+    "name_first_letter": "s",
+    "name_last_letter": "e",
+    "name_is_compound": false,
+    "name_vowels": [
+      "a",
+      "e",
+      "i",
+      "o"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 7,
+    "name_composition": "Nom simple"
   },
   {
     "name": "South Africa",
@@ -2382,7 +4075,19 @@
     "government": "République",
     "type": "BRICS",
     "coastline": "Côtier",
-    "borders_count": "3-6"
+    "borders_count": "3-6",
+    "name_first_letter": "a",
+    "name_last_letter": "d",
+    "name_is_compound": true,
+    "name_vowels": [
+      "a",
+      "e",
+      "i",
+      "u"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 12,
+    "name_composition": "Nom composé"
   },
   {
     "name": "South Korea",
@@ -2397,7 +4102,18 @@
     "government": "République",
     "type": "Indépendant",
     "coastline": "Côtier",
-    "borders_count": "0-2"
+    "borders_count": "0-2",
+    "name_first_letter": "c",
+    "name_last_letter": "d",
+    "name_is_compound": true,
+    "name_vowels": [
+      "e",
+      "o",
+      "u"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 10,
+    "name_composition": "Nom composé"
   },
   {
     "name": "South Sudan",
@@ -2412,7 +4128,18 @@
     "government": "Autocratie",
     "type": "Indépendant",
     "coastline": "Enclavé",
-    "borders_count": "3-6"
+    "borders_count": "3-6",
+    "name_first_letter": "s",
+    "name_last_letter": "d",
+    "name_is_compound": true,
+    "name_vowels": [
+      "a",
+      "o",
+      "u"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 11,
+    "name_composition": "Nom composé"
   },
   {
     "name": "Spain",
@@ -2427,7 +4154,17 @@
     "government": "Monarchie",
     "type": "Union Européenne",
     "coastline": "Côtier",
-    "borders_count": "3-6"
+    "borders_count": "3-6",
+    "name_first_letter": "e",
+    "name_last_letter": "e",
+    "name_is_compound": false,
+    "name_vowels": [
+      "a",
+      "e"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 7,
+    "name_composition": "Nom simple"
   },
   {
     "name": "Sri Lanka",
@@ -2442,7 +4179,17 @@
     "government": "République",
     "type": "Commonwealth",
     "coastline": "Côtier",
-    "borders_count": "0-2"
+    "borders_count": "0-2",
+    "name_first_letter": "s",
+    "name_last_letter": "a",
+    "name_is_compound": false,
+    "name_vowels": [
+      "a",
+      "i"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 8,
+    "name_composition": "Nom simple"
   },
   {
     "name": "Sudan",
@@ -2457,7 +4204,18 @@
     "government": "Autocratie",
     "type": "Arab League",
     "coastline": "Côtier",
-    "borders_count": "7+"
+    "borders_count": "7+",
+    "name_first_letter": "s",
+    "name_last_letter": "n",
+    "name_is_compound": false,
+    "name_vowels": [
+      "a",
+      "o",
+      "u"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 6,
+    "name_composition": "Nom simple"
   },
   {
     "name": "Suriname",
@@ -2472,7 +4230,18 @@
     "government": "République",
     "type": "Indépendant",
     "coastline": "Côtier",
-    "borders_count": "3-6"
+    "borders_count": "3-6",
+    "name_first_letter": "s",
+    "name_last_letter": "m",
+    "name_is_compound": false,
+    "name_vowels": [
+      "a",
+      "i",
+      "u"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 7,
+    "name_composition": "Nom simple"
   },
   {
     "name": "Sweden",
@@ -2487,7 +4256,17 @@
     "government": "Monarchie",
     "type": "Union Européenne",
     "coastline": "Côtier",
-    "borders_count": "0-2"
+    "borders_count": "0-2",
+    "name_first_letter": "s",
+    "name_last_letter": "e",
+    "name_is_compound": false,
+    "name_vowels": [
+      "e",
+      "u"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 5,
+    "name_composition": "Nom simple"
   },
   {
     "name": "Switzerland",
@@ -2502,7 +4281,18 @@
     "government": "République",
     "type": "Indépendant",
     "coastline": "Enclavé",
-    "borders_count": "3-6"
+    "borders_count": "3-6",
+    "name_first_letter": "s",
+    "name_last_letter": "e",
+    "name_is_compound": false,
+    "name_vowels": [
+      "e",
+      "i",
+      "u"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 6,
+    "name_composition": "Nom simple"
   },
   {
     "name": "Syria",
@@ -2517,7 +4307,17 @@
     "government": "Dictature",
     "type": "Arab League",
     "coastline": "Côtier",
-    "borders_count": "3-6"
+    "borders_count": "3-6",
+    "name_first_letter": "s",
+    "name_last_letter": "e",
+    "name_is_compound": false,
+    "name_vowels": [
+      "e",
+      "i"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 5,
+    "name_composition": "Nom simple"
   },
   {
     "name": "São Tomé and Príncipe",
@@ -2532,7 +4332,18 @@
     "government": "République",
     "type": "Indépendant",
     "coastline": "Côtier",
-    "borders_count": "0-2"
+    "borders_count": "0-2",
+    "name_first_letter": "s",
+    "name_last_letter": "e",
+    "name_is_compound": true,
+    "name_vowels": [
+      "e",
+      "i",
+      "o"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 17,
+    "name_composition": "Nom composé"
   },
   {
     "name": "Tajikistan",
@@ -2547,7 +4358,17 @@
     "government": "Autocratie",
     "type": "Indépendant",
     "coastline": "Enclavé",
-    "borders_count": "3-6"
+    "borders_count": "3-6",
+    "name_first_letter": "t",
+    "name_last_letter": "n",
+    "name_is_compound": false,
+    "name_vowels": [
+      "a",
+      "i"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 11,
+    "name_composition": "Nom simple"
   },
   {
     "name": "Tanzania",
@@ -2562,7 +4383,18 @@
     "government": "République",
     "type": "Commonwealth",
     "coastline": "Côtier",
-    "borders_count": "7+"
+    "borders_count": "7+",
+    "name_first_letter": "t",
+    "name_last_letter": "e",
+    "name_is_compound": false,
+    "name_vowels": [
+      "a",
+      "e",
+      "i"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 8,
+    "name_composition": "Nom simple"
   },
   {
     "name": "Thailand",
@@ -2577,7 +4409,18 @@
     "government": "Monarchie",
     "type": "ASEAN",
     "coastline": "Côtier",
-    "borders_count": "3-6"
+    "borders_count": "3-6",
+    "name_first_letter": "t",
+    "name_last_letter": "e",
+    "name_is_compound": false,
+    "name_vowels": [
+      "a",
+      "e",
+      "i"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 9,
+    "name_composition": "Nom simple"
   },
   {
     "name": "Timor-Leste",
@@ -2592,7 +4435,19 @@
     "government": "République",
     "type": "Indépendant",
     "coastline": "Côtier",
-    "borders_count": "0-2"
+    "borders_count": "0-2",
+    "name_first_letter": "t",
+    "name_last_letter": "l",
+    "name_is_compound": false,
+    "name_vowels": [
+      "a",
+      "e",
+      "i",
+      "o"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 13,
+    "name_composition": "Nom simple"
   },
   {
     "name": "Togo",
@@ -2607,7 +4462,16 @@
     "government": "République",
     "type": "Commonwealth",
     "coastline": "Côtier",
-    "borders_count": "3-6"
+    "borders_count": "3-6",
+    "name_first_letter": "t",
+    "name_last_letter": "o",
+    "name_is_compound": false,
+    "name_vowels": [
+      "o"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 4,
+    "name_composition": "Nom simple"
   },
   {
     "name": "Tonga",
@@ -2622,7 +4486,17 @@
     "government": "Monarchie",
     "type": "Commonwealth",
     "coastline": "Côtier",
-    "borders_count": "0-2"
+    "borders_count": "0-2",
+    "name_first_letter": "t",
+    "name_last_letter": "a",
+    "name_is_compound": false,
+    "name_vowels": [
+      "a",
+      "o"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 5,
+    "name_composition": "Nom simple"
   },
   {
     "name": "Trinidad and Tobago",
@@ -2637,7 +4511,19 @@
     "government": "République",
     "type": "Commonwealth",
     "coastline": "Côtier",
-    "borders_count": "0-2"
+    "borders_count": "0-2",
+    "name_first_letter": "t",
+    "name_last_letter": "o",
+    "name_is_compound": true,
+    "name_vowels": [
+      "a",
+      "e",
+      "i",
+      "o"
+    ],
+    "name_contains_hyphen": true,
+    "name_length": 15,
+    "name_composition": "Nom composé"
   },
   {
     "name": "Tunisia",
@@ -2652,7 +4538,18 @@
     "government": "République",
     "type": "Arab League",
     "coastline": "Côtier",
-    "borders_count": "0-2"
+    "borders_count": "0-2",
+    "name_first_letter": "t",
+    "name_last_letter": "e",
+    "name_is_compound": false,
+    "name_vowels": [
+      "e",
+      "i",
+      "u"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 7,
+    "name_composition": "Nom simple"
   },
   {
     "name": "Turkmenistan",
@@ -2667,7 +4564,19 @@
     "government": "Dictature",
     "type": "Indépendant",
     "coastline": "Enclavé",
-    "borders_count": "3-6"
+    "borders_count": "3-6",
+    "name_first_letter": "t",
+    "name_last_letter": "n",
+    "name_is_compound": false,
+    "name_vowels": [
+      "a",
+      "e",
+      "i",
+      "u"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 12,
+    "name_composition": "Nom simple"
   },
   {
     "name": "Tuvalu",
@@ -2682,7 +4591,17 @@
     "government": "Monarchie",
     "type": "Commonwealth",
     "coastline": "Côtier",
-    "borders_count": "0-2"
+    "borders_count": "0-2",
+    "name_first_letter": "t",
+    "name_last_letter": "u",
+    "name_is_compound": false,
+    "name_vowels": [
+      "a",
+      "u"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 6,
+    "name_composition": "Nom simple"
   },
   {
     "name": "Türkiye",
@@ -2697,7 +4616,18 @@
     "government": "République",
     "type": "Indépendant",
     "coastline": "Côtier",
-    "borders_count": "7+"
+    "borders_count": "7+",
+    "name_first_letter": "t",
+    "name_last_letter": "e",
+    "name_is_compound": false,
+    "name_vowels": [
+      "e",
+      "i",
+      "u"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 7,
+    "name_composition": "Nom simple"
   },
   {
     "name": "Uganda",
@@ -2712,7 +4642,18 @@
     "government": "Autocratie",
     "type": "Commonwealth",
     "coastline": "Enclavé",
-    "borders_count": "3-6"
+    "borders_count": "3-6",
+    "name_first_letter": "o",
+    "name_last_letter": "a",
+    "name_is_compound": false,
+    "name_vowels": [
+      "a",
+      "o",
+      "u"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 7,
+    "name_composition": "Nom simple"
   },
   {
     "name": "Ukraine",
@@ -2727,7 +4668,19 @@
     "government": "République",
     "type": "Indépendant",
     "coastline": "Côtier",
-    "borders_count": "7+"
+    "borders_count": "7+",
+    "name_first_letter": "u",
+    "name_last_letter": "e",
+    "name_is_compound": false,
+    "name_vowels": [
+      "a",
+      "e",
+      "i",
+      "u"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 7,
+    "name_composition": "Nom simple"
   },
   {
     "name": "United Arab Emirates",
@@ -2742,7 +4695,19 @@
     "government": "Monarchie",
     "type": "Arab League",
     "coastline": "Côtier",
-    "borders_count": "0-2"
+    "borders_count": "0-2",
+    "name_first_letter": "e",
+    "name_last_letter": "s",
+    "name_is_compound": true,
+    "name_vowels": [
+      "a",
+      "e",
+      "i",
+      "u"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 17,
+    "name_composition": "Nom composé"
   },
   {
     "name": "United Kingdom",
@@ -2757,7 +4722,20 @@
     "government": "Monarchie",
     "type": "Commonwealth",
     "coastline": "Côtier",
-    "borders_count": "0-2"
+    "borders_count": "0-2",
+    "name_first_letter": "r",
+    "name_last_letter": "i",
+    "name_is_compound": true,
+    "name_vowels": [
+      "a",
+      "e",
+      "i",
+      "o",
+      "u"
+    ],
+    "name_contains_hyphen": true,
+    "name_length": 10,
+    "name_composition": "Nom composé"
   },
   {
     "name": "United States",
@@ -2772,7 +4750,19 @@
     "government": "République",
     "type": "NATO",
     "coastline": "Côtier",
-    "borders_count": "0-2"
+    "borders_count": "0-2",
+    "name_first_letter": "e",
+    "name_last_letter": "s",
+    "name_is_compound": true,
+    "name_vowels": [
+      "a",
+      "e",
+      "i",
+      "u"
+    ],
+    "name_contains_hyphen": true,
+    "name_length": 9,
+    "name_composition": "Nom composé"
   },
   {
     "name": "Uruguay",
@@ -2787,7 +4777,17 @@
     "government": "République",
     "type": "MERCOSUR",
     "coastline": "Côtier",
-    "borders_count": "0-2"
+    "borders_count": "0-2",
+    "name_first_letter": "u",
+    "name_last_letter": "y",
+    "name_is_compound": false,
+    "name_vowels": [
+      "a",
+      "u"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 7,
+    "name_composition": "Nom simple"
   },
   {
     "name": "Uzbekistan",
@@ -2802,7 +4802,20 @@
     "government": "République",
     "type": "Indépendant",
     "coastline": "Enclavé",
-    "borders_count": "3-6"
+    "borders_count": "3-6",
+    "name_first_letter": "o",
+    "name_last_letter": "n",
+    "name_is_compound": false,
+    "name_vowels": [
+      "a",
+      "e",
+      "i",
+      "o",
+      "u"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 11,
+    "name_composition": "Nom simple"
   },
   {
     "name": "Vanuatu",
@@ -2817,7 +4830,17 @@
     "government": "République",
     "type": "Commonwealth",
     "coastline": "Côtier",
-    "borders_count": "0-2"
+    "borders_count": "0-2",
+    "name_first_letter": "v",
+    "name_last_letter": "u",
+    "name_is_compound": false,
+    "name_vowels": [
+      "a",
+      "u"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 7,
+    "name_composition": "Nom simple"
   },
   {
     "name": "Vatican City",
@@ -2832,7 +4855,19 @@
     "government": "République",
     "type": "Indépendant",
     "coastline": "Enclavé",
-    "borders_count": "0-2"
+    "borders_count": "0-2",
+    "name_first_letter": "c",
+    "name_last_letter": "n",
+    "name_is_compound": true,
+    "name_vowels": [
+      "a",
+      "e",
+      "i",
+      "u"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 13,
+    "name_composition": "Nom composé"
   },
   {
     "name": "Venezuela",
@@ -2847,7 +4882,18 @@
     "government": "Autocratie",
     "type": "Indépendant",
     "coastline": "Côtier",
-    "borders_count": "3-6"
+    "borders_count": "3-6",
+    "name_first_letter": "v",
+    "name_last_letter": "a",
+    "name_is_compound": false,
+    "name_vowels": [
+      "a",
+      "e",
+      "u"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 9,
+    "name_composition": "Nom simple"
   },
   {
     "name": "Vietnam",
@@ -2862,7 +4908,18 @@
     "government": "Autocratie",
     "type": "ASEAN",
     "coastline": "Côtier",
-    "borders_count": "3-6"
+    "borders_count": "3-6",
+    "name_first_letter": "v",
+    "name_last_letter": "m",
+    "name_is_compound": false,
+    "name_vowels": [
+      "a",
+      "e",
+      "i"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 7,
+    "name_composition": "Nom simple"
   },
   {
     "name": "Yemen",
@@ -2877,7 +4934,16 @@
     "government": "République",
     "type": "Arab League",
     "coastline": "Côtier",
-    "borders_count": "0-2"
+    "borders_count": "0-2",
+    "name_first_letter": "y",
+    "name_last_letter": "n",
+    "name_is_compound": false,
+    "name_vowels": [
+      "e"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 5,
+    "name_composition": "Nom simple"
   },
   {
     "name": "Zambia",
@@ -2892,7 +4958,18 @@
     "government": "République",
     "type": "Commonwealth",
     "coastline": "Enclavé",
-    "borders_count": "7+"
+    "borders_count": "7+",
+    "name_first_letter": "z",
+    "name_last_letter": "e",
+    "name_is_compound": false,
+    "name_vowels": [
+      "a",
+      "e",
+      "i"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 6,
+    "name_composition": "Nom simple"
   },
   {
     "name": "Zimbabwe",
@@ -2907,6 +4984,17 @@
     "government": "République",
     "type": "Commonwealth",
     "coastline": "Enclavé",
-    "borders_count": "3-6"
+    "borders_count": "3-6",
+    "name_first_letter": "z",
+    "name_last_letter": "e",
+    "name_is_compound": false,
+    "name_vowels": [
+      "a",
+      "e",
+      "i"
+    ],
+    "name_contains_hyphen": false,
+    "name_length": 8,
+    "name_composition": "Nom simple"
   }
 ]

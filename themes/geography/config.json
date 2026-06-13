@@ -109,11 +109,67 @@
       { "label": "0-2 frontières", "value": "0-2" },
       { "label": "3-6 frontières", "value": "3-6" },
       { "label": "7+ frontières", "value": "7+" }
+    ],
+    "NAME_FIRST_LETTERS": [
+      { "label": "Commence par A", "value": "Commence par A" },
+      { "label": "Commence par B", "value": "Commence par B" },
+      { "label": "Commence par C", "value": "Commence par C" },
+      { "label": "Commence par D", "value": "Commence par D" },
+      { "label": "Commence par E", "value": "Commence par E" },
+      { "label": "Commence par F", "value": "Commence par F" },
+      { "label": "Commence par G", "value": "Commence par G" },
+      { "label": "Commence par H", "value": "Commence par H" },
+      { "label": "Commence par I", "value": "Commence par I" },
+      { "label": "Commence par J", "value": "Commence par J" },
+      { "label": "Commence par K", "value": "Commence par K" },
+      { "label": "Commence par L", "value": "Commence par L" },
+      { "label": "Commence par M", "value": "Commence par M" },
+      { "label": "Commence par N", "value": "Commence par N" },
+      { "label": "Commence par O", "value": "Commence par O" },
+      { "label": "Commence par P", "value": "Commence par P" },
+      { "label": "Commence par Q", "value": "Commence par Q" },
+      { "label": "Commence par R", "value": "Commence par R" },
+      { "label": "Commence par S", "value": "Commence par S" },
+      { "label": "Commence par T", "value": "Commence par T" },
+      { "label": "Commence par U", "value": "Commence par U" },
+      { "label": "Commence par V", "value": "Commence par V" },
+      { "label": "Commence par Y", "value": "Commence par Y" },
+      { "label": "Commence par Z", "value": "Commence par Z" }
+    ],
+    "NAME_LAST_LETTERS": [
+      { "label": "Finit par A", "value": "Finit par A" },
+      { "label": "Finit par C", "value": "Finit par C" },
+      { "label": "Finit par D", "value": "Finit par D" },
+      { "label": "Finit par E", "value": "Finit par E" },
+      { "label": "Finit par G", "value": "Finit par G" },
+      { "label": "Finit par H", "value": "Finit par H" },
+      { "label": "Finit par I", "value": "Finit par I" },
+      { "label": "Finit par K", "value": "Finit par K" },
+      { "label": "Finit par L", "value": "Finit par L" },
+      { "label": "Finit par M", "value": "Finit par M" },
+      { "label": "Finit par N", "value": "Finit par N" },
+      { "label": "Finit par O", "value": "Finit par O" },
+      { "label": "Finit par R", "value": "Finit par R" },
+      { "label": "Finit par S", "value": "Finit par S" },
+      { "label": "Finit par T", "value": "Finit par T" },
+      { "label": "Finit par U", "value": "Finit par U" },
+      { "label": "Finit par Y", "value": "Finit par Y" }
+    ],
+    "NAME_COMPOSITION": [
+      { "label": "Nom composé", "value": "Nom composé" },
+      { "label": "Nom simple", "value": "Nom simple" }
+    ],
+    "NAME_VOWELS": [
+      { "label": "Contient A", "value": "Contient A" },
+      { "label": "Contient E", "value": "Contient E" },
+      { "label": "Contient I", "value": "Contient I" },
+      { "label": "Contient O", "value": "Contient O" },
+      { "label": "Contient U", "value": "Contient U" }
     ]
   },
 
-  "lignesPool": ["CONTINENTS", "SUBREGIONS", "GOVERNMENTS", "TYPES", "POPULATIONS", "GDP_RANKS", "LANGUAGES", "CAPITALS_LETTERS", "COASTLINES", "BORDERS_COUNTS"],
-  "colonnesPool": ["CONTINENTS", "SUBREGIONS", "GOVERNMENTS", "TYPES", "POPULATIONS", "GDP_RANKS", "LANGUAGES", "CAPITALS_LETTERS", "COASTLINES", "BORDERS_COUNTS"],
+  "lignesPool": ["CONTINENTS", "SUBREGIONS", "GOVERNMENTS", "TYPES", "POPULATIONS", "GDP_RANKS", "LANGUAGES", "CAPITALS_LETTERS", "COASTLINES", "BORDERS_COUNTS", "NAME_FIRST_LETTERS", "NAME_LAST_LETTERS", "NAME_COMPOSITION", "NAME_VOWELS"],
+  "colonnesPool": ["CONTINENTS", "SUBREGIONS", "GOVERNMENTS", "TYPES", "POPULATIONS", "GDP_RANKS", "LANGUAGES", "CAPITALS_LETTERS", "COASTLINES", "BORDERS_COUNTS", "NAME_FIRST_LETTERS", "NAME_LAST_LETTERS", "NAME_COMPOSITION", "NAME_VOWELS"],
 
   "lignesGroupes": [
     { "label": "Continent", "pool": "CONTINENTS" },
@@ -125,7 +181,11 @@
     { "label": "Langue", "pool": "LANGUAGES" },
     { "label": "Lettre capitale", "pool": "CAPITALS_LETTERS" },
     { "label": "Côtier/Enclavé", "pool": "COASTLINES" },
-    { "label": "Nombre frontières", "pool": "BORDERS_COUNTS" }
+    { "label": "Nombre frontières", "pool": "BORDERS_COUNTS" },
+    { "label": "Nom du pays · Commence par", "pool": "NAME_FIRST_LETTERS" },
+    { "label": "Nom du pays · Finit par", "pool": "NAME_LAST_LETTERS" },
+    { "label": "Nom du pays · Composition", "pool": "NAME_COMPOSITION" },
+    { "label": "Nom du pays · Contient voyelle", "pool": "NAME_VOWELS" }
   ],
   "colonnesGroupes": [
     { "label": "Continent", "pool": "CONTINENTS" },
@@ -137,11 +197,18 @@
     { "label": "Langue", "pool": "LANGUAGES" },
     { "label": "Lettre capitale", "pool": "CAPITALS_LETTERS" },
     { "label": "Côtier/Enclavé", "pool": "COASTLINES" },
-    { "label": "Nombre frontières", "pool": "BORDERS_COUNTS" }
+    { "label": "Nombre frontières", "pool": "BORDERS_COUNTS" },
+    { "label": "Nom du pays · Commence par", "pool": "NAME_FIRST_LETTERS" },
+    { "label": "Nom du pays · Finit par", "pool": "NAME_LAST_LETTERS" },
+    { "label": "Nom du pays · Composition", "pool": "NAME_COMPOSITION" },
+    { "label": "Nom du pays · Contient voyelle", "pool": "NAME_VOWELS" }
   ],
 
   "rulesSource": {
-    "Lettre ": "(pays, contrainte) => { const letter = (pays.capital || '')[0].toUpperCase(); return letter === contrainte.slice(7); }"
+    "Lettre ": "(pays, contrainte) => { const letter = (pays.capital || '')[0].toUpperCase(); return letter === contrainte.slice(7); }",
+    "Commence par ": "(pays, contrainte) => pays.name_first_letter === contrainte.slice(13).toLowerCase()",
+    "Finit par ": "(pays, contrainte) => pays.name_last_letter === contrainte.slice(10).toLowerCase()",
+    "Contient ": "(pays, contrainte) => (pays.name_vowels || []).includes(contrainte.slice(9).toLowerCase())"
   },
 
   "fieldMapping": {
@@ -153,7 +220,8 @@
     "gdp_rank": "Rang PIB",
     "language": "Langue",
     "coastline": "Côtier/Enclavé",
-    "borders_count": "Nombre frontières"
+    "borders_count": "Nombre frontières",
+    "name_composition": "Composition du nom"
   },
 
   "diversityRulesSource": {
