@@ -31,30 +31,31 @@ export function nbSolutions(contrainte, entites, config) {
  * config.diversityRules = { typeLigne, typeColonne } : fonctions
  * (valeur, config) => string, qui catégorisent une contrainte.
  *
+ * Appelée d'abord avec `lignes = []` (pré-filtrage des colonnes avant le
+ * tirage des lignes), puis avec les 3 lignes et les 3 colonnes choisies.
+ *
  * Règles génériques :
- * - les 3 lignes et les 3 colonnes doivent être uniques
- * - si config.diversityRules est fourni, aucune catégorie (typeLigne/
- *   typeColonne) ne doit apparaître pour les 3 lignes ou les 3 colonnes
- *   à la fois (sinon la grille est trop monotone)
+ * - les éléments fournis (lignes et/ou colonnes) doivent être uniques
+ * - si config.diversityRules est fourni et que les lignes ET les
+ *   colonnes sont au complet (3), on rejette seulement si elles sont
+ *   chacune entièrement d'une même catégorie (grille complètement
+ *   monotone des deux côtés)
  */
 export function diversiteOK(lignes, colonnes, config) {
-  if (new Set(lignes).size !== 3 || new Set(colonnes).size !== 3) return false;
+  if (new Set(lignes).size !== lignes.length) return false;
+  if (new Set(colonnes).size !== colonnes.length) return false;
 
   const { typeLigne, typeColonne } = config.diversityRules || {};
   if (!typeLigne || !typeColonne) return true;
+  if (lignes.length !== 3 || colonnes.length !== 3) return true;
 
   const typesL = lignes.map(l => typeLigne(l, config));
   const typesC = colonnes.map(c => typeColonne(c, config));
 
-  const compte = types => types.reduce((acc, t) => {
-    acc[t] = (acc[t] || 0) + 1;
-    return acc;
-  }, {});
+  const lignesMonotones = new Set(typesL).size === 1;
+  const colonnesMonotones = new Set(typesC).size === 1;
 
-  if (Object.values(compte(typesL)).some(n => n === 3)) return false;
-  if (Object.values(compte(typesC)).some(n => n === 3)) return false;
-
-  return true;
+  return !(lignesMonotones && colonnesMonotones);
 }
 
 /**
