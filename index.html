@@ -352,8 +352,8 @@
     #btn-create-grid:hover { opacity: .85; }
     #btn-cancel-creator { background: var(--gray-bg); color: #374151; }
     #btn-cancel-creator:hover { opacity: .85; }
-    #btn-random-grid, #btn-autocomplete-grid { background: var(--gray-bg); color: #374151; }
-    #btn-random-grid:hover, #btn-autocomplete-grid:hover { opacity: .85; }
+    #btn-random-grid, #btn-autocomplete-grid, #btn-autofix-grid { background: var(--gray-bg); color: #374151; }
+    #btn-random-grid:hover, #btn-autocomplete-grid:hover, #btn-autofix-grid:hover { opacity: .85; }
     .creator-preview {
       background: #f9fafb;
       border-radius: 8px;
@@ -542,6 +542,7 @@
     <div class="creator-actions" style="margin:0;justify-content:center">
       <button id="btn-random-grid">🎲 Grille aléatoire</button>
       <button id="btn-autocomplete-grid">🤖 Compléter automatiquement</button>
+      <button id="btn-autofix-grid">🛠️ Corriger (min 5 solutions)</button>
     </div>
   </div>
 
@@ -1228,11 +1229,12 @@ function updateCreatorPreview() {
 // ── Remplissage aléatoire / automatique ─────────────────────────────────────
 
 const CREATOR_MIN_SOL = 3, CREATOR_MAX_SOL = 40;
+const AUTOFIX_MIN_SOL = 5;
 const shuffleCreator = arr => [...arr].sort(() => Math.random() - 0.5);
 
 // Tente de compléter les contraintes manquantes (chaînes vides) pour obtenir
-// une grille valide (3-40 solutions par case, pas de doublons).
-function completerGrille(cols, rows) {
+// une grille valide (minSol-maxSol solutions par case, pas de doublons).
+function completerGrille(cols, rows, minSol = CREATOR_MIN_SOL, maxSol = CREATOR_MAX_SOL) {
   for (let attempt = 0; attempt < 500; attempt++) {
     const c = [...cols];
     const r = [...rows];
@@ -1241,7 +1243,7 @@ function completerGrille(cols, rows) {
       if (c[i]) continue;
       const candidats = shuffleCreator(COL_POOL_FULL.filter(x => !c.includes(x)));
       c[i] = candidats.find(cand =>
-        r.every(rr => !rr || (n => n >= CREATOR_MIN_SOL && n <= CREATOR_MAX_SOL)(nbSolutions(rr, cand)))
+        r.every(rr => !rr || (n => n >= minSol && n <= maxSol)(nbSolutions(rr, cand)))
       ) || candidats[0];
     }
 
@@ -1249,7 +1251,7 @@ function completerGrille(cols, rows) {
       if (r[i]) continue;
       const candidats = shuffleCreator(LIGNES_POOL.filter(x => !r.includes(x)));
       r[i] = candidats.find(cand =>
-        c.every(cc => { const n = nbSolutions(cand, cc); return n >= CREATOR_MIN_SOL && n <= CREATOR_MAX_SOL; })
+        c.every(cc => { const n = nbSolutions(cand, cc); return n >= minSol && n <= maxSol; })
       ) || candidats[0];
     }
 
@@ -1257,7 +1259,7 @@ function completerGrille(cols, rows) {
     if (ok) {
       for (const rr of r) for (const cc of c) {
         const n = nbSolutions(rr, cc);
-        if (n < CREATOR_MIN_SOL || n > CREATOR_MAX_SOL) { ok = false; break; }
+        if (n < minSol || n > maxSol) { ok = false; break; }
       }
     }
     if (ok) return { cols: c, rows: r };
@@ -1306,6 +1308,22 @@ document.getElementById('btn-autocomplete-grid').addEventListener('click', () =>
   const result = completerGrille(cols, rows);
   if (!result) {
     alert('Impossible de compléter la grille avec ces contraintes, essayez d\'en changer certaines.');
+    return;
+  }
+  appliquerGrille(result);
+});
+
+// Corrige automatiquement les contraintes non verrouillées pour que chaque
+// case ait au moins AUTOFIX_MIN_SOL solutions possibles.
+document.getElementById('btn-autofix-grid').addEventListener('click', () => {
+  const { cols, rows } = getValeursVerrouillees();
+  if (cols.every(c => !c) && rows.every(r => !r)) {
+    alert('Verrouillez au moins une contrainte ou complétez la grille avant de la corriger.');
+    return;
+  }
+  const result = completerGrille(cols, rows, AUTOFIX_MIN_SOL, CREATOR_MAX_SOL);
+  if (!result) {
+    alert('Impossible d\'obtenir au moins ' + AUTOFIX_MIN_SOL + ' solutions par case avec les contraintes verrouillées, essayez de déverrouiller une contrainte.');
     return;
   }
   appliquerGrille(result);
