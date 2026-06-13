@@ -24,30 +24,38 @@ export function nbSolutions(contrainte, entites, config) {
 }
 
 /**
- * Vérifie que la diversité d'un trio lignes/colonnes respecte les règles
- * du thème (évite les grilles trop faciles, ex: 3 championnats au foot).
+ * Vérifie que la diversité d'un trio lignes/colonnes est acceptable
+ * (évite les grilles trop faciles/monotones), de façon générique pour
+ * tous les thèmes.
  *
  * config.diversityRules = { typeLigne, typeColonne } : fonctions
  * (valeur, config) => string, qui catégorisent une contrainte.
  *
- * Les règles ci-dessous reprennent celles du foot (generateur.js) :
- * - pas 3 lignes de type "ligue"
- * - pas 3 colonnes de type "poste"
- * - au moins 1 colonne de type "selection"
- * À généraliser par thème dans une phase ultérieure si besoin.
+ * Appelée d'abord avec `lignes = []` (pré-filtrage des colonnes avant le
+ * tirage des lignes), puis avec les 3 lignes et les 3 colonnes choisies.
+ *
+ * Règles génériques :
+ * - les éléments fournis (lignes et/ou colonnes) doivent être uniques
+ * - si config.diversityRules est fourni et que les lignes ET les
+ *   colonnes sont au complet (3), on rejette seulement si elles sont
+ *   chacune entièrement d'une même catégorie (grille complètement
+ *   monotone des deux côtés)
  */
 export function diversiteOK(lignes, colonnes, config) {
+  if (new Set(lignes).size !== lignes.length) return false;
+  if (new Set(colonnes).size !== colonnes.length) return false;
+
   const { typeLigne, typeColonne } = config.diversityRules || {};
   if (!typeLigne || !typeColonne) return true;
+  if (lignes.length !== 3 || colonnes.length !== 3) return true;
 
   const typesL = lignes.map(l => typeLigne(l, config));
   const typesC = colonnes.map(c => typeColonne(c, config));
 
-  if (typesL.length === 3 && typesL.filter(t => t === 'ligue').length === 3) return false;
-  if (typesC.filter(t => t === 'poste').length >= 3) return false;
-  if (typesC.length === 3 && !typesC.includes('selection')) return false;
+  const lignesMonotones = new Set(typesL).size === 1;
+  const colonnesMonotones = new Set(typesC).size === 1;
 
-  return true;
+  return !(lignesMonotones && colonnesMonotones);
 }
 
 /**

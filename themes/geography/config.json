@@ -144,7 +144,7 @@
   },
 
   "diversityRulesSource": {
-    "typeLigne": "(ligne, config) => 'generic'",
-    "typeColonne": "(colonne, config) => 'generic'"
+    "typeLigne": "(ligne, config) => { for (const [poolName, items] of Object.entries(config.pools)) { if (items.some(i => i.value === ligne)) return poolName; } return 'other'; }",
+    "typeColonne": "(colonne, config) => { for (const [poolName, items] of Object.entries(config.pools)) { if (items.some(i => i.value === colonne)) return poolName; } return 'other'; }"
   }
 }
