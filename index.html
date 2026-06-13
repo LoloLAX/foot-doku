@@ -390,6 +390,23 @@
     #btn-close-link { background: var(--gray-bg); color: #374151; }
     #btn-close-link:hover { opacity: .85; }
     .share-link-msg { font-size: 12px; color: var(--green); margin-top: 8px; display: none; text-align: center; }
+
+    /* ── Rules modal ────────────────────────────────────── */
+    #rules-modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.45);
+      z-index: 101;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+    #rules-modal.open { display: flex; }
+    .rules-content { font-size: 13px; line-height: 1.5; color: #374151; text-align: left; }
+    .rules-content p { margin-bottom: 10px; }
+    .rules-content ul { margin: 0 0 10px 0; padding-left: 18px; }
+    .rules-content li { margin-bottom: 4px; }
   </style>
 </head>
 <body>
@@ -397,7 +414,11 @@
 <header>
   <h1>⚽ Foot-Doku</h1>
   <div class="date" id="header-date"></div>
-  <div style="text-align:center;margin-top:4px"><a href="admin.html" style="font-size:11px;color:#9ca3af;text-decoration:none">⚙️ Admin</a></div>
+  <div style="text-align:center;margin-top:4px">
+    <a href="#" id="btn-rules" style="font-size:11px;color:#9ca3af;text-decoration:none">📖 Règles</a>
+    <span style="color:#d1d5db">·</span>
+    <a href="admin.html" style="font-size:11px;color:#9ca3af;text-decoration:none">⚙️ Admin</a>
+  </div>
   <div class="attempts-bar" id="attempts-bar">
     <span>Essais :</span>
     <div class="attempts-pips" id="pips"></div>
@@ -511,6 +532,27 @@
   <div class="recap-grid" id="recap-grid"></div>
   <button id="share-btn">📋 Copier le résultat</button>
   <div id="share-confirm">Copié dans le presse-papiers !</div>
+</div>
+
+<!-- Règles modal -->
+<div id="rules-modal">
+  <div class="share-link-box">
+    <h2>📖 Règles du jeu</h2>
+    <div class="rules-content">
+      <p>Chaque ligne et chaque colonne de la grille porte une <strong>contrainte</strong> (club, sélection, championnat, pays de naissance, statistique...).</p>
+      <p>Pour chaque case, trouvez un joueur de la Coupe du Monde 2026 qui correspond <strong>à la fois</strong> à la contrainte de sa ligne et à celle de sa colonne.</p>
+      <ul>
+        <li>✅ Une bonne réponse valide la case définitivement, sans coût.</li>
+        <li>❌ Une mauvaise réponse vous coûte un essai (3 essais au total).</li>
+        <li>♻️ Un joueur ne peut être utilisé qu'une seule fois dans toute la grille.</li>
+        <li>🏁 La partie se termine quand les 9 cases sont validées ou que vous n'avez plus d'essais.</li>
+      </ul>
+      <p>À la fin, partagez votre résultat avec vos amis !</p>
+    </div>
+    <div class="share-link-actions">
+      <button id="btn-close-rules">Fermer</button>
+    </div>
+  </div>
 </div>
 
 <!-- Share link modal -->
@@ -1083,6 +1125,23 @@ document.getElementById('btn-close-link').addEventListener('click', () => {
 document.getElementById('share-link-modal').addEventListener('click', e => {
   if (e.target === e.currentTarget) {
     document.getElementById('share-link-modal').classList.remove('open');
+  }
+});
+
+// ── Règles ───────────────────────────────────────────────────────────────────
+
+document.getElementById('btn-rules').addEventListener('click', e => {
+  e.preventDefault();
+  document.getElementById('rules-modal').classList.add('open');
+});
+
+document.getElementById('btn-close-rules').addEventListener('click', () => {
+  document.getElementById('rules-modal').classList.remove('open');
+});
+
+document.getElementById('rules-modal').addEventListener('click', e => {
+  if (e.target === e.currentTarget) {
+    document.getElementById('rules-modal').classList.remove('open');
   }
 });
 
