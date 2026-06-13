@@ -655,13 +655,20 @@ window.PLAYERS_DB = PLAYERS_DB;
 import { loadTheme, getGlobals } from './index-v2.js';
 
 // Charger le thème par défaut (football) — n'affecte pas le jeu existant
-loadTheme('football').catch(err => console.error(err));
+loadTheme('football').then(() => {
+  window.game = getGlobals();
+}).catch(err => console.error(err));
 
 window.switchTheme = async function switchTheme(themeName) {
   try {
     await loadTheme(themeName);
-    if (themeName !== 'football') {
-      alert(`Thème "${themeName}" : config/données chargées (voir console). L'intégration au jeu arrive dans une phase suivante.`);
+    window.game = getGlobals();
+    // Si le créateur est ouvert, régénérer les listes déroulantes pour le nouveau thème
+    if (document.getElementById('creator').style.display !== 'none' && typeof populateConstraintSelects === 'function') {
+      populateConstraintSelects();
+      document.getElementById('preview-solutions').textContent = '—';
+      document.getElementById('preview-difficulty').textContent = '—';
+      document.getElementById('preview-grid').innerHTML = '';
     }
   } catch (err) {
     alert(`Impossible de charger le thème "${themeName}" : ${err.message}`);
@@ -1120,24 +1127,20 @@ document.getElementById('btn-cancel-creator').addEventListener('click', () => {
 
 // ── Creator mode ───────────────────────────────────────────────────────────────
 
-const COL_CONSTRAINT_GROUPS = [
-  { label: 'Sélection nationale', items: SELECTIONS },
-  { label: 'Poste', items: POSTES },
-  { label: 'Pays de naissance', items: NAISSANCES },
-  { label: 'Lettre du nom', items: LETTRES },
-  { label: 'Statistique', items: STATS },
-  { label: 'Club actuel', items: CLUBS },
-  { label: 'Championnat actuel', items: CHAMPIONNATS },
-];
+// Pool de contraintes de colonne élargi (inclut clubs et championnats actuels),
+// dérivé des groupes de colonnes du thème courant.
+function getColPoolFull() {
+  return window.game.currentConfig.colonnesGroupes.flatMap(g =>
+    (window.game.currentConfig.pools[g.pool] || []).map(i => i.value)
+  );
+}
 
-const ROW_CONSTRAINT_GROUPS = [
-  { label: 'Club actuel', items: CLUBS },
-  { label: 'Ancien club', items: ANCIENS_CLUBS },
-  { label: 'Championnat actuel', items: CHAMPIONNATS },
-];
-
-// Pool de contraintes de colonne élargi (inclut clubs et championnats actuels)
-const COL_POOL_FULL = COL_CONSTRAINT_GROUPS.flatMap(g => g.items.map(i => i.value));
+// Pool de contraintes de ligne, dérivé des groupes de lignes du thème courant.
+function getLignesPoolFull() {
+  return window.game.currentConfig.lignesGroupes.flatMap(g =>
+    (window.game.currentConfig.pools[g.pool] || []).map(i => i.value)
+  );
+}
 
 // Remplit le select de valeurs avec les éléments de la catégorie choisie
 function remplirValeurs(prefix, groupes, categorie) {
@@ -1150,7 +1153,8 @@ function remplirValeurs(prefix, groupes, categorie) {
 
   const groupe = groupes.find(g => g.label === categorie);
   if (groupe) {
-    groupe.items.forEach(item => {
+    const items = window.game.currentConfig.pools[groupe.pool] || [];
+    items.forEach(item => {
       const opt = document.createElement('option');
       opt.value = item.value;
       opt.textContent = item.label;
@@ -1162,7 +1166,7 @@ function remplirValeurs(prefix, groupes, categorie) {
 
 // Sélectionne la catégorie correspondant à la valeur, puis la valeur elle-même
 function setConstraintValue(prefix, groupes, value) {
-  const groupe = groupes.find(g => g.items.some(i => i.value === value));
+  const groupe = groupes.find(g => (window.game.currentConfig.pools[g.pool] || []).some(i => i.value === value));
   const catSelect = document.getElementById(prefix + '-cat');
   catSelect.value = groupe ? groupe.label : '';
   remplirValeurs(prefix, groupes, catSelect.value);
@@ -1196,8 +1200,8 @@ function populateConstraintSelects() {
     document.getElementById(prefix + '-select').addEventListener('change', updateCreatorPreview);
   }
 
-  colIds.forEach(id => remplirCategories(id, COL_CONSTRAINT_GROUPS));
-  rowIds.forEach(id => remplirCategories(id, ROW_CONSTRAINT_GROUPS));
+  colIds.forEach(id => remplirCategories(id, window.game.currentConfig.colonnesGroupes));
+  rowIds.forEach(id => remplirCategories(id, window.game.currentConfig.lignesGroupes));
 }
 
 let previewTimeout;
@@ -1228,7 +1232,9 @@ function updateCreatorPreview() {
     previewGrid.innerHTML = '';
     for (let r = 0; r < 3; r++) {
       for (let c = 0; c < 3; c++) {
-        const sols = getSolutions(rows[r], cols[c]);
+        const sols = window.game.currentEntities.filter(e =>
+          window.game.matchesContrainte(e, rows[r]) && window.game.matchesContrainte(e, cols[c])
+        );
         minSol = Math.min(minSol, sols.length);
         maxSol = Math.max(maxSol, sols.length);
 
@@ -1264,30 +1270,37 @@ const shuffleCreator = arr => [...arr].sort(() => Math.random() - 0.5);
 // Tente de compléter les contraintes manquantes (chaînes vides) pour obtenir
 // une grille valide (minSol-maxSol solutions par case, pas de doublons).
 function completerGrille(cols, rows, minSol = CREATOR_MIN_SOL, maxSol = CREATOR_MAX_SOL) {
+  const colPoolFull = getColPoolFull();
+  const lignesPoolFull = getLignesPoolFull();
+
+  const nbSolutionsCroisees = (c1, c2) => window.game.currentEntities.reduce((count, e) =>
+    count + (window.game.matchesContrainte(e, c1) && window.game.matchesContrainte(e, c2) ? 1 : 0), 0
+  );
+
   for (let attempt = 0; attempt < 500; attempt++) {
     const c = [...cols];
     const r = [...rows];
 
     for (let i = 0; i < 3; i++) {
       if (c[i]) continue;
-      const candidats = shuffleCreator(COL_POOL_FULL.filter(x => !c.includes(x)));
+      const candidats = shuffleCreator(colPoolFull.filter(x => !c.includes(x)));
       c[i] = candidats.find(cand =>
-        r.every(rr => !rr || (n => n >= minSol && n <= maxSol)(nbSolutions(rr, cand)))
+        r.every(rr => !rr || (n => n >= minSol && n <= maxSol)(nbSolutionsCroisees(rr, cand)))
       ) || candidats[0];
     }
 
     for (let i = 0; i < 3; i++) {
       if (r[i]) continue;
-      const candidats = shuffleCreator(LIGNES_POOL.filter(x => !r.includes(x)));
+      const candidats = shuffleCreator(lignesPoolFull.filter(x => !r.includes(x)));
       r[i] = candidats.find(cand =>
-        c.every(cc => { const n = nbSolutions(cand, cc); return n >= minSol && n <= maxSol; })
+        c.every(cc => { const n = nbSolutionsCroisees(cand, cc); return n >= minSol && n <= maxSol; })
       ) || candidats[0];
     }
 
     let ok = new Set(c).size === 3 && new Set(r).size === 3;
     if (ok) {
       for (const rr of r) for (const cc of c) {
-        const n = nbSolutions(rr, cc);
+        const n = nbSolutionsCroisees(rr, cc);
         if (n < minSol || n > maxSol) { ok = false; break; }
       }
     }
@@ -1297,8 +1310,8 @@ function completerGrille(cols, rows, minSol = CREATOR_MIN_SOL, maxSol = CREATOR_
 }
 
 function appliquerGrille(result) {
-  ['col0', 'col1', 'col2'].forEach((id, i) => setConstraintValue(id, COL_CONSTRAINT_GROUPS, result.cols[i]));
-  ['row0', 'row1', 'row2'].forEach((id, i) => setConstraintValue(id, ROW_CONSTRAINT_GROUPS, result.rows[i]));
+  ['col0', 'col1', 'col2'].forEach((id, i) => setConstraintValue(id, window.game.currentConfig.colonnesGroupes, result.cols[i]));
+  ['row0', 'row1', 'row2'].forEach((id, i) => setConstraintValue(id, window.game.currentConfig.lignesGroupes, result.rows[i]));
   updateCreatorPreview();
 }
 
@@ -1434,11 +1447,11 @@ document.getElementById('btn-close-link').addEventListener('click', () => {
     // Reset selects
     ['col0', 'col1', 'col2'].forEach(id => {
       document.getElementById(id + '-cat').value = '';
-      remplirValeurs(id, COL_CONSTRAINT_GROUPS, '');
+      remplirValeurs(id, window.game.currentConfig.colonnesGroupes, '');
     });
     ['row0', 'row1', 'row2'].forEach(id => {
       document.getElementById(id + '-cat').value = '';
-      remplirValeurs(id, ROW_CONSTRAINT_GROUPS, '');
+      remplirValeurs(id, window.game.currentConfig.lignesGroupes, '');
     });
     document.getElementById('preview-solutions').textContent = '—';
     document.getElementById('preview-difficulty').textContent = '—';
