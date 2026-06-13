@@ -1012,11 +1012,30 @@ document.getElementById('btn-cancel-creator').addEventListener('click', () => {
 
 // ── Creator mode ───────────────────────────────────────────────────────────────
 
-function populateConstraintSelects() {
-  const allConstraints = COLONNES_POOL.sort();
-  const selects = ['col0-select', 'col1-select', 'col2-select', 'row0-select', 'row1-select', 'row2-select'];
+const COL_CONSTRAINT_GROUPS = [
+  { label: 'Sélection nationale', items: SELECTIONS },
+  { label: 'Poste', items: POSTES },
+  { label: 'Pays de naissance', items: NAISSANCES },
+  { label: 'Lettre du nom', items: LETTRES },
+  { label: 'Statistique', items: STATS },
+  { label: 'Club actuel', items: CLUBS },
+  { label: 'Championnat actuel', items: CHAMPIONNATS },
+];
 
-  selects.forEach(id => {
+const ROW_CONSTRAINT_GROUPS = [
+  { label: 'Club actuel', items: CLUBS },
+  { label: 'Ancien club', items: ANCIENS_CLUBS },
+  { label: 'Championnat actuel', items: CHAMPIONNATS },
+];
+
+// Pool de contraintes de colonne élargi (inclut clubs et championnats actuels)
+const COL_POOL_FULL = COL_CONSTRAINT_GROUPS.flatMap(g => g.items.map(i => i.value));
+
+function populateConstraintSelects() {
+  const colSelects = ['col0-select', 'col1-select', 'col2-select'];
+  const rowSelects = ['row0-select', 'row1-select', 'row2-select'];
+
+  function remplir(id, groupes) {
     const select = document.getElementById(id);
     select.innerHTML = '';
     const defaultOpt = document.createElement('option');
@@ -1024,15 +1043,23 @@ function populateConstraintSelects() {
     defaultOpt.textContent = '— Choisir une contrainte —';
     select.appendChild(defaultOpt);
 
-    allConstraints.forEach(c => {
-      const opt = document.createElement('option');
-      opt.value = c;
-      opt.textContent = c;
-      select.appendChild(opt);
+    groupes.forEach(g => {
+      const optgroup = document.createElement('optgroup');
+      optgroup.label = g.label;
+      g.items.forEach(item => {
+        const opt = document.createElement('option');
+        opt.value = item.value;
+        opt.textContent = item.label;
+        optgroup.appendChild(opt);
+      });
+      select.appendChild(optgroup);
     });
 
     select.addEventListener('change', updateCreatorPreview);
-  });
+  }
+
+  colSelects.forEach(id => remplir(id, COL_CONSTRAINT_GROUPS));
+  rowSelects.forEach(id => remplir(id, ROW_CONSTRAINT_GROUPS));
 }
 
 let previewTimeout;
@@ -1085,7 +1112,7 @@ function completerGrille(cols, rows) {
 
     for (let i = 0; i < 3; i++) {
       if (c[i]) continue;
-      const candidats = shuffleCreator(COLONNES_POOL.filter(x => !c.includes(x)));
+      const candidats = shuffleCreator(COL_POOL_FULL.filter(x => !c.includes(x)));
       c[i] = candidats.find(cand =>
         r.every(rr => !rr || (n => n >= CREATOR_MIN_SOL && n <= CREATOR_MAX_SOL)(nbSolutions(rr, cand)))
       ) || candidats[0];
