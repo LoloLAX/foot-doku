@@ -458,6 +458,13 @@
 </head>
 <body>
 
+<div id="theme-selector" style="position: absolute; top: 10px; left: 10px; z-index: 1000;">
+  <select id="themeSelect" onchange="switchTheme(this.value)" style="padding: 8px 12px; font-size: 14px; border-radius: 4px; border: 1px solid #ccc;">
+    <option value="football">Foot-Doku</option>
+    <option value="geography">Geo-Doku</option>
+  </select>
+</div>
+
 <header>
   <h1>⚽ Foot-Doku</h1>
   <div class="date" id="header-date"></div>
@@ -640,6 +647,28 @@
 </div>
 
 <script src="data_browser.js"></script>
+<script>
+// Expose PLAYERS_DB sur window pour index-v2.js (module générique multi-thèmes)
+window.PLAYERS_DB = PLAYERS_DB;
+</script>
+<script type="module">
+import { loadTheme, getGlobals } from './index-v2.js';
+
+// Charger le thème par défaut (football) — n'affecte pas le jeu existant
+loadTheme('football').catch(err => console.error(err));
+
+window.switchTheme = async function switchTheme(themeName) {
+  try {
+    await loadTheme(themeName);
+    if (themeName !== 'football') {
+      alert(`Thème "${themeName}" : config/données chargées (voir console). L'intégration au jeu arrive dans une phase suivante.`);
+    }
+  } catch (err) {
+    alert(`Impossible de charger le thème "${themeName}" : ${err.message}`);
+    document.getElementById('themeSelect').value = 'football';
+  }
+};
+</script>
 <script>
 // ── État ─────────────────────────────────────────────────────────────────────
 
