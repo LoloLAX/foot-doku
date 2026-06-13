@@ -146,5 +146,7 @@
   "diversityRulesSource": {
     "typeLigne": "(ligne, config) => { for (const [poolName, items] of Object.entries(config.pools)) { if (items.some(i => i.value === ligne)) return poolName; } return 'other'; }",
     "typeColonne": "(colonne, config) => { for (const [poolName, items] of Object.entries(config.pools)) { if (items.some(i => i.value === colonne)) return poolName; } return 'other'; }"
-  }
+  },
+
+  "rulesText": "<h2>🌍 Règles de Geo-Doku</h2><p>Vous devez compléter une grille 3×3 en trouvant des <strong>pays</strong>.</p><p><strong>Règle :</strong> Chaque case doit contenir un pays qui satisfait à la fois la contrainte de <strong>ligne</strong> (continent, sous-région, régime politique, etc.) et de <strong>colonne</strong> (union/alliance, population, rang PIB, langue, etc.).</p><p>Exemple : si la ligne est « Continent · Europe » et la colonne « Population · 20M-60M », la case doit contenir un pays européen avec 20 à 60 millions d'habitants.</p>"
 }

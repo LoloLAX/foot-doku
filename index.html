@@ -135,6 +135,9 @@
       color: var(--gray);
       line-height: 1;
     }
+    .cell-sol-count.sol-low    { color: #ef4444; }
+    .cell-sol-count.sol-medium { color: #eab308; }
+    .cell-sol-count.sol-high   { color: #22c55e; }
 
     /* ── Modal ───────────────────────────────────────────── */
     #modal-overlay {
@@ -616,12 +619,11 @@
   <div class="share-link-box">
     <h2>📖 Règles du jeu</h2>
     <div class="rules-content">
-      <p>Chaque ligne et chaque colonne de la grille porte une <strong>contrainte</strong> (club, sélection, championnat, pays de naissance, statistique...).</p>
-      <p>Pour chaque case, trouvez un joueur de la Coupe du Monde 2026 qui correspond <strong>à la fois</strong> à la contrainte de sa ligne et à celle de sa colonne.</p>
+      <div id="rules-text"></div>
       <ul>
         <li>✅ Une bonne réponse valide la case définitivement, sans coût.</li>
         <li>❌ Une mauvaise réponse vous coûte un essai (3 essais au total).</li>
-        <li>♻️ Un joueur ne peut être utilisé qu'une seule fois dans toute la grille.</li>
+        <li>♻️ Un élément ne peut être utilisé qu'une seule fois dans toute la grille.</li>
         <li>🏁 La partie se termine quand les 9 cases sont validées ou que vous n'avez plus d'essais.</li>
       </ul>
       <p>À la fin, partagez votre résultat avec vos amis !</p>
@@ -661,10 +663,27 @@ function updatePageTitle() {
   }
 }
 
+function updateGameUI() {
+  const searchInput = document.getElementById('search-input');
+  if (searchInput && window.game && window.game.currentConfig) {
+    searchInput.placeholder = `Chercher un ${window.game.currentConfig.entity}…`;
+  }
+}
+
+function updateRulesText() {
+  const rulesTextEl = document.getElementById('rules-text');
+  if (rulesTextEl && window.game && window.game.currentConfig) {
+    rulesTextEl.innerHTML = window.game.currentConfig.rulesText;
+  }
+}
+
 // Charger le thème par défaut (football) — n'affecte pas le jeu existant
 loadTheme('football').then(() => {
   window.game = getGlobals();
   updatePageTitle();
+  updateGameUI();
+  updateRulesText();
+  window.init();
 }).catch(err => console.error(err));
 
 window.switchTheme = async function switchTheme(themeName) {
@@ -672,6 +691,13 @@ window.switchTheme = async function switchTheme(themeName) {
     await loadTheme(themeName);
     window.game = getGlobals();
     updatePageTitle();
+    updateGameUI();
+    updateRulesText();
+    // Resynchroniser le dropdown sélecteur de thème
+    const themeSelect = document.getElementById('themeSelect');
+    if (themeSelect) {
+      themeSelect.value = themeName;
+    }
     // Si le créateur est ouvert, régénérer les listes déroulantes pour le nouveau thème
     if (document.getElementById('creator').style.display !== 'none' && typeof populateConstraintSelects === 'function') {
       populateConstraintSelects();
@@ -822,12 +848,22 @@ function refreshCell(r, c) {
   }
 }
 
-// Affiche le "+" et, en petit, le nombre de joueurs possibles pour cette case
+// Affiche le "+" et, en petit, le nombre de solutions possibles pour cette case
 function setEmptyCellContent(td, r, c) {
   td.textContent = '+';
+  const ligne = grille.lignes[r];
+  const colonne = grille.colonnes[c];
+  const count = window.game.currentEntities.filter(e =>
+    window.game.matchesContrainte(e, ligne) && window.game.matchesContrainte(e, colonne)
+  ).length;
+
   const badge = document.createElement('span');
-  badge.className = 'cell-sol-count';
-  badge.textContent = getSolutions(grille.lignes[r], grille.colonnes[c]).length;
+  let levelClass = 'sol-high';
+  if (count <= 3) levelClass = 'sol-low';
+  else if (count <= 10) levelClass = 'sol-medium';
+  badge.className = `cell-sol-count ${levelClass}`;
+  badge.textContent = count;
+  badge.title = `${count} solution${count === 1 ? '' : 's'} possible${count === 1 ? '' : 's'}`;
   td.appendChild(badge);
 }
 
@@ -888,7 +924,7 @@ document.getElementById('search-input').addEventListener('input', function() {
     return;
   }
 
-  const matches = PLAYERS_DB.filter(j => normaliserRecherche(j.name).includes(q)).slice(0, 30);
+  const matches = window.game.currentEntities.filter(j => normaliserRecherche(j.name).includes(q)).slice(0, 30);
   const ac = document.getElementById('autocomplete');
 
   if (matches.length === 0) {
@@ -983,8 +1019,7 @@ function confirmAnswer() {
 
 // ── Solutions ────────────────────────────────────────────────────────────────
 
-// matchesContrainte et getSolutions sont fournis par data_browser.js
-function matchesConstraint(j, c) { return matchesContrainte(j, c); }
+function matchesConstraint(j, c) { return window.game.matchesContrainte(j, c); }
 
 // ── Game over ─────────────────────────────────────────────────────────────────
 
@@ -1024,8 +1059,11 @@ function showEndgame() {
       if (s.validated) {
         addRecapCell(recap, s.playerName, 'ok');
       } else {
-        const sols = getSolutions(grille.lignes[r], grille.colonnes[c])
-          .sort((a, b) => (b.caps || 0) - (a.caps || 0));
+        const ligne = grille.lignes[r];
+        const colonne = grille.colonnes[c];
+        const sols = window.game.currentEntities.filter(e =>
+          window.game.matchesContrainte(e, ligne) && window.game.matchesContrainte(e, colonne)
+        );
         const TOP = 3;
         let hint = '—';
         if (sols.length > 0) {
@@ -1494,7 +1532,7 @@ document.getElementById('rules-modal').addEventListener('click', e => {
 });
 
 // ── Start ─────────────────────────────────────────────────────────────────────
-init();
+window.init = init;
 </script>
 </body>
 </html>
