@@ -2,215 +2,726 @@
   "name": "geography",
   "label": "Geo-Doku",
   "entity": "pays",
-
   "pools": {
     "CONTINENTS": [
-      { "label": "Europe", "value": "Europe" },
-      { "label": "Asia", "value": "Asia" },
-      { "label": "Africa", "value": "Africa" },
-      { "label": "North America", "value": "North America" },
-      { "label": "South America", "value": "South America" },
-      { "label": "Oceania", "value": "Oceania" }
+      {
+        "label": "Europe",
+        "value": "Europe"
+      },
+      {
+        "label": "Asia",
+        "value": "Asia"
+      },
+      {
+        "label": "Africa",
+        "value": "Africa"
+      },
+      {
+        "label": "North America",
+        "value": "North America"
+      },
+      {
+        "label": "South America",
+        "value": "South America"
+      },
+      {
+        "label": "Oceania",
+        "value": "Oceania"
+      }
     ],
     "SUBREGIONS": [
-      { "label": "Western Europe", "value": "Western Europe" },
-      { "label": "Eastern Europe", "value": "Eastern Europe" },
-      { "label": "Northern Europe", "value": "Northern Europe" },
-      { "label": "Southern Europe", "value": "Southern Europe" },
-      { "label": "Southeast Europe", "value": "Southeast Europe" },
-      { "label": "Central Europe", "value": "Central Europe" },
-      { "label": "East Asia", "value": "East Asia" },
-      { "label": "Southeast Asia", "value": "Southeast Asia" },
-      { "label": "South Asia", "value": "South Asia" },
-      { "label": "Middle East", "value": "Middle East" },
-      { "label": "Central Asia", "value": "Central Asia" },
-      { "label": "Northern Africa", "value": "Northern Africa" },
-      { "label": "Sub-Saharan Africa", "value": "Sub-Saharan Africa" },
-      { "label": "Northern America", "value": "Northern America" },
-      { "label": "Central America", "value": "Central America" },
-      { "label": "Caribbean", "value": "Caribbean" },
-      { "label": "South America", "value": "South America" },
-      { "label": "Oceania", "value": "Oceania" }
+      {
+        "label": "Western Europe",
+        "value": "Western Europe"
+      },
+      {
+        "label": "Eastern Europe",
+        "value": "Eastern Europe"
+      },
+      {
+        "label": "Northern Europe",
+        "value": "Northern Europe"
+      },
+      {
+        "label": "Southern Europe",
+        "value": "Southern Europe"
+      },
+      {
+        "label": "Southeast Europe",
+        "value": "Southeast Europe"
+      },
+      {
+        "label": "Central Europe",
+        "value": "Central Europe"
+      },
+      {
+        "label": "East Asia",
+        "value": "East Asia"
+      },
+      {
+        "label": "Southeast Asia",
+        "value": "Southeast Asia"
+      },
+      {
+        "label": "South Asia",
+        "value": "South Asia"
+      },
+      {
+        "label": "Middle East",
+        "value": "Middle East"
+      },
+      {
+        "label": "Central Asia",
+        "value": "Central Asia"
+      },
+      {
+        "label": "Northern Africa",
+        "value": "Northern Africa"
+      },
+      {
+        "label": "Sub-Saharan Africa",
+        "value": "Sub-Saharan Africa"
+      },
+      {
+        "label": "Northern America",
+        "value": "Northern America"
+      },
+      {
+        "label": "Central America",
+        "value": "Central America"
+      },
+      {
+        "label": "Caribbean",
+        "value": "Caribbean"
+      },
+      {
+        "label": "South America",
+        "value": "South America"
+      },
+      {
+        "label": "Oceania",
+        "value": "Oceania"
+      }
     ],
     "GOVERNMENTS": [
-      { "label": "Monarchie", "value": "Monarchie" },
-      { "label": "République", "value": "République" },
-      { "label": "Autocratie", "value": "Autocratie" },
-      { "label": "Dictature", "value": "Dictature" }
+      {
+        "label": "Monarchie",
+        "value": "Monarchie"
+      },
+      {
+        "label": "République",
+        "value": "République"
+      },
+      {
+        "label": "Autocratie",
+        "value": "Autocratie"
+      },
+      {
+        "label": "Dictature",
+        "value": "Dictature"
+      }
     ],
     "TYPES": [
-      { "label": "Union Européenne", "value": "Union Européenne" },
-      { "label": "G7", "value": "G7" },
-      { "label": "BRICS", "value": "BRICS" },
-      { "label": "NATO", "value": "NATO" },
-      { "label": "ASEAN", "value": "ASEAN" },
-      { "label": "MERCOSUR", "value": "MERCOSUR" },
-      { "label": "Arab League", "value": "Arab League" },
-      { "label": "Commonwealth", "value": "Commonwealth" },
-      { "label": "Indépendant", "value": "Indépendant" }
+      {
+        "label": "Union Européenne",
+        "value": "Union Européenne"
+      },
+      {
+        "label": "G7",
+        "value": "G7"
+      },
+      {
+        "label": "BRICS",
+        "value": "BRICS"
+      },
+      {
+        "label": "NATO",
+        "value": "NATO"
+      },
+      {
+        "label": "ASEAN",
+        "value": "ASEAN"
+      },
+      {
+        "label": "MERCOSUR",
+        "value": "MERCOSUR"
+      },
+      {
+        "label": "Arab League",
+        "value": "Arab League"
+      },
+      {
+        "label": "Commonwealth",
+        "value": "Commonwealth"
+      },
+      {
+        "label": "Indépendant",
+        "value": "Indépendant"
+      }
     ],
     "POPULATIONS": [
-      { "label": "<1M", "value": "<1M" },
-      { "label": "1M-20M", "value": "1M-20M" },
-      { "label": "20M-60M", "value": "20M-60M" },
-      { "label": "60M-200M", "value": "60M-200M" },
-      { "label": "200M+", "value": "200M+" }
+      {
+        "label": "<1M",
+        "value": "<1M"
+      },
+      {
+        "label": "1M-20M",
+        "value": "1M-20M"
+      },
+      {
+        "label": "20M-60M",
+        "value": "20M-60M"
+      },
+      {
+        "label": "60M-200M",
+        "value": "60M-200M"
+      },
+      {
+        "label": "200M+",
+        "value": "200M+"
+      }
     ],
     "GDP_RANKS": [
-      { "label": "Top 10", "value": "Top 10" },
-      { "label": "Top 20", "value": "Top 20" },
-      { "label": "Top 50", "value": "Top 50" },
-      { "label": "Top 100", "value": "Top 100" },
-      { "label": "Autres", "value": "Autres" }
+      {
+        "label": "Top 10",
+        "value": "Top 10"
+      },
+      {
+        "label": "Top 20",
+        "value": "Top 20"
+      },
+      {
+        "label": "Top 50",
+        "value": "Top 50"
+      },
+      {
+        "label": "Top 100",
+        "value": "Top 100"
+      },
+      {
+        "label": "Autres",
+        "value": "Autres"
+      }
     ],
     "LANGUAGES": [
-      { "label": "Anglais", "value": "Anglais" },
-      { "label": "Français", "value": "Français" },
-      { "label": "Espagnol", "value": "Espagnol" },
-      { "label": "Allemand", "value": "Allemand" },
-      { "label": "Mandarin", "value": "Mandarin" },
-      { "label": "Arabe", "value": "Arabe" },
-      { "label": "Hindi", "value": "Hindi" },
-      { "label": "Portugais", "value": "Portugais" },
-      { "label": "Russe", "value": "Russe" },
-      { "label": "Autre", "value": "Autre" }
+      {
+        "label": "Anglais",
+        "value": "Anglais"
+      },
+      {
+        "label": "Français",
+        "value": "Français"
+      },
+      {
+        "label": "Espagnol",
+        "value": "Espagnol"
+      },
+      {
+        "label": "Allemand",
+        "value": "Allemand"
+      },
+      {
+        "label": "Mandarin",
+        "value": "Mandarin"
+      },
+      {
+        "label": "Arabe",
+        "value": "Arabe"
+      },
+      {
+        "label": "Hindi",
+        "value": "Hindi"
+      },
+      {
+        "label": "Portugais",
+        "value": "Portugais"
+      },
+      {
+        "label": "Russe",
+        "value": "Russe"
+      },
+      {
+        "label": "Autre",
+        "value": "Autre"
+      }
     ],
     "CAPITALS_LETTERS": [
-      { "label": "Lettre A", "value": "Lettre A" },
-      { "label": "Lettre B", "value": "Lettre B" },
-      { "label": "Lettre C", "value": "Lettre C" },
-      { "label": "Lettre D", "value": "Lettre D" },
-      { "label": "Lettre F", "value": "Lettre F" },
-      { "label": "Lettre G", "value": "Lettre G" },
-      { "label": "Lettre H", "value": "Lettre H" },
-      { "label": "Lettre I", "value": "Lettre I" },
-      { "label": "Lettre J", "value": "Lettre J" },
-      { "label": "Lettre K", "value": "Lettre K" },
-      { "label": "Lettre L", "value": "Lettre L" },
-      { "label": "Lettre M", "value": "Lettre M" },
-      { "label": "Lettre N", "value": "Lettre N" },
-      { "label": "Lettre O", "value": "Lettre O" },
-      { "label": "Lettre P", "value": "Lettre P" },
-      { "label": "Lettre Q", "value": "Lettre Q" },
-      { "label": "Lettre R", "value": "Lettre R" },
-      { "label": "Lettre S", "value": "Lettre S" },
-      { "label": "Lettre T", "value": "Lettre T" },
-      { "label": "Lettre U", "value": "Lettre U" },
-      { "label": "Lettre V", "value": "Lettre V" },
-      { "label": "Lettre W", "value": "Lettre W" },
-      { "label": "Lettre Y", "value": "Lettre Y" },
-      { "label": "Lettre Z", "value": "Lettre Z" }
+      {
+        "label": "Lettre A",
+        "value": "Lettre A"
+      },
+      {
+        "label": "Lettre B",
+        "value": "Lettre B"
+      },
+      {
+        "label": "Lettre C",
+        "value": "Lettre C"
+      },
+      {
+        "label": "Lettre D",
+        "value": "Lettre D"
+      },
+      {
+        "label": "Lettre F",
+        "value": "Lettre F"
+      },
+      {
+        "label": "Lettre G",
+        "value": "Lettre G"
+      },
+      {
+        "label": "Lettre H",
+        "value": "Lettre H"
+      },
+      {
+        "label": "Lettre I",
+        "value": "Lettre I"
+      },
+      {
+        "label": "Lettre J",
+        "value": "Lettre J"
+      },
+      {
+        "label": "Lettre K",
+        "value": "Lettre K"
+      },
+      {
+        "label": "Lettre L",
+        "value": "Lettre L"
+      },
+      {
+        "label": "Lettre M",
+        "value": "Lettre M"
+      },
+      {
+        "label": "Lettre N",
+        "value": "Lettre N"
+      },
+      {
+        "label": "Lettre O",
+        "value": "Lettre O"
+      },
+      {
+        "label": "Lettre P",
+        "value": "Lettre P"
+      },
+      {
+        "label": "Lettre Q",
+        "value": "Lettre Q"
+      },
+      {
+        "label": "Lettre R",
+        "value": "Lettre R"
+      },
+      {
+        "label": "Lettre S",
+        "value": "Lettre S"
+      },
+      {
+        "label": "Lettre T",
+        "value": "Lettre T"
+      },
+      {
+        "label": "Lettre U",
+        "value": "Lettre U"
+      },
+      {
+        "label": "Lettre V",
+        "value": "Lettre V"
+      },
+      {
+        "label": "Lettre W",
+        "value": "Lettre W"
+      },
+      {
+        "label": "Lettre Y",
+        "value": "Lettre Y"
+      },
+      {
+        "label": "Lettre Z",
+        "value": "Lettre Z"
+      }
     ],
     "COASTLINES": [
-      { "label": "Côtier", "value": "Côtier" },
-      { "label": "Enclavé", "value": "Enclavé" }
+      {
+        "label": "Côtier",
+        "value": "Côtier"
+      },
+      {
+        "label": "Enclavé",
+        "value": "Enclavé"
+      }
     ],
     "BORDERS_COUNTS": [
-      { "label": "0-2 frontières", "value": "0-2" },
-      { "label": "3-6 frontières", "value": "3-6" },
-      { "label": "7+ frontières", "value": "7+" }
+      {
+        "label": "0-2 frontières",
+        "value": "0-2"
+      },
+      {
+        "label": "3-6 frontières",
+        "value": "3-6"
+      },
+      {
+        "label": "7+ frontières",
+        "value": "7+"
+      }
     ],
     "NAME_FIRST_LETTERS": [
-      { "label": "Commence par A", "value": "Commence par A" },
-      { "label": "Commence par B", "value": "Commence par B" },
-      { "label": "Commence par C", "value": "Commence par C" },
-      { "label": "Commence par D", "value": "Commence par D" },
-      { "label": "Commence par E", "value": "Commence par E" },
-      { "label": "Commence par F", "value": "Commence par F" },
-      { "label": "Commence par G", "value": "Commence par G" },
-      { "label": "Commence par H", "value": "Commence par H" },
-      { "label": "Commence par I", "value": "Commence par I" },
-      { "label": "Commence par J", "value": "Commence par J" },
-      { "label": "Commence par K", "value": "Commence par K" },
-      { "label": "Commence par L", "value": "Commence par L" },
-      { "label": "Commence par M", "value": "Commence par M" },
-      { "label": "Commence par N", "value": "Commence par N" },
-      { "label": "Commence par O", "value": "Commence par O" },
-      { "label": "Commence par P", "value": "Commence par P" },
-      { "label": "Commence par Q", "value": "Commence par Q" },
-      { "label": "Commence par R", "value": "Commence par R" },
-      { "label": "Commence par S", "value": "Commence par S" },
-      { "label": "Commence par T", "value": "Commence par T" },
-      { "label": "Commence par U", "value": "Commence par U" },
-      { "label": "Commence par V", "value": "Commence par V" },
-      { "label": "Commence par Y", "value": "Commence par Y" },
-      { "label": "Commence par Z", "value": "Commence par Z" }
+      {
+        "label": "Commence par A",
+        "value": "Commence par A"
+      },
+      {
+        "label": "Commence par B",
+        "value": "Commence par B"
+      },
+      {
+        "label": "Commence par C",
+        "value": "Commence par C"
+      },
+      {
+        "label": "Commence par D",
+        "value": "Commence par D"
+      },
+      {
+        "label": "Commence par E",
+        "value": "Commence par E"
+      },
+      {
+        "label": "Commence par F",
+        "value": "Commence par F"
+      },
+      {
+        "label": "Commence par G",
+        "value": "Commence par G"
+      },
+      {
+        "label": "Commence par H",
+        "value": "Commence par H"
+      },
+      {
+        "label": "Commence par I",
+        "value": "Commence par I"
+      },
+      {
+        "label": "Commence par J",
+        "value": "Commence par J"
+      },
+      {
+        "label": "Commence par K",
+        "value": "Commence par K"
+      },
+      {
+        "label": "Commence par L",
+        "value": "Commence par L"
+      },
+      {
+        "label": "Commence par M",
+        "value": "Commence par M"
+      },
+      {
+        "label": "Commence par N",
+        "value": "Commence par N"
+      },
+      {
+        "label": "Commence par O",
+        "value": "Commence par O"
+      },
+      {
+        "label": "Commence par P",
+        "value": "Commence par P"
+      },
+      {
+        "label": "Commence par Q",
+        "value": "Commence par Q"
+      },
+      {
+        "label": "Commence par R",
+        "value": "Commence par R"
+      },
+      {
+        "label": "Commence par S",
+        "value": "Commence par S"
+      },
+      {
+        "label": "Commence par T",
+        "value": "Commence par T"
+      },
+      {
+        "label": "Commence par U",
+        "value": "Commence par U"
+      },
+      {
+        "label": "Commence par V",
+        "value": "Commence par V"
+      },
+      {
+        "label": "Commence par Y",
+        "value": "Commence par Y"
+      },
+      {
+        "label": "Commence par Z",
+        "value": "Commence par Z"
+      }
     ],
     "NAME_LAST_LETTERS": [
-      { "label": "Finit par A", "value": "Finit par A" },
-      { "label": "Finit par C", "value": "Finit par C" },
-      { "label": "Finit par D", "value": "Finit par D" },
-      { "label": "Finit par E", "value": "Finit par E" },
-      { "label": "Finit par G", "value": "Finit par G" },
-      { "label": "Finit par H", "value": "Finit par H" },
-      { "label": "Finit par I", "value": "Finit par I" },
-      { "label": "Finit par K", "value": "Finit par K" },
-      { "label": "Finit par L", "value": "Finit par L" },
-      { "label": "Finit par M", "value": "Finit par M" },
-      { "label": "Finit par N", "value": "Finit par N" },
-      { "label": "Finit par O", "value": "Finit par O" },
-      { "label": "Finit par R", "value": "Finit par R" },
-      { "label": "Finit par S", "value": "Finit par S" },
-      { "label": "Finit par T", "value": "Finit par T" },
-      { "label": "Finit par U", "value": "Finit par U" },
-      { "label": "Finit par Y", "value": "Finit par Y" }
+      {
+        "label": "Finit par A",
+        "value": "Finit par A"
+      },
+      {
+        "label": "Finit par C",
+        "value": "Finit par C"
+      },
+      {
+        "label": "Finit par D",
+        "value": "Finit par D"
+      },
+      {
+        "label": "Finit par E",
+        "value": "Finit par E"
+      },
+      {
+        "label": "Finit par G",
+        "value": "Finit par G"
+      },
+      {
+        "label": "Finit par H",
+        "value": "Finit par H"
+      },
+      {
+        "label": "Finit par I",
+        "value": "Finit par I"
+      },
+      {
+        "label": "Finit par K",
+        "value": "Finit par K"
+      },
+      {
+        "label": "Finit par L",
+        "value": "Finit par L"
+      },
+      {
+        "label": "Finit par M",
+        "value": "Finit par M"
+      },
+      {
+        "label": "Finit par N",
+        "value": "Finit par N"
+      },
+      {
+        "label": "Finit par O",
+        "value": "Finit par O"
+      },
+      {
+        "label": "Finit par R",
+        "value": "Finit par R"
+      },
+      {
+        "label": "Finit par S",
+        "value": "Finit par S"
+      },
+      {
+        "label": "Finit par T",
+        "value": "Finit par T"
+      },
+      {
+        "label": "Finit par U",
+        "value": "Finit par U"
+      },
+      {
+        "label": "Finit par Y",
+        "value": "Finit par Y"
+      }
     ],
     "NAME_COMPOSITION": [
-      { "label": "Nom composé", "value": "Nom composé" },
-      { "label": "Nom simple", "value": "Nom simple" }
+      {
+        "label": "Nom composé",
+        "value": "Nom composé"
+      },
+      {
+        "label": "Nom simple",
+        "value": "Nom simple"
+      }
     ],
     "NAME_VOWELS": [
-      { "label": "Contient A", "value": "Contient A" },
-      { "label": "Contient E", "value": "Contient E" },
-      { "label": "Contient I", "value": "Contient I" },
-      { "label": "Contient O", "value": "Contient O" },
-      { "label": "Contient U", "value": "Contient U" }
+      {
+        "label": "Contient A",
+        "value": "Contient A"
+      },
+      {
+        "label": "Contient E",
+        "value": "Contient E"
+      },
+      {
+        "label": "Contient I",
+        "value": "Contient I"
+      },
+      {
+        "label": "Contient O",
+        "value": "Contient O"
+      },
+      {
+        "label": "Contient U",
+        "value": "Contient U"
+      }
     ]
   },
-
-  "lignesPool": ["CONTINENTS", "SUBREGIONS", "GOVERNMENTS", "TYPES", "POPULATIONS", "GDP_RANKS", "LANGUAGES", "CAPITALS_LETTERS", "COASTLINES", "BORDERS_COUNTS", "NAME_FIRST_LETTERS", "NAME_LAST_LETTERS", "NAME_COMPOSITION", "NAME_VOWELS"],
-  "colonnesPool": ["CONTINENTS", "SUBREGIONS", "GOVERNMENTS", "TYPES", "POPULATIONS", "GDP_RANKS", "LANGUAGES", "CAPITALS_LETTERS", "COASTLINES", "BORDERS_COUNTS", "NAME_FIRST_LETTERS", "NAME_LAST_LETTERS", "NAME_COMPOSITION", "NAME_VOWELS"],
-
+  "lignesPool": [
+    "CONTINENTS",
+    "SUBREGIONS",
+    "GOVERNMENTS",
+    "TYPES",
+    "POPULATIONS",
+    "GDP_RANKS",
+    "LANGUAGES",
+    "CAPITALS_LETTERS",
+    "COASTLINES",
+    "BORDERS_COUNTS",
+    "NAME_FIRST_LETTERS",
+    "NAME_LAST_LETTERS",
+    "NAME_COMPOSITION",
+    "NAME_VOWELS"
+  ],
+  "colonnesPool": [
+    "CONTINENTS",
+    "SUBREGIONS",
+    "GOVERNMENTS",
+    "TYPES",
+    "POPULATIONS",
+    "GDP_RANKS",
+    "LANGUAGES",
+    "CAPITALS_LETTERS",
+    "COASTLINES",
+    "BORDERS_COUNTS",
+    "NAME_FIRST_LETTERS",
+    "NAME_LAST_LETTERS",
+    "NAME_COMPOSITION",
+    "NAME_VOWELS"
+  ],
   "lignesGroupes": [
-    { "label": "Continent", "pool": "CONTINENTS" },
-    { "label": "Sous-région", "pool": "SUBREGIONS" },
-    { "label": "Régime politique", "pool": "GOVERNMENTS" },
-    { "label": "Type (Union, G7...)", "pool": "TYPES" },
-    { "label": "Population", "pool": "POPULATIONS" },
-    { "label": "Rang PIB", "pool": "GDP_RANKS" },
-    { "label": "Langue", "pool": "LANGUAGES" },
-    { "label": "Lettre capitale", "pool": "CAPITALS_LETTERS" },
-    { "label": "Côtier/Enclavé", "pool": "COASTLINES" },
-    { "label": "Nombre frontières", "pool": "BORDERS_COUNTS" },
-    { "label": "Nom du pays · Commence par", "pool": "NAME_FIRST_LETTERS" },
-    { "label": "Nom du pays · Finit par", "pool": "NAME_LAST_LETTERS" },
-    { "label": "Nom du pays · Composition", "pool": "NAME_COMPOSITION" },
-    { "label": "Nom du pays · Contient voyelle", "pool": "NAME_VOWELS" }
+    {
+      "label": "Continent",
+      "pool": "CONTINENTS"
+    },
+    {
+      "label": "Sous-région",
+      "pool": "SUBREGIONS"
+    },
+    {
+      "label": "Régime politique",
+      "pool": "GOVERNMENTS"
+    },
+    {
+      "label": "Type (Union, G7...)",
+      "pool": "TYPES"
+    },
+    {
+      "label": "Population",
+      "pool": "POPULATIONS"
+    },
+    {
+      "label": "Rang PIB",
+      "pool": "GDP_RANKS"
+    },
+    {
+      "label": "Langue",
+      "pool": "LANGUAGES"
+    },
+    {
+      "label": "Lettre capitale",
+      "pool": "CAPITALS_LETTERS"
+    },
+    {
+      "label": "Côtier/Enclavé",
+      "pool": "COASTLINES"
+    },
+    {
+      "label": "Nombre frontières",
+      "pool": "BORDERS_COUNTS"
+    },
+    {
+      "label": "Nom du pays · Commence par",
+      "pool": "NAME_FIRST_LETTERS"
+    },
+    {
+      "label": "Nom du pays · Finit par",
+      "pool": "NAME_LAST_LETTERS"
+    },
+    {
+      "label": "Nom du pays · Composition",
+      "pool": "NAME_COMPOSITION"
+    },
+    {
+      "label": "Nom du pays · Contient voyelle",
+      "pool": "NAME_VOWELS"
+    }
   ],
   "colonnesGroupes": [
-    { "label": "Continent", "pool": "CONTINENTS" },
-    { "label": "Sous-région", "pool": "SUBREGIONS" },
-    { "label": "Régime politique", "pool": "GOVERNMENTS" },
-    { "label": "Type (Union, G7...)", "pool": "TYPES" },
-    { "label": "Population", "pool": "POPULATIONS" },
-    { "label": "Rang PIB", "pool": "GDP_RANKS" },
-    { "label": "Langue", "pool": "LANGUAGES" },
-    { "label": "Lettre capitale", "pool": "CAPITALS_LETTERS" },
-    { "label": "Côtier/Enclavé", "pool": "COASTLINES" },
-    { "label": "Nombre frontières", "pool": "BORDERS_COUNTS" },
-    { "label": "Nom du pays · Commence par", "pool": "NAME_FIRST_LETTERS" },
-    { "label": "Nom du pays · Finit par", "pool": "NAME_LAST_LETTERS" },
-    { "label": "Nom du pays · Composition", "pool": "NAME_COMPOSITION" },
-    { "label": "Nom du pays · Contient voyelle", "pool": "NAME_VOWELS" }
+    {
+      "label": "Continent",
+      "pool": "CONTINENTS"
+    },
+    {
+      "label": "Sous-région",
+      "pool": "SUBREGIONS"
+    },
+    {
+      "label": "Régime politique",
+      "pool": "GOVERNMENTS"
+    },
+    {
+      "label": "Type (Union, G7...)",
+      "pool": "TYPES"
+    },
+    {
+      "label": "Population",
+      "pool": "POPULATIONS"
+    },
+    {
+      "label": "Rang PIB",
+      "pool": "GDP_RANKS"
+    },
+    {
+      "label": "Langue",
+      "pool": "LANGUAGES"
+    },
+    {
+      "label": "Lettre capitale",
+      "pool": "CAPITALS_LETTERS"
+    },
+    {
+      "label": "Côtier/Enclavé",
+      "pool": "COASTLINES"
+    },
+    {
+      "label": "Nombre frontières",
+      "pool": "BORDERS_COUNTS"
+    },
+    {
+      "label": "Nom du pays · Commence par",
+      "pool": "NAME_FIRST_LETTERS"
+    },
+    {
+      "label": "Nom du pays · Finit par",
+      "pool": "NAME_LAST_LETTERS"
+    },
+    {
+      "label": "Nom du pays · Composition",
+      "pool": "NAME_COMPOSITION"
+    },
+    {
+      "label": "Nom du pays · Contient voyelle",
+      "pool": "NAME_VOWELS"
+    }
   ],
-
   "rulesSource": {
     "Lettre ": "(pays, contrainte) => { const letter = (pays.capital || '')[0].toUpperCase(); return letter === contrainte.slice(7); }",
     "Commence par ": "(pays, contrainte) => pays.name_first_letter === contrainte.slice(13).toLowerCase()",
     "Finit par ": "(pays, contrainte) => pays.name_last_letter === contrainte.slice(10).toLowerCase()",
     "Contient ": "(pays, contrainte) => (pays.name_vowels || []).includes(contrainte.slice(9).toLowerCase())"
   },
-
   "fieldMapping": {
     "continent": "Continent",
     "subregion": "Sous-région",
@@ -223,11 +734,173 @@
     "borders_count": "Nombre frontières",
     "name_composition": "Composition du nom"
   },
-
   "diversityRulesSource": {
     "typeLigne": "(ligne, config) => { for (const [poolName, items] of Object.entries(config.pools)) { if (items.some(i => i.value === ligne)) return poolName; } return 'other'; }",
     "typeColonne": "(colonne, config) => { for (const [poolName, items] of Object.entries(config.pools)) { if (items.some(i => i.value === colonne)) return poolName; } return 'other'; }"
   },
-
-  "rulesText": "<h2>🌍 Règles de Geo-Doku</h2><p>Vous devez compléter une grille 3×3 en trouvant des <strong>pays</strong>.</p><p><strong>Règle :</strong> Chaque case doit contenir un pays qui satisfait à la fois la contrainte de <strong>ligne</strong> (continent, sous-région, régime politique, etc.) et de <strong>colonne</strong> (union/alliance, population, rang PIB, langue, etc.).</p><p>Exemple : si la ligne est « Continent · Europe » et la colonne « Population · 20M-60M », la case doit contenir un pays européen avec 20 à 60 millions d'habitants.</p>"
+  "rulesText": "<h2>🌍 Règles de Geo-Doku</h2><p>Vous devez compléter une grille 3×3 en trouvant des <strong>pays</strong>.</p><p><strong>Règle :</strong> Chaque case doit contenir un pays qui satisfait à la fois la contrainte de <strong>ligne</strong> (continent, sous-région, régime politique, etc.) et de <strong>colonne</strong> (union/alliance, population, rang PIB, langue, etc.).</p><p>Exemple : si la ligne est « Continent · Europe » et la colonne « Population · 20M-60M », la case doit contenir un pays européen avec 20 à 60 millions d'habitants.</p>",
+  "displayLabels": {
+    "CONTINENTS": {
+      "Europe": "Continent: Europe",
+      "Asia": "Continent: Asia",
+      "Africa": "Continent: Africa",
+      "North America": "Continent: North America",
+      "South America": "Continent: South America",
+      "Oceania": "Continent: Oceania"
+    },
+    "SUBREGIONS": {
+      "Western Europe": "Sous-région: Western Europe",
+      "Eastern Europe": "Sous-région: Eastern Europe",
+      "Northern Europe": "Sous-région: Northern Europe",
+      "Southern Europe": "Sous-région: Southern Europe",
+      "Southeast Europe": "Sous-région: Southeast Europe",
+      "Central Europe": "Sous-région: Central Europe",
+      "East Asia": "Sous-région: East Asia",
+      "Southeast Asia": "Sous-région: Southeast Asia",
+      "South Asia": "Sous-région: South Asia",
+      "Middle East": "Sous-région: Middle East",
+      "Central Asia": "Sous-région: Central Asia",
+      "Northern Africa": "Sous-région: Northern Africa",
+      "Sub-Saharan Africa": "Sous-région: Sub-Saharan Africa",
+      "Northern America": "Sous-région: Northern America",
+      "Central America": "Sous-région: Central America",
+      "Caribbean": "Sous-région: Caribbean",
+      "South America": "Sous-région: South America",
+      "Oceania": "Sous-région: Oceania"
+    },
+    "GOVERNMENTS": {
+      "Monarchie": "Régime: Monarchie",
+      "République": "Régime: République",
+      "Autocratie": "Régime: Autocratie",
+      "Dictature": "Régime: Dictature"
+    },
+    "TYPES": {
+      "Union Européenne": "Type: Union Européenne",
+      "G7": "Type: G7",
+      "BRICS": "Type: BRICS",
+      "NATO": "Type: NATO",
+      "ASEAN": "Type: ASEAN",
+      "MERCOSUR": "Type: MERCOSUR",
+      "Arab League": "Type: Arab League",
+      "Commonwealth": "Type: Commonwealth",
+      "Indépendant": "Type: Indépendant"
+    },
+    "POPULATIONS": {
+      "<1M": "Population: <1M",
+      "1M-20M": "Population: 1M-20M",
+      "20M-60M": "Population: 20M-60M",
+      "60M-200M": "Population: 60M-200M",
+      "200M+": "Population: 200M+"
+    },
+    "GDP_RANKS": {
+      "Top 10": "PIB: Top 10",
+      "Top 20": "PIB: Top 20",
+      "Top 50": "PIB: Top 50",
+      "Top 100": "PIB: Top 100",
+      "Autres": "PIB: Autres"
+    },
+    "LANGUAGES": {
+      "Anglais": "Langue: Anglais",
+      "Français": "Langue: Français",
+      "Espagnol": "Langue: Espagnol",
+      "Allemand": "Langue: Allemand",
+      "Mandarin": "Langue: Mandarin",
+      "Arabe": "Langue: Arabe",
+      "Hindi": "Langue: Hindi",
+      "Portugais": "Langue: Portugais",
+      "Russe": "Langue: Russe",
+      "Autre": "Langue: Autre"
+    },
+    "CAPITALS_LETTERS": {
+      "Lettre A": "Lettre A",
+      "Lettre B": "Lettre B",
+      "Lettre C": "Lettre C",
+      "Lettre D": "Lettre D",
+      "Lettre F": "Lettre F",
+      "Lettre G": "Lettre G",
+      "Lettre H": "Lettre H",
+      "Lettre I": "Lettre I",
+      "Lettre J": "Lettre J",
+      "Lettre K": "Lettre K",
+      "Lettre L": "Lettre L",
+      "Lettre M": "Lettre M",
+      "Lettre N": "Lettre N",
+      "Lettre O": "Lettre O",
+      "Lettre P": "Lettre P",
+      "Lettre Q": "Lettre Q",
+      "Lettre R": "Lettre R",
+      "Lettre S": "Lettre S",
+      "Lettre T": "Lettre T",
+      "Lettre U": "Lettre U",
+      "Lettre V": "Lettre V",
+      "Lettre W": "Lettre W",
+      "Lettre Y": "Lettre Y",
+      "Lettre Z": "Lettre Z"
+    },
+    "COASTLINES": {
+      "Côtier": "Côtier",
+      "Enclavé": "Enclavé"
+    },
+    "BORDERS_COUNTS": {
+      "0-2": "Frontières: 0-2",
+      "3-6": "Frontières: 3-6",
+      "7+": "Frontières: 7+"
+    },
+    "NAME_FIRST_LETTERS": {
+      "Commence par A": "Commence par A",
+      "Commence par B": "Commence par B",
+      "Commence par C": "Commence par C",
+      "Commence par D": "Commence par D",
+      "Commence par E": "Commence par E",
+      "Commence par F": "Commence par F",
+      "Commence par G": "Commence par G",
+      "Commence par H": "Commence par H",
+      "Commence par I": "Commence par I",
+      "Commence par J": "Commence par J",
+      "Commence par K": "Commence par K",
+      "Commence par L": "Commence par L",
+      "Commence par M": "Commence par M",
+      "Commence par N": "Commence par N",
+      "Commence par O": "Commence par O",
+      "Commence par P": "Commence par P",
+      "Commence par Q": "Commence par Q",
+      "Commence par R": "Commence par R",
+      "Commence par S": "Commence par S",
+      "Commence par T": "Commence par T",
+      "Commence par U": "Commence par U",
+      "Commence par V": "Commence par V",
+      "Commence par Y": "Commence par Y",
+      "Commence par Z": "Commence par Z"
+    },
+    "NAME_LAST_LETTERS": {
+      "Finit par A": "Finit par A",
+      "Finit par C": "Finit par C",
+      "Finit par D": "Finit par D",
+      "Finit par E": "Finit par E",
+      "Finit par G": "Finit par G",
+      "Finit par H": "Finit par H",
+      "Finit par I": "Finit par I",
+      "Finit par K": "Finit par K",
+      "Finit par L": "Finit par L",
+      "Finit par M": "Finit par M",
+      "Finit par N": "Finit par N",
+      "Finit par O": "Finit par O",
+      "Finit par R": "Finit par R",
+      "Finit par S": "Finit par S",
+      "Finit par T": "Finit par T",
+      "Finit par U": "Finit par U",
+      "Finit par Y": "Finit par Y"
+    },
+    "NAME_COMPOSITION": {
+      "Nom composé": "Nom composé",
+      "Nom simple": "Nom simple"
+    },
+    "NAME_VOWELS": {
+      "Contient A": "Contient A",
+      "Contient E": "Contient E",
+      "Contient I": "Contient I",
+      "Contient O": "Contient O",
+      "Contient U": "Contient U"
+    }
+  }
 }

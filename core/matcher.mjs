@@ -46,3 +46,27 @@ export function _nameLetters(name) {
     .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
     .toUpperCase().split('').filter(c => /[A-Z]/.test(c));
 }
+
+/**
+ * Retourne un libelle lisible pour une contrainte (ex: "20M-60M" -> "Population: 20M-60M").
+ * Cherche la contrainte dans les pools du theme pour determiner sa categorie,
+ * puis utilise config.displayLabels[pool][valeur] si defini, sinon le label du pool,
+ * sinon la valeur brute.
+ */
+export function getDisplayLabel(contrainte, config) {
+  if (!contrainte) return contrainte;
+
+  if (contrainte.includes(' OU ')) {
+    return contrainte.split(' OU ').map(p => getDisplayLabel(p.trim(), config)).join(' ou ');
+  }
+
+  const displayLabels = config.displayLabels || {};
+  for (const [poolName, items] of Object.entries(config.pools || {})) {
+    const item = items.find(i => i.value === contrainte);
+    if (item) {
+      return (displayLabels[poolName] && displayLabels[poolName][contrainte]) || item.label;
+    }
+  }
+
+  return contrainte;
+}

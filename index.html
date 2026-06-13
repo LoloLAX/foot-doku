@@ -802,7 +802,7 @@ function renderPips() {
 
 function buildGrid() {
   grille.colonnes.forEach((c, i) => {
-    document.getElementById('th' + i).textContent = c;
+    document.getElementById('th' + i).textContent = window.game.getDisplayLabel(c);
   });
 
   const tbody = document.getElementById('grid-body');
@@ -813,7 +813,7 @@ function buildGrid() {
 
     const th = document.createElement('td');
     th.className = 'row-header';
-    th.textContent = grille.lignes[r];
+    th.textContent = window.game.getDisplayLabel(grille.lignes[r]);
     tr.appendChild(th);
 
     for (let c = 0; c < 3; c++) {
@@ -884,7 +884,7 @@ function openModal(r, c) {
 
   document.getElementById('modal-hint').textContent = 'Ligne · Colonne';
   document.getElementById('modal-constraint').textContent =
-    grille.lignes[r] + '  ×  ' + grille.colonnes[c];
+    window.game.getDisplayLabel(grille.lignes[r]) + '  ×  ' + window.game.getDisplayLabel(grille.colonnes[c]);
   document.getElementById('search-input').value = '';
   document.getElementById('autocomplete').style.display = 'none';
   document.getElementById('modal-error').textContent = '';
@@ -1050,10 +1050,10 @@ function showEndgame() {
 
   // Corner vide
   addRecapCell(recap, '', 'header');
-  grille.colonnes.forEach(c => addRecapCell(recap, c, 'header'));
+  grille.colonnes.forEach(c => addRecapCell(recap, window.game.getDisplayLabel(c), 'header'));
 
   for (let r = 0; r < 3; r++) {
-    addRecapCell(recap, grille.lignes[r], 'row-h');
+    addRecapCell(recap, window.game.getDisplayLabel(grille.lignes[r]), 'row-h');
     for (let c = 0; c < 3; c++) {
       const s = cells[r][c];
       if (s.validated) {
