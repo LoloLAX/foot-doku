@@ -1,0 +1,39 @@
+{
+  "name": "geography",
+  "label": "Geo-Doku",
+  "entity": "pays",
+
+  "pools": {
+    "CONTINENTS": [
+      { "label": "Europe", "value": "Europe" },
+      { "label": "Asie", "value": "Asie" },
+      { "label": "Afrique", "value": "Afrique" }
+    ],
+    "TYPES": [
+      { "label": "Union Européenne", "value": "Union Européenne" },
+      { "label": "G7", "value": "G7" }
+    ],
+    "REGIONS": [
+      { "label": "Méditerranée", "value": "Méditerranée" },
+      { "label": "Centrale", "value": "Centrale" }
+    ]
+  },
+
+  "lignesPool": ["CONTINENTS"],
+  "colonnesPool": ["TYPES", "REGIONS"],
+
+  "rulesSource": {
+    "": "(pays, contrainte) => pays.continent === contrainte || pays.type === contrainte || pays.region === contrainte"
+  },
+
+  "fieldMapping": {
+    "continent": "Continent",
+    "type": "Type",
+    "region": "Région"
+  },
+
+  "diversityRulesSource": {
+    "typeLigne": "(ligne) => 'continent'",
+    "typeColonne": "(colonne) => colonne.includes('Union') ? 'type' : 'region'"
+  }
+}

@@ -1,0 +1,14 @@
+[
+  { "name": "France", "continent": "Europe", "type": "Union Européenne", "region": "Méditerranée" },
+  { "name": "Allemagne", "continent": "Europe", "type": "Union Européenne", "region": "Centrale" },
+  { "name": "Italie", "continent": "Europe", "type": "Union Européenne", "region": "Méditerranée" },
+  { "name": "Espagne", "continent": "Europe", "type": "Union Européenne", "region": "Méditerranée" },
+  { "name": "Pologne", "continent": "Europe", "type": "Union Européenne", "region": "Centrale" },
+  { "name": "Autriche", "continent": "Europe", "type": "Union Européenne", "region": "Centrale" },
+  { "name": "Royaume-Uni", "continent": "Europe", "type": "G7", "region": "Centrale" },
+  { "name": "Suisse", "continent": "Europe", "type": "Autre", "region": "Centrale" },
+  { "name": "Japon", "continent": "Asie", "type": "G7", "region": "Asie de l'Est" },
+  { "name": "Chine", "continent": "Asie", "type": "Autre", "region": "Asie de l'Est" },
+  { "name": "Maroc", "continent": "Afrique", "type": "Autre", "region": "Méditerranée" },
+  { "name": "Égypte", "continent": "Afrique", "type": "Autre", "region": "Méditerranée" }
+]
