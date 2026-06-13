@@ -363,6 +363,30 @@
     }
     .creator-preview-item { margin-bottom: 6px; }
     .creator-preview-item span { font-weight: 600; color: #1e1b4b; }
+    .preview-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 6px;
+      margin-top: 10px;
+    }
+    .preview-grid-cell {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 6px;
+      font-size: 11px;
+      min-height: 60px;
+    }
+    .preview-grid-cell .preview-count {
+      font-weight: 600;
+      color: #1e1b4b;
+      margin-bottom: 4px;
+    }
+    .preview-grid-cell .preview-names {
+      color: var(--gray);
+      line-height: 1.4;
+      word-break: break-word;
+    }
 
     /* ── Share link modal ───────────────────────────────── */
     #share-link-modal {
@@ -525,6 +549,8 @@
     <h3 style="margin-bottom: 8px;">📊 Prévisualisation</h3>
     <div class="creator-preview-item">Solutions pour chaque case : <span id="preview-solutions">0-0</span></div>
     <div class="creator-preview-item">Difficulté : <span id="preview-difficulty">—</span></div>
+    <div class="creator-preview-item" style="margin-top:4px;color:var(--gray);font-size:11px">Aperçu réservé au créateur (non visible par les joueurs) :</div>
+    <div class="preview-grid" id="preview-grid"></div>
   </div>
 
   <div class="creator-actions">
@@ -1052,6 +1078,9 @@ function showCreator() {
   document.getElementById('attempts-bar').style.display = 'none';
   document.getElementById('creator').style.display = 'block';
   populateConstraintSelects();
+  document.getElementById('preview-solutions').textContent = '—';
+  document.getElementById('preview-difficulty').textContent = '—';
+  document.getElementById('preview-grid').innerHTML = '';
 }
 
 document.getElementById('btn-cancel-creator').addEventListener('click', () => {
@@ -1156,18 +1185,37 @@ function updateCreatorPreview() {
       document.getElementById('row2-select').value
     ];
 
+    const previewGrid = document.getElementById('preview-grid');
+
     if (cols.some(c => !c) || rows.some(r => !r)) {
       document.getElementById('preview-solutions').textContent = '—';
       document.getElementById('preview-difficulty').textContent = '—';
+      previewGrid.innerHTML = '';
       return;
     }
 
     let minSol = Infinity, maxSol = 0;
+    previewGrid.innerHTML = '';
     for (let r = 0; r < 3; r++) {
       for (let c = 0; c < 3; c++) {
-        const sols = getSolutions(rows[r], cols[c]).length;
-        minSol = Math.min(minSol, sols);
-        maxSol = Math.max(maxSol, sols);
+        const sols = getSolutions(rows[r], cols[c]);
+        minSol = Math.min(minSol, sols.length);
+        maxSol = Math.max(maxSol, sols.length);
+
+        const cell = document.createElement('div');
+        cell.className = 'preview-grid-cell';
+
+        const count = document.createElement('div');
+        count.className = 'preview-count';
+        count.textContent = sols.length + ' joueur' + (sols.length > 1 ? 's' : '');
+        cell.appendChild(count);
+
+        const names = document.createElement('div');
+        names.className = 'preview-names';
+        names.textContent = sols.map(s => s.name).join(', ') || '—';
+        cell.appendChild(names);
+
+        previewGrid.appendChild(cell);
       }
     }
 
@@ -1347,6 +1395,7 @@ document.getElementById('btn-close-link').addEventListener('click', () => {
     });
     document.getElementById('preview-solutions').textContent = '—';
     document.getElementById('preview-difficulty').textContent = '—';
+    document.getElementById('preview-grid').innerHTML = '';
   }
 });
 
