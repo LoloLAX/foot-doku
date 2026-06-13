@@ -24,28 +24,35 @@ export function nbSolutions(contrainte, entites, config) {
 }
 
 /**
- * Vérifie que la diversité d'un trio lignes/colonnes respecte les règles
- * du thème (évite les grilles trop faciles, ex: 3 championnats au foot).
+ * Vérifie que la diversité d'un trio lignes/colonnes est acceptable
+ * (évite les grilles trop faciles/monotones), de façon générique pour
+ * tous les thèmes.
  *
  * config.diversityRules = { typeLigne, typeColonne } : fonctions
  * (valeur, config) => string, qui catégorisent une contrainte.
  *
- * Les règles ci-dessous reprennent celles du foot (generateur.js) :
- * - pas 3 lignes de type "ligue"
- * - pas 3 colonnes de type "poste"
- * - au moins 1 colonne de type "selection"
- * À généraliser par thème dans une phase ultérieure si besoin.
+ * Règles génériques :
+ * - les 3 lignes et les 3 colonnes doivent être uniques
+ * - si config.diversityRules est fourni, aucune catégorie (typeLigne/
+ *   typeColonne) ne doit apparaître pour les 3 lignes ou les 3 colonnes
+ *   à la fois (sinon la grille est trop monotone)
  */
 export function diversiteOK(lignes, colonnes, config) {
+  if (new Set(lignes).size !== 3 || new Set(colonnes).size !== 3) return false;
+
   const { typeLigne, typeColonne } = config.diversityRules || {};
   if (!typeLigne || !typeColonne) return true;
 
   const typesL = lignes.map(l => typeLigne(l, config));
   const typesC = colonnes.map(c => typeColonne(c, config));
 
-  if (typesL.length === 3 && typesL.filter(t => t === 'ligue').length === 3) return false;
-  if (typesC.filter(t => t === 'poste').length >= 3) return false;
-  if (typesC.length === 3 && !typesC.includes('selection')) return false;
+  const compte = types => types.reduce((acc, t) => {
+    acc[t] = (acc[t] || 0) + 1;
+    return acc;
+  }, {});
+
+  if (Object.values(compte(typesL)).some(n => n === 3)) return false;
+  if (Object.values(compte(typesC)).some(n => n === 3)) return false;
 
   return true;
 }
