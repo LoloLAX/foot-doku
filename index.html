@@ -247,6 +247,14 @@
       cursor: pointer; width: 100%; transition: opacity .15s;
     }
     #share-btn:hover { opacity: .85; }
+    #share-grid-btn {
+      background: #4f46e5; color: white;
+      border: none; border-radius: 8px;
+      padding: 11px 20px; font-size: 14px; font-weight: 500;
+      cursor: pointer; width: 100%; transition: opacity .15s;
+      margin-top: 8px;
+    }
+    #share-grid-btn:hover { opacity: .85; }
     #share-confirm { font-size: 12px; color: var(--green); margin-top: 6px; display: none; text-align: center; }
 
     /* ── Home screen ────────────────────────────────────── */
@@ -547,6 +555,7 @@
   <div class="score-line" id="eg-score"></div>
   <div class="recap-grid" id="recap-grid"></div>
   <button id="share-btn">📋 Copier le résultat</button>
+  <button id="share-grid-btn" style="display:none">🔗 Partager cette grille</button>
   <div id="share-confirm">Copié dans le presse-papiers !</div>
 </div>
 
@@ -591,6 +600,7 @@
 
 const MAX_ATTEMPTS = 3;
 let grille = null;
+let isCustomGrid = false;
 let attemptsLeft = MAX_ATTEMPTS;
 let usedPlayers = new Set();
 
@@ -613,6 +623,7 @@ function init() {
     try {
       const decoded = JSON.parse(atob(gridData));
       grille = decoded;
+      isCustomGrid = true;
       document.getElementById('header-date').textContent = 'Grille personnalisée';
       renderPips();
       buildGrid();
@@ -927,6 +938,8 @@ function showEndgame() {
     }
   }
 
+  document.getElementById('share-grid-btn').style.display = isCustomGrid ? 'block' : 'none';
+
   document.getElementById('endgame').style.display = 'block';
   document.getElementById('endgame').scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
@@ -939,6 +952,8 @@ function addRecapCell(parent, text, cls) {
 }
 
 // ── Share ─────────────────────────────────────────────────────────────────────
+
+document.getElementById('share-grid-btn').addEventListener('click', showShareModal);
 
 document.getElementById('share-btn').addEventListener('click', () => {
   const validated = cells.flat().filter(s => s.validated).length;
@@ -1241,8 +1256,10 @@ document.getElementById('btn-copy-link').addEventListener('click', () => {
 
 document.getElementById('btn-test-grid').addEventListener('click', () => {
   // Charger la grille et jouer
+  isCustomGrid = true;
   document.getElementById('share-link-modal').classList.remove('open');
   document.getElementById('creator').style.display = 'none';
+  document.getElementById('endgame').style.display = 'none';
   document.getElementById('attempts-bar').style.display = 'flex';
   document.getElementById('header-date').textContent = 'Grille personnalisée (test)';
   attemptsLeft = MAX_ATTEMPTS;
@@ -1257,15 +1274,19 @@ document.getElementById('btn-test-grid').addEventListener('click', () => {
 
 document.getElementById('btn-close-link').addEventListener('click', () => {
   document.getElementById('share-link-modal').classList.remove('open');
-  document.getElementById('creator').style.display = 'none';
-  document.getElementById('home-screen').style.display = 'block';
 
-  // Reset selects
-  ['col0-select', 'col1-select', 'col2-select', 'row0-select', 'row1-select', 'row2-select'].forEach(id => {
-    document.getElementById(id).value = '';
-  });
-  document.getElementById('preview-solutions').textContent = '—';
-  document.getElementById('preview-difficulty').textContent = '—';
+  // Si on vient du créateur (et non d'un partage post-partie), on revient à l'accueil
+  if (document.getElementById('creator').style.display !== 'none') {
+    document.getElementById('creator').style.display = 'none';
+    document.getElementById('home-screen').style.display = 'block';
+
+    // Reset selects
+    ['col0-select', 'col1-select', 'col2-select', 'row0-select', 'row1-select', 'row2-select'].forEach(id => {
+      document.getElementById(id).value = '';
+    });
+    document.getElementById('preview-solutions').textContent = '—';
+    document.getElementById('preview-difficulty').textContent = '—';
+  }
 });
 
 document.getElementById('share-link-modal').addEventListener('click', e => {
