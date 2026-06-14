@@ -918,5 +918,6 @@
     "NAME_LAST_LETTERS": "Lettre par laquelle se termine le nom du pays",
     "NAME_COMPOSITION": "Nom du pays compose (tiret, apostrophe, plusieurs mots) ou simple",
     "NAME_VOWELS": "Voyelle presente dans le nom du pays"
-  }
+  },
+  "searchField": "name_fr"
 }

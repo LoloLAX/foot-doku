@@ -1016,6 +1016,12 @@ document.getElementById('modal-overlay').addEventListener('click', e => {
 
 let acHighlight = -1;
 
+// Nom affiche/recherche d'une entite : name_fr pour Geo, name pour Foot (cf. config.searchField)
+function getEntityName(entity) {
+  const field = window.game?.currentConfig?.searchField || 'name';
+  return entity[field] || entity.name;
+}
+
 function normaliserRecherche(s) {
   return s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/[^a-z0-9]/g, '');
 }
@@ -1031,7 +1037,7 @@ document.getElementById('search-input').addEventListener('input', function() {
     return;
   }
 
-  const matches = window.game.currentEntities.filter(j => normaliserRecherche(j.name).includes(q)).slice(0, 30);
+  const matches = window.game.currentEntities.filter(j => normaliserRecherche(getEntityName(j)).includes(q)).slice(0, 30);
   const ac = document.getElementById('autocomplete');
 
   if (matches.length === 0) {
@@ -1043,9 +1049,9 @@ document.getElementById('search-input').addEventListener('input', function() {
   ac.innerHTML = '';
   matches.forEach(j => {
     const div = document.createElement('div');
-    const isUsed = usedPlayers.has(j.name);
+    const isUsed = usedPlayers.has(getEntityName(j));
     div.className = 'ac-item' + (isUsed ? ' used-player' : '');
-    div.textContent = j.name;
+    div.textContent = getEntityName(j);
     if (!isUsed) {
       div.addEventListener('mousedown', e => { e.preventDefault(); selectPlayer(j); });
     }
@@ -1077,7 +1083,7 @@ document.getElementById('search-input').addEventListener('keydown', function(e) 
 
 function selectPlayer(j) {
   selectedPlayer = j;
-  document.getElementById('search-input').value = j.name;
+  document.getElementById('search-input').value = getEntityName(j);
   document.getElementById('autocomplete').style.display = 'none';
   document.getElementById('btn-confirm').disabled = false;
   document.getElementById('modal-error').textContent = '';
@@ -1096,7 +1102,7 @@ function confirmAnswer() {
   const j = selectedPlayer;
   const errEl = document.getElementById('modal-error');
 
-  if (usedPlayers.has(j.name)) {
+  if (usedPlayers.has(getEntityName(j))) {
     // Joueur déjà placé — pas de pénalité, juste un message
     errEl.textContent = '⚠️ Ce joueur est déjà utilisé dans une autre case.';
     return;
@@ -1108,8 +1114,8 @@ function confirmAnswer() {
   if (matchesLigne(j, l) && matchesColonne(j, col)) {
     // Bonne réponse — ne coûte pas de vie
     cells[r][c].validated = true;
-    cells[r][c].playerName = j.name;
-    usedPlayers.add(j.name);
+    cells[r][c].playerName = getEntityName(j);
+    usedPlayers.add(getEntityName(j));
     refreshCell(r, c);
     closeModal();
     checkGameOver();
@@ -1174,7 +1180,7 @@ function showEndgame() {
         const TOP = 3;
         let hint = '—';
         if (sols.length > 0) {
-          hint = sols.slice(0, TOP).map(j => j.name).join(', ');
+          hint = sols.slice(0, TOP).map(j => getEntityName(j)).join(', ');
           if (sols.length > TOP) hint += ' (+' + (sols.length - TOP) + ' autres)';
         }
         addRecapCell(recap, hint, 'miss');
@@ -1404,7 +1410,7 @@ function updateCreatorPreview() {
 
         const names = document.createElement('div');
         names.className = 'preview-names';
-        names.textContent = sols.map(s => s.name).join(', ') || '—';
+        names.textContent = sols.map(s => getEntityName(s)).join(', ') || '—';
         cell.appendChild(names);
 
         previewGrid.appendChild(cell);
