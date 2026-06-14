@@ -107,6 +107,11 @@
       background: #f9fafb;
     }
 
+    @keyframes fadeInScale {
+      from { opacity: 0; transform: scale(0.9); }
+      to   { opacity: 1; transform: scale(1); }
+    }
+
     .grid-table td.cell {
       border: 2px solid var(--border);
       border-radius: var(--radius);
@@ -120,6 +125,8 @@
       padding: 6px;
       word-break: break-word;
       line-height: 1.3;
+      animation: fadeInScale 0.3s ease-out both;
+      animation-delay: calc(var(--row, 0) * 50ms + var(--col, 0) * 30ms);
     }
     .grid-table td.cell:hover:not(.locked) { border-color: #6366f1; background: #eef2ff; }
     .grid-table td.cell.empty  { background: white; color: var(--gray); font-size: 22px; position: relative; }
@@ -208,9 +215,18 @@
     }
     .btn {
       padding: 9px 16px; border-radius: 6px; border: none; cursor: pointer;
-      font-size: 14px; font-weight: 500; transition: opacity .15s;
+      font-size: 14px; font-weight: 500;
+      transition: background .2s, opacity .2s, transform .1s, box-shadow .2s;
     }
-    .btn:hover { opacity: .85; }
+    .btn:hover:not(:disabled) {
+      opacity: .85;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,0,0,.15);
+    }
+    .btn:active:not(:disabled) {
+      transform: translateY(0);
+      box-shadow: 0 2px 6px rgba(0,0,0,.1);
+    }
     .btn:disabled { opacity: .4; cursor: default; }
     .btn-primary { background: #4f46e5; color: white; flex: 1; }
     .btn-cancel  { background: var(--gray-bg); color: #374151; }
@@ -309,17 +325,26 @@
       background: #111827; color: white;
       border: none; border-radius: 8px;
       padding: 11px 20px; font-size: 14px; font-weight: 500;
-      cursor: pointer; width: 100%; transition: opacity .15s;
+      cursor: pointer; width: 100%;
+      transition: background .2s, opacity .2s, transform .1s, box-shadow .2s;
     }
-    #share-btn:hover { opacity: .85; }
-    #share-grid-btn {
+    #share-grid-btn, #share-score-btn {
       background: #4f46e5; color: white;
       border: none; border-radius: 8px;
       padding: 11px 20px; font-size: 14px; font-weight: 500;
-      cursor: pointer; width: 100%; transition: opacity .15s;
+      cursor: pointer; width: 100%;
+      transition: background .2s, opacity .2s, transform .1s, box-shadow .2s;
       margin-top: 8px;
     }
-    #share-grid-btn:hover { opacity: .85; }
+    #share-btn:hover, #share-grid-btn:hover, #share-score-btn:hover {
+      opacity: .85;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,0,0,.15);
+    }
+    #share-btn:active, #share-grid-btn:active, #share-score-btn:active {
+      transform: translateY(0);
+      box-shadow: 0 2px 6px rgba(0,0,0,.1);
+    }
     #share-confirm { font-size: 12px; color: var(--green); margin-top: 6px; display: none; text-align: center; }
 
     /* ── Home screen ────────────────────────────────────── */
@@ -419,6 +444,13 @@
     }
     .creator-preview-item { margin-bottom: 6px; }
     .creator-preview-item span { font-weight: 600; color: #1e1b4b; }
+    @keyframes colorPulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.6; }
+    }
+    #preview-difficulty.difficulty-badge {
+      animation: colorPulse 1s ease-in-out;
+    }
     .preview-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -435,6 +467,8 @@
       cursor: pointer;
       position: relative;
       transition: background .15s, border-color .15s;
+      animation: fadeInScale 0.3s ease-out both;
+      animation-delay: calc(var(--row, 0) * 50ms + var(--col, 0) * 30ms);
     }
     .preview-grid-cell:hover {
       border-color: #6366f1;
@@ -503,12 +537,19 @@
       font-size: 13px;
       font-weight: 500;
       cursor: pointer;
-      transition: opacity .15s;
+      transition: background .2s, opacity .2s, transform .1s, box-shadow .2s;
+    }
+    .share-link-actions button:hover {
+      opacity: .85;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,0,0,.15);
+    }
+    .share-link-actions button:active {
+      transform: translateY(0);
+      box-shadow: 0 2px 6px rgba(0,0,0,.1);
     }
     #btn-copy-link { background: #4f46e5; color: white; }
-    #btn-copy-link:hover { opacity: .85; }
     #btn-close-link { background: var(--gray-bg); color: #374151; }
-    #btn-close-link:hover { opacity: .85; }
     .share-link-msg { font-size: 12px; color: var(--green); margin-top: 8px; display: none; text-align: center; }
 
     /* ── Rules modal ────────────────────────────────────── */
@@ -527,6 +568,74 @@
     .rules-content p { margin-bottom: 10px; }
     .rules-content ul { margin: 0 0 10px 0; padding-left: 18px; }
     .rules-content li { margin-bottom: 4px; }
+
+    /* ── Leaderboard modal ─────────────────────────────── */
+    #leaderboard-modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.45);
+      z-index: 101;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+    #leaderboard-modal.open { display: flex; }
+    .leaderboard-row {
+      display: flex;
+      gap: 12px;
+      padding: 8px 4px;
+      border-bottom: 1px solid var(--border);
+      align-items: center;
+      font-size: 13px;
+    }
+    .leaderboard-row:last-child { border-bottom: none; }
+    .leaderboard-row .rank { font-weight: bold; min-width: 24px; }
+    .leaderboard-row .time { font-family: monospace; color: #4f46e5; font-weight: 600; }
+    .leaderboard-row .date { font-size: 12px; color: var(--gray); margin-left: auto; }
+    .leaderboard-empty { font-size: 13px; color: var(--gray); padding: 8px 4px; }
+
+    /* ── Modal transitions ─────────────────────────────── */
+    #modal-overlay > #modal,
+    #share-link-modal > .share-link-box,
+    #rules-modal > .share-link-box,
+    #leaderboard-modal > .share-link-box,
+    #constraint-popup-overlay > .constraint-popup {
+      opacity: 0;
+      transform: scale(0.95);
+      transition: opacity 0.2s, transform 0.2s;
+    }
+    #modal-overlay.open > #modal,
+    #share-link-modal.open > .share-link-box,
+    #rules-modal.open > .share-link-box,
+    #leaderboard-modal.open > .share-link-box,
+    #constraint-popup-overlay.open > .constraint-popup {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    /* ── Toast ──────────────────────────────────────────── */
+    #toast {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translate(-50%, 16px);
+      background: #111827;
+      color: white;
+      padding: 10px 18px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 500;
+      box-shadow: 0 8px 20px rgba(0,0,0,.25);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s, transform 0.2s;
+      z-index: 300;
+    }
+    #toast.show {
+      opacity: 1;
+      transform: translate(-50%, 0);
+    }
   </style>
 </head>
 <body>
@@ -545,6 +654,8 @@
     <a href="#" id="btn-rules" style="font-size:11px;color:#9ca3af;text-decoration:none">📖 Règles</a>
     <span style="color:#d1d5db">·</span>
     <a href="#" id="btn-create-link" style="font-size:11px;color:#9ca3af;text-decoration:none">✏️ Créer une grille</a>
+    <span style="color:#d1d5db">·</span>
+    <a href="#" id="btn-leaderboard" style="font-size:11px;color:#9ca3af;text-decoration:none">🏆 Scores</a>
   </div>
   <div class="attempts-bar" id="attempts-bar">
     <span>Essais :</span>
@@ -691,6 +802,7 @@
   <div class="score-line" id="eg-score"></div>
   <div class="recap-grid" id="recap-grid"></div>
   <button id="share-btn">📋 Copier le résultat</button>
+  <button id="share-score-btn">🏆 Partager mon score</button>
   <button id="share-grid-btn" style="display:none">🔗 Partager cette grille</button>
   <div id="share-confirm">Copié dans le presse-papiers !</div>
 </div>
@@ -711,6 +823,18 @@
     </div>
     <div class="share-link-actions">
       <button id="btn-close-rules">Fermer</button>
+    </div>
+  </div>
+</div>
+
+<!-- Leaderboard modal -->
+<div id="leaderboard-modal">
+  <div class="share-link-box">
+    <h2 id="leaderboard-title">🏆 Top scores</h2>
+    <div id="leaderboard-content"></div>
+    <div class="share-link-actions">
+      <button id="btn-reset-leaderboard">🗑️ Effacer</button>
+      <button id="btn-close-leaderboard">Fermer</button>
     </div>
   </div>
 </div>
@@ -804,6 +928,7 @@ let grille = null;
 let isCustomGrid = false;
 let attemptsLeft = MAX_ATTEMPTS;
 let usedPlayers = new Set();
+let startTime = null;
 
 // cells[r][c] = { validated: bool, playerName: str|null, attempted: bool }
 let cells = Array.from({length: 3}, () =>
@@ -835,6 +960,7 @@ function loadDailyGridForTheme(themeName) {
     document.getElementById('header-date').textContent =
       'Grille du ' + (grille.publieLe || today);
     resetGameState();
+    startTime = Date.now();
     renderPips();
     buildGrid();
     document.getElementById('endgame').style.display = 'none';
@@ -893,6 +1019,8 @@ async function init() {
       }
       grille = decoded;
       document.getElementById('header-date').textContent = 'Grille personnalisée';
+      resetGameState();
+      startTime = Date.now();
       renderPips();
       buildGrid();
       document.getElementById('game').style.display = 'block';
@@ -992,6 +1120,8 @@ function buildGrid() {
       td.className = 'cell empty';
       td.dataset.r = r;
       td.dataset.c = c;
+      td.style.setProperty('--row', r);
+      td.style.setProperty('--col', c);
       td.addEventListener('click', onCellClick);
       setEmptyCellContent(td, r, c);
       tr.appendChild(td);
@@ -1211,8 +1341,125 @@ function checkGameOver() {
   setTimeout(showEndgame, 350);
 }
 
+// ── Leaderboard ──────────────────────────────────────────────────────────────
+
+function gridId() {
+  return JSON.stringify(grille.lignes) + '|' + JSON.stringify(grille.colonnes);
+}
+
+function recordScore(theme, timeSeconds, id) {
+  const board = JSON.parse(localStorage.getItem('leaderboard') || '{}');
+  if (!board[theme]) board[theme] = [];
+
+  board[theme].push({
+    date: new Date().toISOString(),
+    theme: theme,
+    time: timeSeconds,
+    gridId: id
+  });
+
+  if (board[theme].length > 100) {
+    board[theme] = board[theme].slice(-100);
+  }
+
+  localStorage.setItem('leaderboard', JSON.stringify(board));
+}
+
+function formatTime(totalSeconds) {
+  const minutes = Math.floor(totalSeconds / 60);
+  const seconds = totalSeconds % 60;
+  return minutes + ':' + seconds.toString().padStart(2, '0');
+}
+
+function showLeaderboard(theme) {
+  const board = JSON.parse(localStorage.getItem('leaderboard') || '{}');
+  const scores = (board[theme] || [])
+    .slice()
+    .sort((a, b) => a.time - b.time)
+    .slice(0, 3);
+
+  const label = window.game?.currentConfig?.label || theme;
+  document.getElementById('leaderboard-title').textContent = '🏆 Top scores — ' + label;
+
+  const content = document.getElementById('leaderboard-content');
+  content.innerHTML = '';
+
+  if (scores.length === 0) {
+    const empty = document.createElement('div');
+    empty.className = 'leaderboard-empty';
+    empty.textContent = 'Aucun score enregistré pour le moment.';
+    content.appendChild(empty);
+  } else {
+    scores.forEach((score, i) => {
+      const row = document.createElement('div');
+      row.className = 'leaderboard-row';
+
+      const rank = document.createElement('span');
+      rank.className = 'rank';
+      rank.textContent = '#' + (i + 1);
+
+      const time = document.createElement('span');
+      time.className = 'time';
+      time.textContent = formatTime(score.time);
+
+      const date = document.createElement('span');
+      date.className = 'date';
+      date.textContent = new Date(score.date).toLocaleDateString('fr-FR');
+
+      row.appendChild(rank);
+      row.appendChild(time);
+      row.appendChild(date);
+      content.appendChild(row);
+    });
+  }
+
+  document.getElementById('leaderboard-modal').classList.add('open');
+}
+
+document.getElementById('btn-leaderboard').addEventListener('click', e => {
+  e.preventDefault();
+  showLeaderboard(window.game?.currentTheme || 'football');
+});
+
+document.getElementById('btn-close-leaderboard').addEventListener('click', () => {
+  document.getElementById('leaderboard-modal').classList.remove('open');
+});
+
+document.getElementById('leaderboard-modal').addEventListener('click', e => {
+  if (e.target.id === 'leaderboard-modal') {
+    document.getElementById('leaderboard-modal').classList.remove('open');
+  }
+});
+
+document.getElementById('btn-reset-leaderboard').addEventListener('click', () => {
+  const theme = window.game?.currentTheme || 'football';
+  if (!confirm('Effacer tous les scores de ' + (window.game?.currentConfig?.label || theme) + ' ?')) return;
+  const board = JSON.parse(localStorage.getItem('leaderboard') || '{}');
+  board[theme] = [];
+  localStorage.setItem('leaderboard', JSON.stringify(board));
+  showLeaderboard(theme);
+});
+
+document.getElementById('share-score-btn').addEventListener('click', () => {
+  const theme = window.game?.currentTheme || 'football';
+  const elapsed = startTime ? Math.floor((Date.now() - startTime) / 1000) : 0;
+  const text = '🏆 ' + (window.game?.currentConfig?.label || theme) + ' — ' +
+    cells.flat().filter(s => s.validated).length + '/9 en ' + formatTime(elapsed);
+
+  const share = () => showToast('🏆 Score partagé : ' + formatTime(elapsed));
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(text).then(share, share);
+  } else {
+    share();
+  }
+});
+
 function showEndgame() {
   const validated = cells.flat().filter(s => s.validated).length;
+
+  const theme = window.game?.currentTheme || 'football';
+  const elapsed = startTime ? Math.floor((Date.now() - startTime) / 1000) : 0;
+  recordScore(theme, elapsed, gridId());
 
   const titles = ['😅 À refaire !', '😅 À refaire !', '😅 À refaire !',
                   '👍 Pas mal !', '👍 Pas mal !', '👍 Pas mal !',
@@ -1220,7 +1467,7 @@ function showEndgame() {
                   /* fallback */ '🏆 Parfait !'];
   document.getElementById('eg-title').textContent = titles[validated];
   document.getElementById('eg-score').textContent =
-    'Score : ' + validated + ' / 9 cases correctes';
+    'Score : ' + validated + ' / 9 cases correctes · Temps : ' + formatTime(elapsed);
 
   const recap = document.getElementById('recap-grid');
   recap.innerHTML = '';
@@ -1304,6 +1551,7 @@ function showShareConfirm() {
   const el = document.getElementById('share-confirm');
   el.style.display = 'block';
   setTimeout(() => { el.style.display = 'none'; }, 2500);
+  showToast('✅ Récap copié !');
 }
 
 // ── Home screen handlers ──────────────────────────────────────────────────────
@@ -1378,10 +1626,11 @@ function remplirValeurs(prefix, groupes, categorie) {
   const groupe = groupes.find(g => g.label === categorie);
   if (groupe) {
     const items = window.game.currentConfig.pools[groupe.pool] || [];
+    const poolDisplayLabels = window.game.currentConfig.displayLabels?.[groupe.pool] || {};
     items.forEach(item => {
       const opt = document.createElement('option');
       opt.value = item.value;
-      opt.textContent = window.game.getDisplayLabel(item.value);
+      opt.textContent = poolDisplayLabels[item.value] || item.label;
       select.appendChild(opt);
     });
   }
@@ -1464,6 +1713,25 @@ function updateCreatorPreview() {
 
         const cell = document.createElement('div');
         cell.className = 'preview-grid-cell';
+        cell.style.setProperty('--row', r);
+        cell.style.setProperty('--col', c);
+
+        const rowLock = document.getElementById('row' + r + '-lock');
+        const colLock = document.getElementById('col' + c + '-lock');
+        if (rowLock.checked && colLock.checked) {
+          cell.classList.add('locked');
+          const icon = document.createElement('span');
+          icon.className = 'cell-lock-icon';
+          icon.textContent = '🔒';
+          cell.appendChild(icon);
+        }
+        cell.title = 'Cliquer pour verrouiller/déverrouiller la ligne et la colonne de cette case';
+        cell.addEventListener('click', () => {
+          const locked = rowLock.checked && colLock.checked;
+          rowLock.checked = !locked;
+          colLock.checked = !locked;
+          updateCreatorPreview();
+        });
 
         const rowLock = document.getElementById('row' + r + '-lock');
         const colLock = document.getElementById('col' + c + '-lock');
@@ -1500,7 +1768,12 @@ function updateCreatorPreview() {
 
     document.getElementById('preview-solutions').textContent = minSol + '-' + maxSol;
     const difficulty = minSol < 3 ? '🔴 Trop facile' : minSol < 5 ? '🟡 Moyen' : '🟢 Bon';
-    document.getElementById('preview-difficulty').textContent = difficulty;
+    const diffEl = document.getElementById('preview-difficulty');
+    diffEl.textContent = difficulty;
+    diffEl.classList.remove('difficulty-badge');
+    // eslint-disable-next-line no-unused-expressions
+    diffEl.offsetWidth; // force reflow pour rejouer l'animation
+    diffEl.classList.add('difficulty-badge');
   }, 300);
 }
 
@@ -1665,6 +1938,7 @@ document.getElementById('btn-copy-link').addEventListener('click', () => {
   const msg = document.getElementById('share-link-msg');
   msg.style.display = 'block';
   setTimeout(() => { msg.style.display = 'none'; }, 2000);
+  showToast('✅ Lien copié !');
 });
 
 document.getElementById('btn-test-grid').addEventListener('click', () => {
@@ -1731,10 +2005,20 @@ document.getElementById('rules-modal').addEventListener('click', e => {
   }
 });
 
+let toastTimeout;
+function showToast(message) {
+  const toast = document.getElementById('toast');
+  toast.textContent = message;
+  clearTimeout(toastTimeout);
+  toast.classList.add('show');
+  toastTimeout = setTimeout(() => toast.classList.remove('show'), 2000);
+}
+
 // ── Start ─────────────────────────────────────────────────────────────────────
 window.init = init;
 window.loadDailyGridForTheme = loadDailyGridForTheme;
 window.isCustomGridActive = () => isCustomGrid;
 </script>
+<div id="toast"></div>
 </body>
 </html>
