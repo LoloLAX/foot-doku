@@ -328,7 +328,7 @@
       cursor: pointer; width: 100%;
       transition: background .2s, opacity .2s, transform .1s, box-shadow .2s;
     }
-    #share-grid-btn {
+    #share-grid-btn, #share-score-btn {
       background: #4f46e5; color: white;
       border: none; border-radius: 8px;
       padding: 11px 20px; font-size: 14px; font-weight: 500;
@@ -336,12 +336,12 @@
       transition: background .2s, opacity .2s, transform .1s, box-shadow .2s;
       margin-top: 8px;
     }
-    #share-btn:hover, #share-grid-btn:hover {
+    #share-btn:hover, #share-grid-btn:hover, #share-score-btn:hover {
       opacity: .85;
       transform: translateY(-2px);
       box-shadow: 0 4px 12px rgba(0,0,0,.15);
     }
-    #share-btn:active, #share-grid-btn:active {
+    #share-btn:active, #share-grid-btn:active, #share-score-btn:active {
       transform: translateY(0);
       box-shadow: 0 2px 6px rgba(0,0,0,.1);
     }
@@ -569,10 +569,37 @@
     .rules-content ul { margin: 0 0 10px 0; padding-left: 18px; }
     .rules-content li { margin-bottom: 4px; }
 
+    /* ── Leaderboard modal ─────────────────────────────── */
+    #leaderboard-modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.45);
+      z-index: 101;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+    #leaderboard-modal.open { display: flex; }
+    .leaderboard-row {
+      display: flex;
+      gap: 12px;
+      padding: 8px 4px;
+      border-bottom: 1px solid var(--border);
+      align-items: center;
+      font-size: 13px;
+    }
+    .leaderboard-row:last-child { border-bottom: none; }
+    .leaderboard-row .rank { font-weight: bold; min-width: 24px; }
+    .leaderboard-row .time { font-family: monospace; color: #4f46e5; font-weight: 600; }
+    .leaderboard-row .date { font-size: 12px; color: var(--gray); margin-left: auto; }
+    .leaderboard-empty { font-size: 13px; color: var(--gray); padding: 8px 4px; }
+
     /* ── Modal transitions ─────────────────────────────── */
     #modal-overlay > #modal,
     #share-link-modal > .share-link-box,
     #rules-modal > .share-link-box,
+    #leaderboard-modal > .share-link-box,
     #constraint-popup-overlay > .constraint-popup {
       opacity: 0;
       transform: scale(0.95);
@@ -581,6 +608,7 @@
     #modal-overlay.open > #modal,
     #share-link-modal.open > .share-link-box,
     #rules-modal.open > .share-link-box,
+    #leaderboard-modal.open > .share-link-box,
     #constraint-popup-overlay.open > .constraint-popup {
       opacity: 1;
       transform: scale(1);
@@ -626,6 +654,8 @@
     <a href="#" id="btn-rules" style="font-size:11px;color:#9ca3af;text-decoration:none">📖 Règles</a>
     <span style="color:#d1d5db">·</span>
     <a href="#" id="btn-create-link" style="font-size:11px;color:#9ca3af;text-decoration:none">✏️ Créer une grille</a>
+    <span style="color:#d1d5db">·</span>
+    <a href="#" id="btn-leaderboard" style="font-size:11px;color:#9ca3af;text-decoration:none">🏆 Scores</a>
   </div>
   <div class="attempts-bar" id="attempts-bar">
     <span>Essais :</span>
@@ -772,6 +802,7 @@
   <div class="score-line" id="eg-score"></div>
   <div class="recap-grid" id="recap-grid"></div>
   <button id="share-btn">📋 Copier le résultat</button>
+  <button id="share-score-btn">🏆 Partager mon score</button>
   <button id="share-grid-btn" style="display:none">🔗 Partager cette grille</button>
   <div id="share-confirm">Copié dans le presse-papiers !</div>
 </div>
@@ -792,6 +823,18 @@
     </div>
     <div class="share-link-actions">
       <button id="btn-close-rules">Fermer</button>
+    </div>
+  </div>
+</div>
+
+<!-- Leaderboard modal -->
+<div id="leaderboard-modal">
+  <div class="share-link-box">
+    <h2 id="leaderboard-title">🏆 Top scores</h2>
+    <div id="leaderboard-content"></div>
+    <div class="share-link-actions">
+      <button id="btn-reset-leaderboard">🗑️ Effacer</button>
+      <button id="btn-close-leaderboard">Fermer</button>
     </div>
   </div>
 </div>
@@ -885,6 +928,7 @@ let grille = null;
 let isCustomGrid = false;
 let attemptsLeft = MAX_ATTEMPTS;
 let usedPlayers = new Set();
+let startTime = null;
 
 // cells[r][c] = { validated: bool, playerName: str|null, attempted: bool }
 let cells = Array.from({length: 3}, () =>
@@ -916,6 +960,7 @@ function loadDailyGridForTheme(themeName) {
     document.getElementById('header-date').textContent =
       'Grille du ' + (grille.publieLe || today);
     resetGameState();
+    startTime = Date.now();
     renderPips();
     buildGrid();
     document.getElementById('endgame').style.display = 'none';
@@ -974,6 +1019,8 @@ async function init() {
       }
       grille = decoded;
       document.getElementById('header-date').textContent = 'Grille personnalisée';
+      resetGameState();
+      startTime = Date.now();
       renderPips();
       buildGrid();
       document.getElementById('game').style.display = 'block';
@@ -1294,8 +1341,125 @@ function checkGameOver() {
   setTimeout(showEndgame, 350);
 }
 
+// ── Leaderboard ──────────────────────────────────────────────────────────────
+
+function gridId() {
+  return JSON.stringify(grille.lignes) + '|' + JSON.stringify(grille.colonnes);
+}
+
+function recordScore(theme, timeSeconds, id) {
+  const board = JSON.parse(localStorage.getItem('leaderboard') || '{}');
+  if (!board[theme]) board[theme] = [];
+
+  board[theme].push({
+    date: new Date().toISOString(),
+    theme: theme,
+    time: timeSeconds,
+    gridId: id
+  });
+
+  if (board[theme].length > 100) {
+    board[theme] = board[theme].slice(-100);
+  }
+
+  localStorage.setItem('leaderboard', JSON.stringify(board));
+}
+
+function formatTime(totalSeconds) {
+  const minutes = Math.floor(totalSeconds / 60);
+  const seconds = totalSeconds % 60;
+  return minutes + ':' + seconds.toString().padStart(2, '0');
+}
+
+function showLeaderboard(theme) {
+  const board = JSON.parse(localStorage.getItem('leaderboard') || '{}');
+  const scores = (board[theme] || [])
+    .slice()
+    .sort((a, b) => a.time - b.time)
+    .slice(0, 3);
+
+  const label = window.game?.currentConfig?.label || theme;
+  document.getElementById('leaderboard-title').textContent = '🏆 Top scores — ' + label;
+
+  const content = document.getElementById('leaderboard-content');
+  content.innerHTML = '';
+
+  if (scores.length === 0) {
+    const empty = document.createElement('div');
+    empty.className = 'leaderboard-empty';
+    empty.textContent = 'Aucun score enregistré pour le moment.';
+    content.appendChild(empty);
+  } else {
+    scores.forEach((score, i) => {
+      const row = document.createElement('div');
+      row.className = 'leaderboard-row';
+
+      const rank = document.createElement('span');
+      rank.className = 'rank';
+      rank.textContent = '#' + (i + 1);
+
+      const time = document.createElement('span');
+      time.className = 'time';
+      time.textContent = formatTime(score.time);
+
+      const date = document.createElement('span');
+      date.className = 'date';
+      date.textContent = new Date(score.date).toLocaleDateString('fr-FR');
+
+      row.appendChild(rank);
+      row.appendChild(time);
+      row.appendChild(date);
+      content.appendChild(row);
+    });
+  }
+
+  document.getElementById('leaderboard-modal').classList.add('open');
+}
+
+document.getElementById('btn-leaderboard').addEventListener('click', e => {
+  e.preventDefault();
+  showLeaderboard(window.game?.currentTheme || 'football');
+});
+
+document.getElementById('btn-close-leaderboard').addEventListener('click', () => {
+  document.getElementById('leaderboard-modal').classList.remove('open');
+});
+
+document.getElementById('leaderboard-modal').addEventListener('click', e => {
+  if (e.target.id === 'leaderboard-modal') {
+    document.getElementById('leaderboard-modal').classList.remove('open');
+  }
+});
+
+document.getElementById('btn-reset-leaderboard').addEventListener('click', () => {
+  const theme = window.game?.currentTheme || 'football';
+  if (!confirm('Effacer tous les scores de ' + (window.game?.currentConfig?.label || theme) + ' ?')) return;
+  const board = JSON.parse(localStorage.getItem('leaderboard') || '{}');
+  board[theme] = [];
+  localStorage.setItem('leaderboard', JSON.stringify(board));
+  showLeaderboard(theme);
+});
+
+document.getElementById('share-score-btn').addEventListener('click', () => {
+  const theme = window.game?.currentTheme || 'football';
+  const elapsed = startTime ? Math.floor((Date.now() - startTime) / 1000) : 0;
+  const text = '🏆 ' + (window.game?.currentConfig?.label || theme) + ' — ' +
+    cells.flat().filter(s => s.validated).length + '/9 en ' + formatTime(elapsed);
+
+  const share = () => showToast('🏆 Score partagé : ' + formatTime(elapsed));
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(text).then(share, share);
+  } else {
+    share();
+  }
+});
+
 function showEndgame() {
   const validated = cells.flat().filter(s => s.validated).length;
+
+  const theme = window.game?.currentTheme || 'football';
+  const elapsed = startTime ? Math.floor((Date.now() - startTime) / 1000) : 0;
+  recordScore(theme, elapsed, gridId());
 
   const titles = ['😅 À refaire !', '😅 À refaire !', '😅 À refaire !',
                   '👍 Pas mal !', '👍 Pas mal !', '👍 Pas mal !',
@@ -1303,7 +1467,7 @@ function showEndgame() {
                   /* fallback */ '🏆 Parfait !'];
   document.getElementById('eg-title').textContent = titles[validated];
   document.getElementById('eg-score').textContent =
-    'Score : ' + validated + ' / 9 cases correctes';
+    'Score : ' + validated + ' / 9 cases correctes · Temps : ' + formatTime(elapsed);
 
   const recap = document.getElementById('recap-grid');
   recap.innerHTML = '';
