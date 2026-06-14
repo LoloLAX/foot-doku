@@ -432,6 +432,23 @@
       padding: 6px;
       font-size: 11px;
       min-height: 60px;
+      cursor: pointer;
+      position: relative;
+      transition: background .15s, border-color .15s;
+    }
+    .preview-grid-cell:hover {
+      border-color: #6366f1;
+      background: #eef2ff;
+    }
+    .preview-grid-cell.locked {
+      background: #e8f4f8;
+      border: 2px solid #0066cc;
+    }
+    .preview-grid-cell .cell-lock-icon {
+      position: absolute;
+      top: 4px;
+      right: 4px;
+      font-size: 12px;
     }
     .preview-grid-cell .preview-count {
       font-weight: 600;
@@ -1448,6 +1465,23 @@ function updateCreatorPreview() {
         const cell = document.createElement('div');
         cell.className = 'preview-grid-cell';
 
+        const rowLock = document.getElementById('row' + r + '-lock');
+        const colLock = document.getElementById('col' + c + '-lock');
+        if (rowLock.checked && colLock.checked) {
+          cell.classList.add('locked');
+          const icon = document.createElement('span');
+          icon.className = 'cell-lock-icon';
+          icon.textContent = '🔒';
+          cell.appendChild(icon);
+        }
+        cell.title = 'Cliquer pour verrouiller/déverrouiller la ligne et la colonne de cette case';
+        cell.addEventListener('click', () => {
+          const locked = rowLock.checked && colLock.checked;
+          rowLock.checked = !locked;
+          colLock.checked = !locked;
+          updateCreatorPreview();
+        });
+
         const count = document.createElement('div');
         count.className = 'preview-count';
         const entity = window.game?.currentConfig?.entity || 'entité';
@@ -1581,6 +1615,11 @@ document.getElementById('btn-autofix-grid').addEventListener('click', () => {
 });
 
 document.getElementById('btn-create-grid').addEventListener('click', createCustomGrid);
+
+// Rafraîchir la prévisualisation (icônes de verrou) quand une case à cocher change
+['col0-lock', 'col1-lock', 'col2-lock', 'row0-lock', 'row1-lock', 'row2-lock'].forEach(id => {
+  document.getElementById(id).addEventListener('change', updateCreatorPreview);
+});
 
 function createCustomGrid() {
   const cols = [
