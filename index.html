@@ -724,6 +724,7 @@ function updatePageTitle() {
   const titleEl = document.getElementById('header-title');
   if (titleEl && window.game && window.game.currentConfig) {
     titleEl.textContent = window.game.currentConfig.label;
+    document.title = window.game.currentConfig.label;
   }
 }
 
@@ -768,6 +769,9 @@ window.switchTheme = async function switchTheme(themeName) {
       document.getElementById('preview-solutions').textContent = '—';
       document.getElementById('preview-difficulty').textContent = '—';
       document.getElementById('preview-grid').innerHTML = '';
+    } else if (!window.isCustomGridActive || !window.isCustomGridActive()) {
+      // Recharger la grille du jour propre au thème sélectionné
+      await window.loadDailyGridForTheme(themeName);
     }
   } catch (err) {
     alert(`Impossible de charger le thème "${themeName}" : ${err.message}`);
@@ -794,6 +798,69 @@ let selectedPlayer = null;
 
 // ── Init ─────────────────────────────────────────────────────────────────────
 
+function resetGameState() {
+  attemptsLeft = MAX_ATTEMPTS;
+  cells = Array.from({length: 3}, () =>
+    Array.from({length: 3}, () => ({ validated: false, playerName: null, attempted: false }))
+  );
+  usedPlayers.clear();
+}
+
+// Charge (ou génère) la grille du jour pour un thème donné et l'affiche.
+// Foot-Doku utilise grille-du-jour.json (généré par script externe) ;
+// les autres thèmes génèrent une grille à la volée, mise en cache par jour dans localStorage.
+function loadDailyGridForTheme(themeName) {
+  isCustomGrid = false;
+  const today = new Date().toLocaleDateString('fr-FR');
+
+  const display = (g) => {
+    grille = g;
+    document.getElementById('header-date').textContent =
+      'Grille du ' + (grille.publieLe || today);
+    resetGameState();
+    renderPips();
+    buildGrid();
+    document.getElementById('endgame').style.display = 'none';
+    document.getElementById('creator').style.display = 'none';
+    document.getElementById('home-screen').style.display = 'none';
+    document.getElementById('attempts-bar').style.display = 'flex';
+    document.getElementById('game').style.display = 'block';
+  };
+
+  if (themeName === 'football') {
+    return fetch('grille-du-jour.json')
+      .then(r => r.json())
+      .then(display)
+      .catch(() => {
+        const raw = localStorage.getItem('footdoku_grille');
+        if (!raw) {
+          showHome();
+          return;
+        }
+        display(JSON.parse(raw));
+      });
+  }
+
+  // Thèmes génériques (ex: geography) : grille du jour générée et mise en cache
+  const cacheKey = `dailyGrid_${themeName}_${today}`;
+  const cached = localStorage.getItem(cacheKey);
+  if (cached) {
+    display(JSON.parse(cached));
+    return Promise.resolve();
+  }
+
+  try {
+    const g = window.game.generateNewGrid();
+    g.publieLe = today;
+    localStorage.setItem(cacheKey, JSON.stringify(g));
+    display(g);
+  } catch (e) {
+    console.error('Erreur génération grille du jour:', e);
+    showHome();
+  }
+  return Promise.resolve();
+}
+
 function init() {
   // Vérifier si une grille personnalisée est dans l'URL
   const params = new URLSearchParams(window.location.search);
@@ -816,31 +883,7 @@ function init() {
     }
   }
 
-  // Charger la grille du jour depuis grille-du-jour.json
-  fetch('grille-du-jour.json')
-    .then(r => r.json())
-    .then(data => {
-      grille = data;
-      document.getElementById('header-date').textContent =
-        'Grille du ' + (grille.publieLe || new Date().toLocaleDateString('fr-FR'));
-      renderPips();
-      buildGrid();
-      document.getElementById('game').style.display = 'block';
-    })
-    .catch(() => {
-      // Fallback : localStorage ou rien
-      const raw = localStorage.getItem('footdoku_grille');
-      if (!raw) {
-        showHome();
-        return;
-      }
-      grille = JSON.parse(raw);
-      document.getElementById('header-date').textContent =
-        'Grille du ' + (grille.publieLe || new Date().toLocaleDateString('fr-FR'));
-      renderPips();
-      buildGrid();
-      document.getElementById('game').style.display = 'block';
-    });
+  loadDailyGridForTheme(window.game?.currentTheme || 'football');
 }
 
 function showHome() {
@@ -1646,6 +1689,8 @@ document.getElementById('rules-modal').addEventListener('click', e => {
 
 // ── Start ─────────────────────────────────────────────────────────────────────
 window.init = init;
+window.loadDailyGridForTheme = loadDailyGridForTheme;
+window.isCustomGridActive = () => isCustomGrid;
 </script>
 </body>
 </html>
