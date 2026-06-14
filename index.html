@@ -861,7 +861,7 @@ function loadDailyGridForTheme(themeName) {
   return Promise.resolve();
 }
 
-function init() {
+async function init() {
   // Vérifier si une grille personnalisée est dans l'URL
   const params = new URLSearchParams(window.location.search);
   const gridData = params.get('gridData');
@@ -869,8 +869,12 @@ function init() {
   if (gridData) {
     try {
       const decoded = JSON.parse(atob(gridData));
-      grille = decoded;
       isCustomGrid = true;
+      // Basculer sur le thème de la grille partagée avant de l'afficher
+      if (decoded.theme && decoded.theme !== window.game?.currentTheme) {
+        await window.switchTheme(decoded.theme);
+      }
+      grille = decoded;
       document.getElementById('header-date').textContent = 'Grille personnalisée';
       renderPips();
       buildGrid();
@@ -1360,7 +1364,7 @@ function remplirValeurs(prefix, groupes, categorie) {
     items.forEach(item => {
       const opt = document.createElement('option');
       opt.value = item.value;
-      opt.textContent = item.label;
+      opt.textContent = window.game.getDisplayLabel(item.value);
       select.appendChild(opt);
     });
   }
@@ -1598,7 +1602,8 @@ function createCustomGrid() {
   grille = {
     colonnes: cols,
     lignes: rows,
-    publieLe: new Date().toLocaleDateString('fr-FR')
+    publieLe: new Date().toLocaleDateString('fr-FR'),
+    theme: window.game.currentTheme
   };
 
   showShareModal();
