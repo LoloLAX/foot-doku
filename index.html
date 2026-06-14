@@ -1626,10 +1626,11 @@ function remplirValeurs(prefix, groupes, categorie) {
   const groupe = groupes.find(g => g.label === categorie);
   if (groupe) {
     const items = window.game.currentConfig.pools[groupe.pool] || [];
+    const poolDisplayLabels = window.game.currentConfig.displayLabels?.[groupe.pool] || {};
     items.forEach(item => {
       const opt = document.createElement('option');
       opt.value = item.value;
-      opt.textContent = window.game.getDisplayLabel(item.value);
+      opt.textContent = poolDisplayLabels[item.value] || item.label;
       select.appendChild(opt);
     });
   }

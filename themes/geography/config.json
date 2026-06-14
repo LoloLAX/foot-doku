@@ -93,14 +93,6 @@
       {
         "label": "Caribbean",
         "value": "Caribbean"
-      },
-      {
-        "label": "South America",
-        "value": "South America"
-      },
-      {
-        "label": "Oceania",
-        "value": "Oceania"
       }
     ],
     "GOVERNMENTS": [
@@ -764,9 +756,7 @@
       "Sub-Saharan Africa": "Sous-région: Afrique Subsaharienne",
       "Northern America": "Sous-région: Amérique du Nord",
       "Central America": "Sous-région: Amérique Centrale",
-      "Caribbean": "Sous-région: Caraïbes",
-      "South America": "Sous-région: Amérique du Sud",
-      "Oceania": "Sous-région: Océanie"
+      "Caribbean": "Sous-région: Caraïbes"
     },
     "GOVERNMENTS": {
       "Monarchie": "Régime: Monarchie",
