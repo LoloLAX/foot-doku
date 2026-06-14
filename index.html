@@ -1017,7 +1017,7 @@ document.getElementById('modal-overlay').addEventListener('click', e => {
 let acHighlight = -1;
 
 function normaliserRecherche(s) {
-  return s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
+  return s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/[^a-z0-9]/g, '');
 }
 
 document.getElementById('search-input').addEventListener('input', function() {
